@@ -13,7 +13,7 @@ class Holon : virtual public Variable
 public:
   // Attributes
   
-  ValueVarmap varMap_;
+  ValueVarmap* varMap_;
   
   // Constructors/Destructor
   

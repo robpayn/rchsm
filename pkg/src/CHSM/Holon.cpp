@@ -12,7 +12,8 @@
 Holon::Holon(std::string name) :
   Variable(name)
 {
-  value_ = &varMap_;
+  varMap_ = new ValueVarmap();
+  value_ = dynamic_cast <Value*> (varMap_);
 };
 
 Holon::~Holon() {};
@@ -22,7 +23,7 @@ Holon::~Holon() {};
 void Holon::addVariable(Variable* var)
 {
   try {
-    varMap_.addVariable(var);
+    varMap_->addVariable(var);
   }
   catch (std::string* thrownError) {
     std::ostringstream error;
