@@ -11,10 +11,6 @@
 class Holon : virtual public Variable
 {
 public:
-  // Attributes
-  
-  ValueVarmap* varMap_;
-  
   // Constructors/Destructor
   
   Holon(std::string name);

@@ -10,7 +10,7 @@
 #include "Variable.h"
 #include "Value.h"
 
-class ValueVarmap : virtual public Value
+class ValueVarmap : public Value
 {
   public:
     // Attributes

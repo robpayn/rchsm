@@ -8,7 +8,7 @@
 #include <cmath>
 #include "Value.h"
 
-class ValueDouble : virtual public Value
+class ValueDouble : public Value
 {
   public:
     // Attributes
