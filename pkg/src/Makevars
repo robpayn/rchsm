@@ -1,0 +1,7 @@
+SOURCES = \
+  $(wildcard *.cpp) \
+  $(wildcard CHSM/*.cpp) \
+  $(wildcard CHSM_R/*.cpp) \
+  $(wildcard solutes/do/conc/*.cpp) \
+  $(wildcard solutes/do/conc_R/*.cpp)
+OBJECTS = $(SOURCES:.cpp=.o)

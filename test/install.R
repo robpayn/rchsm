@@ -1,0 +1,1 @@
+install.packages(pkgs = "../pkg", repos = NULL, type = "source", lib = "./build")
