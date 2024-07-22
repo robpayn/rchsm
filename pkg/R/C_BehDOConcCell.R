@@ -6,15 +6,15 @@
 #' @export
 #'
 #' @title
-#'   BehDOConcCell Object
+#'   BehCellDOConc Object
 #'
 #' @description
-#'   An R6 class mapping to a C++ BehDOConcCell object
+#'   An R6 class mapping to a C++ BehCellDOConc object
 #'
 #'   Implementation is provided by C++ objects.
 #'
-C_BehDOConcCell <- R6Class(
-  classname = "C_BehDOConcCell",
+C_BehCellDOConc <- R6Class(
+  classname = "C_BehCellDOConc",
   inherit = C_Object,
   public = list(
     
@@ -25,7 +25,7 @@ C_BehDOConcCell <- R6Class(
     #'   Name of the cell
     #'   
     initialize = function() {
-      super$initialize("BehDOConcCell")
+      super$initialize("BehCellDOConc")
     },
     
     #' @description
@@ -36,7 +36,7 @@ C_BehDOConcCell <- R6Class(
     #'   
     createVariables = function(holon) {
       .Call(
-        "BehDOConcCell_createVariables",
+        "BehCellDOConc_createVariables",
         self$externalPointer,
         holon$externalPointer
       )

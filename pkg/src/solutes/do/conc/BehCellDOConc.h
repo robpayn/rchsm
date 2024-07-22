@@ -1,5 +1,5 @@
 /*
- * BehDOConcCell.h
+ * BehCellDOConc.h
  */
 
 #ifndef RCHSM_SOLUTES_DO_CONC_BEHAVIOR_CELL_H_
@@ -7,13 +7,13 @@
 
 #include "../../../CHSM/Behavior.h"
 
-class BehDOConcCell : virtual public Behavior
+class BehCellDOConc : virtual public Behavior
 {
   public:
     // Constructors/Destructor
     
-    BehDOConcCell();
-    virtual ~BehDOConcCell() {};
+    BehCellDOConc();
+    virtual ~BehCellDOConc() {};
     
     // Methods
     
