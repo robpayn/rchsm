@@ -21,9 +21,6 @@ C_BehCellDOConc <- R6Class(
     #' @description
     #'   Constructs an object that is a new instance of the class
     #'
-    #' @param name
-    #'   Name of the cell
-    #'   
     initialize = function() {
       super$initialize("BehCellDOConc")
     },

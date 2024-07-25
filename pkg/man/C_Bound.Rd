@@ -31,13 +31,17 @@ An R6 class mapping to a C++ Bound object
 \subsection{Method \code{new()}}{
 Constructs an object that is a new instance of the class
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_Bound$new(name)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{C_Bound$new(source)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{name}}{Name of the bound}
+\item{\code{source}}{Source data for creating the bound.
+Providing a character string will result in a new bound object
+  being created in both C and R.
+Providing an external pointer will result in a new bound object
+  in R that is mapped to the C object referenced by the pointer.}
 }
 \if{html}{\out{</div>}}
 }

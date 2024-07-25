@@ -6,6 +6,8 @@
 #include <Rinternals.h>
 #include "../CHSM/Cell.h"
 
+void Cell_finalizer(SEXP externalPointer);
+
 extern "C"
 {
   SEXP Cell_constructor(SEXP name);

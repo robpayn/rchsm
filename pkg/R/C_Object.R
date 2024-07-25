@@ -28,18 +28,28 @@ C_Object <- R6Class(
     #' @description
     #'   Constructs an object that is a new instance of the class
     #'   
-    #' @param name
+    #' @param className
     #'   The name of the of the C class being mapped
+    #' @param externalPointer
+    #'   (Optional) If an external pointer is provided instead of the default
+    #'   NULL value, then the new R6 object will be associated with the 
+    #'   exsting C++ Object referenced by the pointer.
     #' @param ...
-    #'   Abstract arguments to be passed to the 
+    #'   Abstract arguments to be passed to the C++ constructor
     #'   
-    initialize = function(name, ...)
+    initialize = function(className, externalPointer = NULL, ...)
     {
-      self$cClassName <- name
-      self$externalPointer = .Call(
-        sprintf("%s_constructor", self$cClassName),
-        ...
-      )
+      self$cClassName <- className
+      if (is.null(externalPointer)) {
+        self$externalPointer <- .Call(
+          sprintf("%s_constructor", self$cClassName),
+          ...
+        )
+      } else if (typeof(externalPointer) == "externalptr") {
+        self$externalPointer <- externalPointer
+      } else  {
+        stop("The externalPointer provided is invalid.")
+      }
     },
     
     #' @description

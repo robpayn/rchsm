@@ -24,13 +24,13 @@ class Variable
     
     // Constructors/Destructor
     
-    Variable();
-    
     Variable(std::string name);
     
     virtual ~Variable();
     
     // Methods
+    
+    void setHolon(Holon* holon);
     
     template <class T_VALUE>
     T_VALUE* getValue()

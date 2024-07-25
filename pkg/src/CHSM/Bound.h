@@ -21,7 +21,7 @@ class Bound : virtual public Holon
     
     Bound(std::string name);
     
-    Bound(std::string name, Cell* fromCell, Cell* toCell);
+    Bound(std::string name, Cell* cellFrom, Cell* cellTo);
     
     virtual ~Bound();
     

@@ -5,13 +5,17 @@
 #include <string>
 #include "Variable.h"
 
-Variable::Variable() {};
-
 Variable::Variable(std::string name) :
   name_(name)
 {};
 
 Variable::~Variable() {};
+
+void Variable::setHolon(Holon* holon) {
+  
+  holon_ = holon;
+  
+}
 
 // Variable::Variable(std::string name, void* value, void* holon) :
 //   name_(name),

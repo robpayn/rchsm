@@ -3,6 +3,7 @@
 export(C_BehCellDOConc)
 export(C_Bound)
 export(C_Cell)
+export(C_Model)
 export(C_Object)
 importFrom(R6,R6Class)
 useDynLib(rchsm)

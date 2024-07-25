@@ -26,7 +26,9 @@ void Holon::addVariable(Variable* var)
   }
   catch (std::string* thrownError) {
     std::ostringstream error;
-    error << "Variable map for holon " << name_ << " reported error: " << thrownError;
+    error << "Variable map for holon " << name_ << 
+      " reported error: " << thrownError;
     throw error.str();
   }
+  var->setHolon(this);
 }

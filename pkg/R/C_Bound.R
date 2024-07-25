@@ -21,10 +21,24 @@ C_Bound <- R6Class(
     #' @description
     #'   Constructs an object that is a new instance of the class
     #'
-    #' @param name
-    #'   Name of the bound
-    initialize = function(name) {
-      super$initialize("Bound", name)
+    #' @param source
+    #'   Source data for creating the bound.
+    #'   Providing a character string will result in a new bound object
+    #'     being created in both C and R.
+    #'   Providing an external pointer will result in a new bound object
+    #'     in R that is mapped to the C object referenced by the pointer.
+    #'     
+    initialize = function(source) {
+      
+      className = "Bound"
+      if (typeof(source) == "externalptr") {
+        super$initialize(className = className, externalPointer = source)
+      } else if (is.character(source)) {
+        super$initialize(className = className, name = source)
+      } else {
+        stop("Provided source is not a valid bound name or external pointer.")
+      }
+
     }
     
   )

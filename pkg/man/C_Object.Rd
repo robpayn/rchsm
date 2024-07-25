@@ -31,15 +31,19 @@ An R6 class mapping to a C++ object
 \subsection{Method \code{new()}}{
 Constructs an object that is a new instance of the class
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_Object$new(name, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{C_Object$new(className, externalPointer = NULL, ...)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{name}}{The name of the of the C class being mapped}
+\item{\code{className}}{The name of the of the C class being mapped}
 
-\item{\code{...}}{Abstract arguments to be passed to the}
+\item{\code{externalPointer}}{(Optional) If an external pointer is provided instead of the default
+NULL value, then the new R6 object will be associated with the 
+exsting C++ Object referenced by the pointer.}
+
+\item{\code{...}}{Abstract arguments to be passed to the C++ constructor}
 }
 \if{html}{\out{</div>}}
 }

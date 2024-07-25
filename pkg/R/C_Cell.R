@@ -21,10 +21,24 @@ C_Cell <- R6Class(
     #' @description
     #'   Constructs an object that is a new instance of the class
     #'
-    #' @param name
-    #'   Name of the cell
-    initialize = function(name) {
-      super$initialize("Cell", name)
+    #' @param source
+    #'   Source data for creating the cell.
+    #'   Providing a character string will result in a new cell object
+    #'     being created in both C and R.
+    #'   Providing an external pointer will result in a new cell object
+    #'     in R that is mapped to the C object referenced by the pointer.
+    #'     
+    initialize = function(source) {
+      
+      className = "Cell"
+      if (typeof(source) == "externalptr") {
+        super$initialize(className = className, externalPointer = source)
+      } else if (is.character(source)) {
+        super$initialize(className = className, name = source)
+      } else {
+        stop("Provided source is not a valid cell name or external pointer.")
+      }
+      
     }
     
   )
