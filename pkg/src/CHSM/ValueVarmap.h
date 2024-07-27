@@ -10,12 +10,34 @@
 #include "Variable.h"
 #include "Value.h"
 
+class Formatter
+{
+  public:
+    std::unordered_map<std::string, Variable*>* mapPtr_;
+    
+    Formatter(std::unordered_map<std::string, Variable*>* mapPtr);
+    virtual ~Formatter();
+    
+    virtual std::string format() = 0;
+};
+
+class FormatterXML : public Formatter
+{
+  public:
+    FormatterXML(std::unordered_map<std::string, Variable*>* mapPtr);
+    virtual ~FormatterXML();
+    
+    std::string format() override;
+};
+
 class ValueVarmap : public Value
 {
   public:
     // Attributes
     
     std::unordered_map<std::string, Variable*> map_;
+    
+    Formatter* formatter_;
     
     // Constructors/Destructor
     
@@ -30,6 +52,8 @@ class ValueVarmap : public Value
     std::string toString() override;
     
     void addVariable(Variable* var);
+    
+    void deleteVariables();
 };
 
 #endif /* RCHSM_VALUEVARMAP_H_ */

@@ -8,8 +8,8 @@ An R6 class mapping to a C++ Bound object
 
   Implementation is provided by C++ objects.
 }
-\section{Super class}{
-\code{\link[rchsm:C_Object]{rchsm::C_Object}} -> \code{C_Bound}
+\section{Super classes}{
+\code{\link[rchsm:C_Object]{rchsm::C_Object}} -> \code{\link[rchsm:C_Holon]{rchsm::C_Holon}} -> \code{C_Bound}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -22,6 +22,7 @@ An R6 class mapping to a C++ Bound object
 <details open><summary>Inherited methods</summary>
 <ul>
 <li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Object" data-id="finalize"><a href='../../rchsm/html/C_Object.html#method-C_Object-finalize'><code>rchsm::C_Object$finalize()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Holon" data-id="getValueString"><a href='../../rchsm/html/C_Holon.html#method-C_Holon-getValueString'><code>rchsm::C_Holon$getValueString()</code></a></span></li>
 </ul>
 </details>
 }}
@@ -31,7 +32,7 @@ An R6 class mapping to a C++ Bound object
 \subsection{Method \code{new()}}{
 Constructs an object that is a new instance of the class
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_Bound$new(source)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{C_Bound$new(source, className = "Bound")}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -42,6 +43,9 @@ Providing a character string will result in a new bound object
   being created in both C and R.
 Providing an external pointer will result in a new bound object
   in R that is mapped to the C object referenced by the pointer.}
+
+\item{\code{className}}{(Optional) Name of the class used in accessing c++ functions.
+Default value is "Bound"}
 }
 \if{html}{\out{</div>}}
 }

@@ -9,8 +9,20 @@ beh <- C_BehCellDOConc$new()
 
 model <- C_Model$new()
 
-cell <- model$createCell(name = "Cell01")
+cell <- C_Cell$new(
+  model$createCell(name = "Cell01")
+)
 
-cell2 <- model$createCell(name = "Cell02")
+cell2 <- C_Cell$new(
+  model$createCell(name = "Cell02")
+)
 
-bound <- model$createBound(name = "Bound01", cellFrom = cell, cellTo = cell2)
+bound <- C_Bound$new(
+  model$createBound(
+    name = "Bound01", 
+    .cellFrom = cell$externalPointer, 
+    .cellTo = cell2$externalPointer
+  )
+)
+
+cat(model$getValueString())

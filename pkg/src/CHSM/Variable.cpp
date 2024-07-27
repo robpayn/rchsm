@@ -28,7 +28,7 @@ void Variable::setHolon(Holon* holon) {
 //   value_->fromString(stringValue);
 // }
 
-// std::string Variable::getValueAsString()
-// {
-//   return value_->toString();
-// }
+std::string Variable::getValueString()
+{
+  return value_->toString();
+}

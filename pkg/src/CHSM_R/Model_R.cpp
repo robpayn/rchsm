@@ -104,7 +104,6 @@ SEXP Model_createBound(
     modelPtr->createBound(CHAR(asChar(name)), cellFromPtr, cellToPtr, holonPtr);
 
   if (boundPtr) {
-    
     SEXP extBoundPtr = PROTECT(
       R_MakeExternalPtr(boundPtr, R_NilValue, R_NilValue)
     );
@@ -113,7 +112,6 @@ SEXP Model_createBound(
   
     UNPROTECT(1);
     return extBoundPtr;
-    
   } else {
     return R_NilValue;
   }

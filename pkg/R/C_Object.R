@@ -33,7 +33,7 @@ C_Object <- R6Class(
     #' @param externalPointer
     #'   (Optional) If an external pointer is provided instead of the default
     #'   NULL value, then the new R6 object will be associated with the 
-    #'   exsting C++ Object referenced by the pointer.
+    #'   existing C++ Object referenced by the pointer.
     #' @param ...
     #'   Abstract arguments to be passed to the C++ constructor
     #'   
@@ -47,7 +47,7 @@ C_Object <- R6Class(
         )
       } else if (typeof(externalPointer) == "externalptr") {
         self$externalPointer <- externalPointer
-      } else  {
+      } else {
         stop("The externalPointer provided is invalid.")
       }
     },

@@ -15,7 +15,11 @@ Holon::Holon(std::string name) :
   value_ = static_cast <Value*> (new ValueVarmap());
 }
 
-Holon::~Holon() {};
+Holon::~Holon() 
+{
+  static_cast <ValueVarmap*> (value_)->deleteVariables();
+  delete value_;
+};
 
 // Methods
 

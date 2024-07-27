@@ -15,7 +15,7 @@
 #'
 C_Bound <- R6Class(
   classname = "C_Bound",
-  inherit = C_Object,
+  inherit = C_Holon,
   public = list(
     
     #' @description
@@ -27,10 +27,12 @@ C_Bound <- R6Class(
     #'     being created in both C and R.
     #'   Providing an external pointer will result in a new bound object
     #'     in R that is mapped to the C object referenced by the pointer.
+    #' @param className
+    #'   (Optional) Name of the class used in accessing c++ functions.
+    #'   Default value is "Bound"
     #'     
-    initialize = function(source) {
+    initialize = function(source, className = "Bound") {
       
-      className = "Bound"
       if (typeof(source) == "externalptr") {
         super$initialize(className = className, externalPointer = source)
       } else if (is.character(source)) {

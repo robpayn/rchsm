@@ -41,7 +41,7 @@ Constructs an object that is a new instance of the class
 
 \item{\code{externalPointer}}{(Optional) If an external pointer is provided instead of the default
 NULL value, then the new R6 object will be associated with the 
-exsting C++ Object referenced by the pointer.}
+existing C++ Object referenced by the pointer.}
 
 \item{\code{...}}{Abstract arguments to be passed to the C++ constructor}
 }

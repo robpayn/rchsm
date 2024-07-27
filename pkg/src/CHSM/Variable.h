@@ -7,6 +7,7 @@
 
 #include <string>
 #include <sstream>
+#include <memory>
 #include "Value.h"
 
 class Holon;
@@ -16,7 +17,7 @@ class Variable
   public:
     // Attributes
     
-    std::string name_ = "";
+    std::string name_ = std::string("");
     
     Value* value_ = nullptr;
     
@@ -46,7 +47,8 @@ class Variable
     }
     
     // void setValueFromString(std::string stringValue);
-    // std::string getValueAsString();
+    
+    std::string getValueString();
 };
 
 #endif /* RCHSM_VARIABLE_H_ */
