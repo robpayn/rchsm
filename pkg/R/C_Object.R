@@ -17,9 +17,9 @@ C_Object <- R6Class(
   classname = "C_Object",
   public = list(
     
-    #' @field externalPointer
+    #' @field .external
     #'   The external pointer to the associated C++ Cell object
-    externalPointer = NULL,
+    .external = NULL,
     
     #' @field cClassName
     #'   The name of the C class
@@ -30,25 +30,25 @@ C_Object <- R6Class(
     #'   
     #' @param className
     #'   The name of the of the C class being mapped
-    #' @param externalPointer
+    #' @param .external
     #'   (Optional) If an external pointer is provided instead of the default
     #'   NULL value, then the new R6 object will be associated with the 
     #'   existing C++ Object referenced by the pointer.
     #' @param ...
     #'   Abstract arguments to be passed to the C++ constructor
     #'   
-    initialize = function(className, externalPointer = NULL, ...)
+    initialize = function(className, .external = NULL, ...)
     {
       self$cClassName <- className
-      if (is.null(externalPointer)) {
-        self$externalPointer <- .Call(
+      if (is.null(.external)) {
+        self$.external <- .Call(
           sprintf("%s_constructor", self$cClassName),
           ...
         )
-      } else if (typeof(externalPointer) == "externalptr") {
-        self$externalPointer <- externalPointer
+      } else if (typeof(.external) == "externalptr") {
+        self$.external <- .external
       } else {
-        stop("The externalPointer provided is invalid.")
+        stop("The external pointer provided is invalid.")
       }
     },
     
@@ -63,7 +63,7 @@ C_Object <- R6Class(
     {
       .Call(
         sprintf("%s_destructor", self$cClassName), 
-        self$externalPointer
+        self$.external
       )
       invisible(NULL)
     }

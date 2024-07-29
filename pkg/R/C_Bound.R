@@ -34,7 +34,7 @@ C_Bound <- R6Class(
     initialize = function(source, className = "Bound") {
       
       if (typeof(source) == "externalptr") {
-        super$initialize(className = className, externalPointer = source)
+        super$initialize(className = className, .external = source)
       } else if (is.character(source)) {
         super$initialize(className = className, name = source)
       } else {

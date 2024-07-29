@@ -28,14 +28,14 @@ C_BehCellDOConc <- R6Class(
     #' @description
     #'   Create the variables controlling the behavior in the provided holon
     #'
-    #' @param holon
+    #' @param .holon
     #'   The holon object where the variables should be created
     #'   
-    createVariables = function(holon) {
+    createVariables = function(.holon) {
       .Call(
         "BehCellDOConc_createVariables",
-        self$externalPointer,
-        holon$externalPointer
+        self$.external,
+        .holon
       )
       invisible(NULL)
     }

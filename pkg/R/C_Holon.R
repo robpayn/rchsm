@@ -24,7 +24,7 @@ C_Holon <- R6Class(
     #' @param className
     #'   (Optional) Name of the class used in accessing c++ functions.
     #'   Default value is "Holon"
-    #' @param externalPointer
+    #' @param .external
     #'   (Optional) If an external pointer is provided instead of the default
     #'   NULL value, then the new R6 object will be associated with the 
     #'   existing C++ Object referenced by the pointer.
@@ -32,10 +32,10 @@ C_Holon <- R6Class(
     #'   Abstract arguments passed to the constructor of the super class
     #'
     #' 
-    initialize = function(className = "Holon", externalPointer = NULL, ...) {
+    initialize = function(className = "Holon", .external = NULL, ...) {
       super$initialize(
         className = className, 
-        externalPointer = externalPointer, 
+        .external = .external, 
         ...
       )
     },
@@ -47,7 +47,7 @@ C_Holon <- R6Class(
     #'   A single element character vector representing the contents of the
     #'   holon.
     getValueString = function() {
-      .Call("Holon_getValueString", self$externalPointer)
+      .Call("Holon_getValueString", self$.external)
     }
     
   )

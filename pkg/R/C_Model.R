@@ -47,7 +47,7 @@ C_Model <- R6Class(
       
       cCell = .Call(
         "Model_createCell", 
-        self$externalPointer, 
+        self$.external, 
         name, 
         .holon
       )
@@ -75,7 +75,7 @@ C_Model <- R6Class(
       
       cBound = .Call(
         "Model_createBound", 
-        self$externalPointer, 
+        self$.external, 
         name,
         .cellFrom,
         .cellTo,

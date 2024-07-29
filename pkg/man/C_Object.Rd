@@ -11,7 +11,7 @@ An R6 class mapping to a C++ object
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
-\item{\code{externalPointer}}{The external pointer to the associated C++ Cell object}
+\item{\code{.external}}{The external pointer to the associated C++ Cell object}
 
 \item{\code{cClassName}}{The name of the C class}
 }
@@ -31,7 +31,7 @@ An R6 class mapping to a C++ object
 \subsection{Method \code{new()}}{
 Constructs an object that is a new instance of the class
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_Object$new(className, externalPointer = NULL, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{C_Object$new(className, .external = NULL, ...)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -39,7 +39,7 @@ Constructs an object that is a new instance of the class
 \describe{
 \item{\code{className}}{The name of the of the C class being mapped}
 
-\item{\code{externalPointer}}{(Optional) If an external pointer is provided instead of the default
+\item{\code{.external}}{(Optional) If an external pointer is provided instead of the default
 NULL value, then the new R6 object will be associated with the 
 existing C++ Object referenced by the pointer.}
 

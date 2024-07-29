@@ -5,6 +5,8 @@
 #include "ValueVarmap.h"
 #include <sstream>
 #include <iostream>
+#include <typeinfo>
+#include "Holon.h"
 
 Formatter::Formatter(std::unordered_map<std::string, Variable*>* mapPtr) :
   mapPtr_(mapPtr)
@@ -12,8 +14,12 @@ Formatter::Formatter(std::unordered_map<std::string, Variable*>* mapPtr) :
 
 Formatter::~Formatter() {};
 
-FormatterXML::FormatterXML(std::unordered_map<std::string, Variable*>* mapPtr) :
-  Formatter(mapPtr)
+FormatterXML::FormatterXML(
+  std::unordered_map<std::string, Variable*>* mapPtr,
+  Variable* variable
+) :
+  Formatter(mapPtr),
+  variable_(variable)
 {}
 
 FormatterXML::~FormatterXML() {};
@@ -22,30 +28,47 @@ std::string FormatterXML::format()
 {
   std::unordered_map<std::string, Variable*>::iterator iter = mapPtr_->begin();
   
+  int depth = 0;
+  Variable* layer = variable_;
+  while (layer->holon_ != nullptr) {
+    depth++;
+    layer = static_cast <Variable*> (layer->holon_);
+  }
+  
+  std::string indent = std::string(2 * depth, ' ');
+
   if (iter != mapPtr_->end()) {
     std::ostringstream stream;
-    stream << "\n\n";
+    stream << "\n";
     while(iter != mapPtr_->end()) {
-      stream << "<Holon name=\"" << iter->first << "\">"
+      std::string typeName;
+      if (dynamic_cast <Holon*> (iter->second)) {
+        typeName = std::string("Holon");
+      } else {
+        typeName = std::string("Variable");
+      }
+      stream << indent
+          << "<" << typeName << " name=\"" << iter->first << "\">"
           << iter->second->getValueString()
-          << "</Holon>\n";
+          << "</" << typeName << ">\n";
       iter++;
     }
-    stream << "\n";
     return stream.str();
   } else {
     return std::string("");
   }
 }
 
-ValueVarmap::ValueVarmap()
+ValueVarmap::ValueVarmap(Variable* variable)
 {
-  formatter_ = new FormatterXML(&map_);
+  formatter_ = new FormatterXML(&map_, variable);
 }
 
 ValueVarmap::~ValueVarmap()
 {
+  deleteVariables();
   delete formatter_;
+  formatter_ = nullptr;
 }
 
 void ValueVarmap::fromString(std::string valueString)
@@ -75,6 +98,8 @@ void ValueVarmap::deleteVariables()
   std::unordered_map<std::string, Variable*>::iterator iter = map_.begin();
   while (iter != map_.end()) {
     delete iter->second;
+    iter->second = nullptr;
     iter++;
   }
+  map_.erase(map_.begin(), map_.end());
 }

@@ -42,13 +42,13 @@ Constructs an object that is a new instance of the class
 \subsection{Method \code{createVariables()}}{
 Create the variables controlling the behavior in the provided holon
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_BehCellDOConc$createVariables(holon)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{C_BehCellDOConc$createVariables(.holon)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{holon}}{The holon object where the variables should be created}
+\item{\code{.holon}}{The holon object where the variables should be created}
 }
 \if{html}{\out{</div>}}
 }

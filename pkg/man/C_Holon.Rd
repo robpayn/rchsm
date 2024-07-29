@@ -32,7 +32,7 @@ A holon in a composite Hierarchy State Machine model.
 \subsection{Method \code{new()}}{
 Constructs an object that is a new instance of the class
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_Holon$new(className = "Holon", externalPointer = NULL, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{C_Holon$new(className = "Holon", .external = NULL, ...)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -41,7 +41,7 @@ Constructs an object that is a new instance of the class
 \item{\code{className}}{(Optional) Name of the class used in accessing c++ functions.
 Default value is "Holon"}
 
-\item{\code{externalPointer}}{(Optional) If an external pointer is provided instead of the default
+\item{\code{.external}}{(Optional) If an external pointer is provided instead of the default
 NULL value, then the new R6 object will be associated with the 
 existing C++ Object referenced by the pointer.}
 

@@ -24,7 +24,9 @@ class Formatter
 class FormatterXML : public Formatter
 {
   public:
-    FormatterXML(std::unordered_map<std::string, Variable*>* mapPtr);
+    Variable* variable_;
+
+    FormatterXML(std::unordered_map<std::string, Variable*>*, Variable*);
     virtual ~FormatterXML();
     
     std::string format() override;
@@ -41,7 +43,7 @@ class ValueVarmap : public Value
     
     // Constructors/Destructor
     
-    ValueVarmap();
+    ValueVarmap(Variable*);
     
     virtual ~ValueVarmap();
     

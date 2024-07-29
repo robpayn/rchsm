@@ -1,17 +1,17 @@
 
 library(rchsm, lib.loc = "./build")
 
-# blah <- C_Cell$new("blah")
-# 
-beh <- C_BehCellDOConc$new()
-# 
-# beh$createVariables(holon = blah)
 
 model <- C_Model$new()
 
 cell <- C_Cell$new(
   model$createCell(name = "Cell01")
 )
+
+beh <- C_BehCellDOConc$new()
+
+beh$createVariables(.holon = cell$.external)
+
 
 cell2 <- C_Cell$new(
   model$createCell(name = "Cell02")

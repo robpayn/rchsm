@@ -18,9 +18,11 @@ class Cell : virtual public Holon
     
     std::unordered_map<std::string, Bound*> bounds_;
     
-    // Constructors/Destructor
+    // Constructors
     
-    Cell(std::string name);
+    Cell(std::string);
+    
+    // Destructor
     
     virtual ~Cell();
     

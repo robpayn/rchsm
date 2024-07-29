@@ -11,9 +11,11 @@
 class Holon : virtual public Variable
 {
 public:
-  // Constructors/Destructor
+  // Constructors
   
   Holon(std::string name);
+  
+  // Destructor
   
   virtual ~Holon();
   
