@@ -7,7 +7,7 @@
 
 #include <R.h>
 #include <Rinternals.h>
-#include "../Model.h"
+#include "../../Model.h"
 
 void Model_finalizer(SEXP externalPointer);
   

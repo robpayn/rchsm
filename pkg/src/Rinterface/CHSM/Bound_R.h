@@ -7,7 +7,7 @@
 
 #include <R.h>
 #include <Rinternals.h>
-#include "../CHSM/Bound.h"
+#include "../../CHSM/Bound.h"
 
 void Bound_finalizer(SEXP externalPointer);
   

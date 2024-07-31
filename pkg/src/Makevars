@@ -1,7 +1,7 @@
 SOURCES = \
   $(wildcard *.cpp) \
   $(wildcard CHSM/*.cpp) \
-  $(wildcard CHSM_R/*.cpp) \
+  $(wildcard Rinterface/CHSM/*.cpp) \
   $(wildcard solutes/do/conc/*.cpp) \
-  $(wildcard solutes/do/conc_R/*.cpp)
+  $(wildcard Rinterface/solutes/do/conc/*.cpp)
 OBJECTS = $(SOURCES:.cpp=.o)

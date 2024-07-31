@@ -7,7 +7,7 @@
 
 #include <R.h>
 #include <Rinternals.h>
-#include "../CHSM/Holon.h"
+#include "../../CHSM/Holon.h"
 
 extern "C"
 {

@@ -7,7 +7,7 @@
 
 #include <R.h>
 #include <Rinternals.h>
-#include "../CHSM/Cell.h"
+#include "../../CHSM/Cell.h"
 
 void Cell_finalizer(SEXP externalPointer);
 

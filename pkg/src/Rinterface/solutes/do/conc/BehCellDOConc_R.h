@@ -4,7 +4,7 @@
 
 #include <R.h>
 #include <Rinternals.h>
-#include "../conc/BehCellDOConc.h"
+#include "../../../../solutes/do/conc/BehCellDOConc.h"
 
 extern "C"
 {
