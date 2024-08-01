@@ -11,20 +11,22 @@ Variable::Variable(std::string name) :
   name_(name)
 {};
 
+
 // Destructor ///////////////////////
 
 Variable::~Variable() {};
 
-// Methods //////////////////////////
 
-void Variable::setHolon(Holon* holon) 
-{
-  holon_ = holon;
-}
+// Methods //////////////////////////
 
 std::string Variable::getValueString()
 {
   return value_->toString();
+}
+
+void Variable::setHolon(Holon* holon) 
+{
+  holon_ = holon;
 }
 
 // void Variable::setValueFromString(std::string stringValue)

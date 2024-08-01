@@ -8,23 +8,25 @@
 #include <typeinfo>
 #include "Holon.h"
 
-Formatter::Formatter(std::unordered_map<std::string, Variable*>* mapPtr) :
+VarmapFormatter::VarmapFormatter(
+  std::unordered_map<std::string, Variable*>* mapPtr
+) :
   mapPtr_(mapPtr)
 {}
 
-Formatter::~Formatter() {};
+VarmapFormatter::~VarmapFormatter() {};
 
-FormatterXML::FormatterXML(
+VarmapFormatterXML::VarmapFormatterXML(
   std::unordered_map<std::string, Variable*>* mapPtr,
   Variable* variable
 ) :
-  Formatter(mapPtr),
+  VarmapFormatter(mapPtr),
   variable_(variable)
 {}
 
-FormatterXML::~FormatterXML() {};
+VarmapFormatterXML::~VarmapFormatterXML() {};
 
-std::string FormatterXML::format()
+std::string VarmapFormatterXML::format()
 {
   std::unordered_map<std::string, Variable*>::iterator iter = mapPtr_->begin();
   
@@ -59,10 +61,15 @@ std::string FormatterXML::format()
   }
 }
 
+// Constructors /////////////////////
+
 ValueVarmap::ValueVarmap(Variable* variable)
 {
-  formatter_ = new FormatterXML(&map_, variable);
+  formatter_ = new VarmapFormatterXML(&map_, variable);
 }
+
+
+// Destructor ///////////////////////
 
 ValueVarmap::~ValueVarmap()
 {
@@ -71,16 +78,8 @@ ValueVarmap::~ValueVarmap()
   formatter_ = nullptr;
 }
 
-void ValueVarmap::fromString(std::string valueString)
-{
-  std::string error = "Not implemented.";
-  throw error;
-}
 
-std::string ValueVarmap::toString()
-{
-  return formatter_->format();
-}
+// Methods //////////////////////////
 
 void ValueVarmap::addVariable(Variable* var)
 {
@@ -102,4 +101,15 @@ void ValueVarmap::deleteVariables()
     iter++;
   }
   map_.erase(map_.begin(), map_.end());
+}
+
+void ValueVarmap::fromString(std::string valueString)
+{
+  std::string error = "Not implemented.";
+  throw error;
+}
+
+std::string ValueVarmap::toString()
+{
+  return formatter_->format();
 }

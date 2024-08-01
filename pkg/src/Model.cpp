@@ -56,4 +56,6 @@ Bound* Model::createBound (
 
 }
 
-void Model::update() {};
+void Model::setDependencies() {}
+
+void Model::update() {}

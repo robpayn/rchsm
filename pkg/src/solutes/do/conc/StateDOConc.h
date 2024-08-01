@@ -19,6 +19,8 @@ class StateDOConc : virtual public Variable, virtual public Dynamic
     
     // Methods
     
+    void setDependencies() override;
+    
     void update() override;
 };
 

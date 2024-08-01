@@ -31,6 +31,8 @@ class Model : public Holon, Dynamic
       Holon* holon
     );
     
+    void setDependencies() override;
+    
     void update() override;
     
 };

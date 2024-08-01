@@ -7,13 +7,16 @@
 #include <sstream>
 #include <iostream>
 
-// Constructors/Destructor
+// Constructors /////////////////////
 
 Holon::Holon(std::string name) :
   Variable(name)
 {
   value_ = static_cast <Value*> (new ValueVarmap(this));
 }
+
+
+// Destructor ///////////////////////
 
 Holon::~Holon() 
 {
@@ -22,9 +25,10 @@ Holon::~Holon()
   }
   delete value_;
   value_ = nullptr;
-};
+}
 
-// Methods
+
+// Methods //////////////////////////
 
 void Holon::addVariable(Variable* var)
 {
