@@ -10,6 +10,6 @@
 BehCellDOConc::BehCellDOConc() {};
 
 void BehCellDOConc::createVariables(Holon* holon) {
-  Variable* variable = new StateDOConc("DOConc");
+  Variable* variable = new Variable("DOConc", new StateDOConc());
   holon->addVariable(variable);
 }

@@ -27,10 +27,7 @@ SEXP Bound_constructor(SEXP name)
     R_MakeExternalPtr(pointer, R_NilValue, R_NilValue)
   );
   
-  R_RegisterCFinalizer(
-    externalPointer,
-    Bound_finalizer
-  );
+  R_RegisterCFinalizer(externalPointer, Bound_finalizer);
   
   UNPROTECT(1);
   

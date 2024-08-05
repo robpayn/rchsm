@@ -41,14 +41,25 @@ C_Object <- R6Class(
     {
       self$cClassName <- className
       if (is.null(.external)) {
-        self$.external <- .Call(
+        
+        return <- .Call(
           sprintf("%s_constructor", self$cClassName),
           ...
         )
+        if(is.character(return)) {
+          stop(return)
+        } else {
+          self$.external <- return;
+        }
+        
       } else if (typeof(.external) == "externalptr") {
+        
         self$.external <- .external
+        
       } else {
+        
         stop("The external pointer provided is invalid.")
+        
       }
     },
     

@@ -5,10 +5,9 @@
 #ifndef RCHSM_VALUEVARMAP_H_
 #define RCHSM_VALUEVARMAP_H_
 
-#include <string>
-#include <unordered_map>
-#include "Variable.h"
 #include "Value.h"
+#include "Holon.h"
+#include <unordered_map>
 
 class VarmapFormatter
 {
@@ -27,8 +26,7 @@ class VarmapFormatterXML : public VarmapFormatter
     Variable* variable_;
 
     VarmapFormatterXML(std::unordered_map<std::string, Variable*>*, Variable*);
-    virtual ~VarmapFormatterXML();
-    
+
     std::string format() override;
 };
 
@@ -54,7 +52,7 @@ class ValueVarmap : public Value
     
     // Destructor ///////////////////////
 
-    virtual ~ValueVarmap();
+    virtual ~ValueVarmap() override;
     
     
     // Methods //////////////////////////
@@ -70,14 +68,12 @@ class ValueVarmap : public Value
     */
     void addVariable(Variable*);
     
-    //! Delete the variables in the map
-    //! \return Nothing returned
-    void deleteVariables();
-    
     //! Set the value based on the string representation provided.
     //!   \param std::string The string to be converted to the value
     //! \return Nothing returned
     void fromString(std::string) override;
+    
+    Variable* getVariable(std::string);
     
     //! Provide a string representation of the variable map
     //! \return A string representing the variable map

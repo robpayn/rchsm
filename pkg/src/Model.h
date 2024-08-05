@@ -5,24 +5,27 @@
 #ifndef RCHSM_MODEL_H_
 #define RCHSM_MODEL_H_
 
-#include <string>
 #include "CHSM/Holon.h"
-#include "CHSM/Dynamic.h"
-#include "CHSM/Cell.h"
-#include "CHSM/Bound.h"
+#include "resources/time/basic/BehCellTime.h"
+#include "resources/time/basic/BehBoundTime.h"
 
-class Model : public Holon, Dynamic
+class Model : public Holon
 {
   public:
+    // Attributes
+    
+    BehCellTime behCellTime_;
+    BehBoundTime behBoundTime_;
+    
     // Constructors/Destructor
     
-    Model(std::string name);
+    Model(std::string);
     
     virtual ~Model();
     
     // Methods
     
-    Cell* createCell (std::string name, Holon* holon);
+    Cell* createCell (std::string, Holon*);
 
     Bound* createBound (
       std::string name, 
@@ -30,10 +33,6 @@ class Model : public Holon, Dynamic
       Cell* cellTo, 
       Holon* holon
     );
-    
-    void setDependencies() override;
-    
-    void update() override;
     
 };
 

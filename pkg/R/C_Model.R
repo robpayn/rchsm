@@ -81,7 +81,11 @@ C_Model <- R6Class(
         .cellTo,
         .holon
       )
-      return(cBound)
+      if (is.character(cBound)) {
+        stop(cBound);
+      } else {
+        return(cBound)
+      }
       
     }
     

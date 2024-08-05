@@ -9,7 +9,7 @@
 
 class Cell;
 
-class Bound : virtual public Holon
+class Bound : public Holon
 {
   public:
     // Attributes
@@ -19,11 +19,9 @@ class Bound : virtual public Holon
     
     // Constructors/Destructor
     
-    Bound(std::string name);
+    Bound(std::string);
     
-    Bound(std::string name, Cell* cellFrom, Cell* cellTo);
-    
-    virtual ~Bound();
+    Bound(std::string, Cell*, Cell*);
     
 };
 

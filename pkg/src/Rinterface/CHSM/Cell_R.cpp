@@ -27,10 +27,7 @@ SEXP Cell_constructor(SEXP name)
     R_MakeExternalPtr(pointer, R_NilValue, R_NilValue)
   );
   
-  R_RegisterCFinalizer(
-    externalPointer,
-    Cell_finalizer
-  );
+  R_RegisterCFinalizer(externalPointer, Cell_finalizer);
   
   UNPROTECT(1);
   

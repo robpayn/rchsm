@@ -6,12 +6,13 @@
 #define RCHSM_CELL_H_
 
 #include "Holon.h"
+#include "Bound.h"
 #include <string>
 #include <unordered_map>
 
 class Bound;
 
-class Cell : virtual public Holon
+class Cell : public Holon
 {
   public:
     // Attributes
@@ -22,13 +23,11 @@ class Cell : virtual public Holon
     
     Cell(std::string);
     
-    // Destructor
-    
-    virtual ~Cell();
-    
     // Methods
     
-    void addBound(Bound* bound);
+    void addBound(Bound*);
+    
+    std::unordered_map<std::string, Variable*> getBoundVariables(std::string);
     
 };
 

@@ -18,19 +18,14 @@
   Hierarchies emerge from holons being variables within other holons.
   This is an adaptation of the composite pattern.
 */
-class Holon : virtual public Variable
+class Holon : public Variable
 {
   public:
     // Constructors /////////////////////
     
     //! Constructor based on a provided name
     //!   \param std::string The name for the new holon object.
-    Holon(std::string name);
-    
-    
-    // Destructor ///////////////////////
-    
-    virtual ~Holon();
+    Holon(std::string);
     
     
     // Methods //////////////////////////
@@ -43,7 +38,9 @@ class Holon : virtual public Variable
       by the pointer.
       The Variable will be deleted if the holon's destructor is called.
     */
-    void addVariable(Variable* var);
+    void addVariable(Variable*);
+    
+    Variable* getVariable(std::string);
 };
 
 #endif /* RCHSM_HOLON_H_ */

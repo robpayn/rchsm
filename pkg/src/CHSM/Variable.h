@@ -5,9 +5,6 @@
 #ifndef RCHSM_VARIABLE_H_
 #define RCHSM_VARIABLE_H_
 
-#include <string>
-#include <sstream>
-#include <memory>
 #include "Value.h"
 
 class Holon;
@@ -44,9 +41,12 @@ class Variable
     //!   \param std::string The name for the new variable object.
     Variable(std::string);
     
+    Variable(std::string, Value*);
+    
 
     // Destructor ///////////////////////
     
+    //! Destructor deletes the memory used for the value
     virtual ~Variable();
 
         
@@ -54,7 +54,7 @@ class Variable
     
     //! Generic template for a method to get the value as the derived type
     //! \return A pointer to the value cast to the provided derived type
-    //! \throw std::string An error message if the value of the variable
+    //! \throw std::runtime_error An error message if the value of the variable
     //!   cannot be cast to the provided class
     /*!
       The T_VALUE provided to this function template should be the 
@@ -71,13 +71,9 @@ class Variable
         std::ostringstream error;
         error << "Type requested is not valid for the value in variable" 
               << name_;
-        throw error.str();
+        throw std::runtime_error(error.str());
       }
     }
-
-    //! Get the current value as a character string
-    //! \return The value represented as a string
-    std::string getValueString();
     
     //! Set the pointer to the containing holon
     //! \return No return value

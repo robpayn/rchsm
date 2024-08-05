@@ -3,14 +3,37 @@
  */
 
 #include "Model.h"
-#include <iostream>
 
 // Constructors/Destructor
 
 Model::Model(std::string name) :
-  Variable(name),
   Holon(name)
-{};
+{
+  try {
+    Cell* timeCell = createCell("CellTime", nullptr);
+    Bound* timeBound = createBound("BoundTime", nullptr, timeCell, nullptr);
+    
+    behCellTime_ = BehCellTime();
+    behCellTime_.createVariables(timeCell);
+
+    behBoundTime_ = BehBoundTime();
+    behBoundTime_.createVariables(timeBound);
+
+    Dynamic* time = dynamic_cast <Dynamic*> (
+      timeCell->getVariable("Time")->value_
+    );
+
+    if (time) {
+      time->setDependencies();
+    } else {
+      throw std::runtime_error("Could not find time variable in time cell.\n");
+    }
+  } catch (std::runtime_error &thrown) {
+    std::ostringstream error;
+    error << "Error in model constructor:\n  " << thrown.what();
+    throw std::runtime_error(error.str());
+  }
+};
 
 Model::~Model() {};
 
@@ -38,6 +61,7 @@ Bound* Model::createBound (
   Holon* holon
 ) 
 {
+  
   try {
     Bound* bound = new Bound(name, cellFrom, cellTo);
     
@@ -49,13 +73,10 @@ Bound* Model::createBound (
     
     return bound;
   }
-  catch (std::string error) {
-    std::cerr << "Error in creating the bound:\n  " << error;
-    return nullptr;
+  catch (std::runtime_error &thrown) {
+    std::ostringstream error;
+    error << "Error in creating the bound:\n  " << thrown.what();
+    throw error;
   }
 
 }
-
-void Model::setDependencies() {}
-
-void Model::update() {}

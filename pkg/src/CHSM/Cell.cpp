@@ -3,16 +3,10 @@
  */
 
 #include "Cell.h"
-#include "Bound.h"
-#include <sstream>
-#include <stdexcept>
 
 Cell::Cell(std::string name) :
-  Variable(name),
   Holon(name)
-{};
-
-Cell::~Cell() {};
+{}
 
 void Cell::addBound(Bound* bound) 
 {
@@ -23,7 +17,26 @@ void Cell::addBound(Bound* bound)
     std::ostringstream error;
     error << "Bound name " << bound->name_ << " has already been connected"
         << " to cell " << name_;
-    throw error.str();
+    throw std::runtime_error(error.str());
   }
   
+}
+
+std::unordered_map<std::string, Variable*> 
+  Cell::getBoundVariables(std::string name)
+{
+    
+  std::unordered_map<std::string, Variable*> map;
+  
+  std::unordered_map<std::string, Bound*>::iterator iter = bounds_.begin();
+  while(iter != bounds_.end()) {
+    Variable* variable = iter->second->getVariable(name);
+    if (variable) {
+      map[variable->name_] = variable;
+    }
+    iter++;
+  }
+    
+  return map;
+    
 }

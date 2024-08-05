@@ -3,9 +3,6 @@
  */
 
 #include "Holon.h"
-#include <cstring>
-#include <sstream>
-#include <iostream>
 
 // Constructors /////////////////////
 
@@ -16,18 +13,6 @@ Holon::Holon(std::string name) :
 }
 
 
-// Destructor ///////////////////////
-
-Holon::~Holon() 
-{
-  if (value_) {
-    static_cast <ValueVarmap*> (value_)->deleteVariables();
-  }
-  delete value_;
-  value_ = nullptr;
-}
-
-
 // Methods //////////////////////////
 
 void Holon::addVariable(Variable* var)
@@ -35,11 +20,16 @@ void Holon::addVariable(Variable* var)
   try {
     static_cast <ValueVarmap*> (value_)->addVariable(var);
   }
-  catch (std::string* thrownError) {
+  catch (std::runtime_error &thrown) {
     std::ostringstream error;
     error << "Variable map for holon " << name_ << 
-      " reported error: " << thrownError;
-    throw error.str();
+      " reported error: " << thrown.what();
+    throw std::runtime_error(error.str());
   }
   var->setHolon(this);
+}
+
+Variable* Holon::getVariable(std::string name)
+{
+  return static_cast <ValueVarmap*> (value_)->getVariable(name);
 }

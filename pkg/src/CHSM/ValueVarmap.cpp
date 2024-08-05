@@ -3,10 +3,6 @@
  */
 
 #include "ValueVarmap.h"
-#include <sstream>
-#include <iostream>
-#include <typeinfo>
-#include "Holon.h"
 
 VarmapFormatter::VarmapFormatter(
   std::unordered_map<std::string, Variable*>* mapPtr
@@ -23,8 +19,6 @@ VarmapFormatterXML::VarmapFormatterXML(
   VarmapFormatter(mapPtr),
   variable_(variable)
 {}
-
-VarmapFormatterXML::~VarmapFormatterXML() {};
 
 std::string VarmapFormatterXML::format()
 {
@@ -51,7 +45,7 @@ std::string VarmapFormatterXML::format()
       }
       stream << indent
           << "<" << typeName << " name=\"" << iter->first << "\">"
-          << iter->second->getValueString()
+          << iter->second->value_->toString()
           << "</" << typeName << ">\n";
       iter++;
     }
@@ -61,10 +55,12 @@ std::string VarmapFormatterXML::format()
   }
 }
 
+
 // Constructors /////////////////////
 
 ValueVarmap::ValueVarmap(Variable* variable)
 {
+  setVariable(variable);
   formatter_ = new VarmapFormatterXML(&map_, variable);
 }
 
@@ -73,9 +69,13 @@ ValueVarmap::ValueVarmap(Variable* variable)
 
 ValueVarmap::~ValueVarmap()
 {
-  deleteVariables();
+  std::unordered_map<std::string, Variable*>::iterator iter = map_.begin();
+  while (iter != map_.end()) {
+    delete iter->second;
+    iter->second = nullptr;
+    iter++;
+  }
   delete formatter_;
-  formatter_ = nullptr;
 }
 
 
@@ -88,25 +88,24 @@ void ValueVarmap::addVariable(Variable* var)
   } else {
     std::ostringstream error;
     error << "Variable name " << var->name_ << " has already been added.";
-    throw error.str();
+    throw std::runtime_error(error.str());
   }
-}
-
-void ValueVarmap::deleteVariables()
-{
-  std::unordered_map<std::string, Variable*>::iterator iter = map_.begin();
-  while (iter != map_.end()) {
-    delete iter->second;
-    iter->second = nullptr;
-    iter++;
-  }
-  map_.erase(map_.begin(), map_.end());
 }
 
 void ValueVarmap::fromString(std::string valueString)
 {
   std::string error = "Not implemented.";
-  throw error;
+  throw std::runtime_error(error);
+}
+
+Variable* ValueVarmap::getVariable(std::string name)
+{
+  std::unordered_map<std::string, Variable*>::iterator iter = map_.find(name);
+  if (iter == map_.end()) {
+    return nullptr;
+  } else {
+    return iter->second;
+  }
 }
 
 std::string ValueVarmap::toString()

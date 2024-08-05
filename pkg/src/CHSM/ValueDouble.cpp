@@ -2,8 +2,6 @@
  * ValueDouble.cpp
  */
 
-#include <string>
-#include <cmath>
 #include "ValueDouble.h"
 
 ValueDouble::ValueDouble() {};

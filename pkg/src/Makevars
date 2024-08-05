@@ -1,7 +1,10 @@
 SOURCES = \
   $(wildcard *.cpp) \
+  $(wildcard Rinterface/*.cpp) \
   $(wildcard CHSM/*.cpp) \
   $(wildcard Rinterface/CHSM/*.cpp) \
-  $(wildcard solutes/do/conc/*.cpp) \
-  $(wildcard Rinterface/solutes/do/conc/*.cpp)
+  $(wildcard resources/time/basic/*.cpp) \
+  $(wildcard resources/solutes/do/conc/*.cpp) \
+  $(wildcard Rinterface/resources/solutes/do/conc/*.cpp)
+  
 OBJECTS = $(SOURCES:.cpp=.o)

@@ -2,27 +2,30 @@
  * Variable.cpp
  */
 
-#include <string>
 #include "Variable.h"
 
 // Constructors /////////////////////
 
 Variable::Variable(std::string name) :
   name_(name)
-{};
+{}
+
+Variable::Variable(std::string name, Value* value) :
+  name_(name),
+  value_(value)
+{
+  value_->setVariable(this);
+}
 
 
 // Destructor ///////////////////////
 
-Variable::~Variable() {};
+Variable::~Variable() {
+  delete value_;
+};
 
 
 // Methods //////////////////////////
-
-std::string Variable::getValueString()
-{
-  return value_->toString();
-}
 
 void Variable::setHolon(Holon* holon) 
 {

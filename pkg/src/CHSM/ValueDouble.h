@@ -5,8 +5,8 @@
 #ifndef RCHSM_VALUEDOUBLE_H_
 #define RCHSM_VALUEDOUBLE_H_
 
-#include <cmath>
 #include "Value.h"
+#include <cmath>
 
 class ValueDouble : public Value
 {
@@ -15,11 +15,11 @@ class ValueDouble : public Value
     
     double real_ = nan("");
     
-    // Constructors/Destructor
+    // Constructors
     
     ValueDouble();
     
-    ValueDouble(double value);
+    ValueDouble(double);
     
     ValueDouble(std::string valueString);
     

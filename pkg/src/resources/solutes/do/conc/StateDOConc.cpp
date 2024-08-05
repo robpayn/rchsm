@@ -4,10 +4,8 @@
 
 #include "StateDOConc.h"
 
-StateDOConc::StateDOConc(std::string name) :
-  Variable(name)
+StateDOConc::StateDOConc()
 {
-  value_ = new ValueDouble();
   phase_ = 2;
 }
 

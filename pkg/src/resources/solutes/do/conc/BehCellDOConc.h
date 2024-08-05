@@ -5,9 +5,9 @@
 #ifndef RCHSM_SOLUTES_DO_CONC_BEHAVIOR_CELL_H_
 #define RCHSM_SOLUTES_DO_CONC_BEHAVIOR_CELL_H_
 
-#include "../../../CHSM/Behavior.h"
+#include "../../../../CHSM/Behavior.h"
 
-class BehCellDOConc : virtual public Behavior
+class BehCellDOConc : public Behavior
 {
   public:
     // Constructors/Destructor
