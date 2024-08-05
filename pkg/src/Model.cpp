@@ -3,16 +3,19 @@
  */
 
 #include "Model.h"
+#include "Matrix.h"
+
 
 // Constructors/Destructor
 
-Model::Model(std::string name) :
-  Holon(name)
+Model::Model(std::string name, Matrix* matrix) :
+  Holon(name, matrix)
 {
+  
   try {
     Cell* timeCell = createCell("CellTime", nullptr);
     Bound* timeBound = createBound("BoundTime", nullptr, timeCell, nullptr);
-    
+
     behCellTime_ = BehCellTime();
     behCellTime_.createVariables(timeCell);
 
@@ -33,11 +36,10 @@ Model::Model(std::string name) :
     error << "Error in model constructor:\n  " << thrown.what();
     throw std::runtime_error(error.str());
   }
+  
 };
 
 Model::~Model() {};
-
-// Methods
 
 Cell* Model::createCell (std::string name, Holon* holon) 
 {
@@ -55,10 +57,10 @@ Cell* Model::createCell (std::string name, Holon* holon)
 }
 
 Bound* Model::createBound (
-  std::string name, 
-  Cell* cellFrom, 
-  Cell* cellTo, 
-  Holon* holon
+    std::string name, 
+    Cell* cellFrom, 
+    Cell* cellTo, 
+    Holon* holon
 ) 
 {
   
@@ -78,5 +80,5 @@ Bound* Model::createBound (
     error << "Error in creating the bound:\n  " << thrown.what();
     throw error;
   }
-
+  
 }

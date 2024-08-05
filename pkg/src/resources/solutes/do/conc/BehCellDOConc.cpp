@@ -4,8 +4,6 @@
 
 #include "BehCellDOConc.h"
 #include "StateDOConc.h"
-#include <string>
-#include <iostream>
 
 BehCellDOConc::BehCellDOConc() {};
 

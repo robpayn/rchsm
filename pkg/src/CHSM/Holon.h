@@ -6,7 +6,8 @@
 #define RCHSM_HOLON_H_
 
 #include "Variable.h"
-#include "ValueVarmap.h"
+
+class ValueVarmap;
 
 //! A CHSM Holon
 /*!
@@ -27,6 +28,11 @@ class Holon : public Variable
     //!   \param std::string The name for the new holon object.
     Holon(std::string);
     
+    //! Construct a new instance based on the name and value provided
+    //!   \param std::string The name for the new holon object.
+    //!   \param ValueVarmap* Pointer to the variable map value for this holon
+    Holon(std::string, ValueVarmap*);
+    
     
     // Methods //////////////////////////
     
@@ -40,6 +46,10 @@ class Holon : public Variable
     */
     void addVariable(Variable*);
     
+    //! Get a variable with the provided name
+    //!   \param std::string Name of the variable to retrieve.
+    //! \return Pointer to the variable with the provided name. 
+    //!   Returns a null pointer if the variable name is not found.
     Variable* getVariable(std::string);
 };
 

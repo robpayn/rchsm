@@ -3,14 +3,19 @@
  */
 
 #include "Holon.h"
+#include "ValueVarmap.h"
 
 // Constructors /////////////////////
 
 Holon::Holon(std::string name) :
   Variable(name)
 {
-  value_ = static_cast <Value*> (new ValueVarmap(this));
+  setValue(new ValueVarmap());
 }
+
+Holon::Holon(std::string name, ValueVarmap* value) :
+  Variable(name, value)
+{}
 
 
 // Methods //////////////////////////
@@ -19,6 +24,7 @@ void Holon::addVariable(Variable* var)
 {
   try {
     static_cast <ValueVarmap*> (value_)->addVariable(var);
+    var->setHolon(this);
   }
   catch (std::runtime_error &thrown) {
     std::ostringstream error;
@@ -26,7 +32,6 @@ void Holon::addVariable(Variable* var)
       " reported error: " << thrown.what();
     throw std::runtime_error(error.str());
   }
-  var->setHolon(this);
 }
 
 Variable* Holon::getVariable(std::string name)

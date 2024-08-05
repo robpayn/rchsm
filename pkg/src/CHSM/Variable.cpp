@@ -2,6 +2,7 @@
  * Variable.cpp
  */
 
+#include "Value.h"
 #include "Variable.h"
 
 // Constructors /////////////////////
@@ -11,10 +12,9 @@ Variable::Variable(std::string name) :
 {}
 
 Variable::Variable(std::string name, Value* value) :
-  name_(name),
-  value_(value)
+  name_(name)
 {
-  value_->setVariable(this);
+  setValue(value);
 }
 
 
@@ -30,6 +30,12 @@ Variable::~Variable() {
 void Variable::setHolon(Holon* holon) 
 {
   holon_ = holon;
+}
+
+void Variable::setValue(Value* value)
+{
+  value_ = value;
+  value_->setVariable(this);
 }
 
 // void Variable::setValueFromString(std::string stringValue)

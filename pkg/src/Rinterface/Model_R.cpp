@@ -3,8 +3,6 @@
  */
 
 #include "Model_R.h"
-#include <iostream>
-#include <stdexcept>
 
 void Model_finalizer(SEXP externalPointer) 
 {
@@ -28,7 +26,7 @@ SEXP Model_constructor(SEXP name)
 {
   try {
     
-    Model* pointer = new Model(CHAR(asChar(name)));
+    Model* pointer = new Model(CHAR(asChar(name)), new Matrix());
   
     SEXP externalPointer = PROTECT(
       R_MakeExternalPtr(pointer, R_NilValue, R_NilValue)
@@ -58,8 +56,11 @@ SEXP Model_createCell(SEXP extModelPtr, SEXP name, SEXP extHolonPtr)
   } else {
     holonPtr = static_cast <Holon*> (R_ExternalPtrAddr(extHolonPtr));
   }
-
-  Cell* cellPtr = modelPtr->createCell(CHAR(asChar(name)), holonPtr);
+  
+  Cell* cellPtr = modelPtr->createCell(
+    CHAR(asChar(name)), 
+    holonPtr
+  );
 
   SEXP extCellPtr = PROTECT(
     R_MakeExternalPtr(cellPtr, R_NilValue, R_NilValue)

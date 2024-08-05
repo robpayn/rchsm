@@ -5,8 +5,10 @@
 #ifndef RCHSM_VARIABLE_H_
 #define RCHSM_VARIABLE_H_
 
-#include "Value.h"
+#include <string>
+#include <sstream>
 
+class Value;
 class Holon;
 
 //! A CHSM Variable
@@ -41,6 +43,13 @@ class Variable
     //!   \param std::string The name for the new variable object.
     Variable(std::string);
     
+    //! Constructor based on a provided name and value object
+    //!   \param std::string The name for the new variable object.
+    //!   \param Value* Pointer to the value composing the Variable.
+    /*!
+      Note that the Variable will take ownership of the Value provided,
+      and the Value will be deleted if the variable destructor is called.
+    */
     Variable(std::string, Value*);
     
 
@@ -76,8 +85,18 @@ class Variable
     }
     
     //! Set the pointer to the containing holon
+    //!   \param Holon* Pointer to the holon containing the variable.
     //! \return No return value
     void setHolon(Holon*);
+    
+    //! Set the pointer to the value object for the variable
+    //!   \param Value* Pointer to the value to be assigned to the variable
+    //! \return No return value
+    /*!
+      Note that the Variable will take ownership of the Value provided,
+      and the Value will be deleted if the variable destructor is called.
+    */
+    void setValue(Value*);
     
     // void setValueFromString(std::string stringValue);
     

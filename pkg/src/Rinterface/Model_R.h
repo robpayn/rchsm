@@ -8,6 +8,7 @@
 #include <R.h>
 #include <Rinternals.h>
 #include "../Model.h"
+#include "../Matrix.h"
 
 void Model_finalizer(SEXP externalPointer);
   

@@ -11,16 +11,16 @@
 
 class StateDOConc : public ValueDouble, public Dynamic
 {
-  public:
-    // Constructors/Destructor
-    
-    StateDOConc();
-    
-    // Methods
-    
-    void setDependencies() override;
-    
-    void update() override;
+public:
+  // Constructors/Destructor
+  
+  StateDOConc();
+  
+  // Methods
+  
+  void setDependencies() override;
+  
+  void update() override;
 };
 
 #endif /* RCHSM_SOLUTES_DO_CONC_STATEDOCONC_H_ */

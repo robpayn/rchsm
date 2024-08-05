@@ -6,29 +6,9 @@
 #define RCHSM_VALUEVARMAP_H_
 
 #include "Value.h"
-#include "Holon.h"
 #include <unordered_map>
 
-class VarmapFormatter
-{
-  public:
-    std::unordered_map<std::string, Variable*>* mapPtr_;
-    
-    VarmapFormatter(std::unordered_map<std::string, Variable*>* mapPtr);
-    virtual ~VarmapFormatter();
-    
-    virtual std::string format() = 0;
-};
-
-class VarmapFormatterXML : public VarmapFormatter
-{
-  public:
-    Variable* variable_;
-
-    VarmapFormatterXML(std::unordered_map<std::string, Variable*>*, Variable*);
-
-    std::string format() override;
-};
+class VarmapFormatter;
 
 //! A value for a CHSM variable composed of other variables
 class ValueVarmap : public Value
@@ -47,7 +27,7 @@ class ValueVarmap : public Value
 
     //! Create a new instance with the provided variable
     //!   \param Variable* Pointer to the variable associated with the value
-    ValueVarmap(Variable*);
+    ValueVarmap();
     
     
     // Destructor ///////////////////////
@@ -73,12 +53,35 @@ class ValueVarmap : public Value
     //! \return Nothing returned
     void fromString(std::string) override;
     
+    //! Get a variable with the provided name
+    //!   \param std::string Name of the variable to be retrieved.
+    //! \return Pointer to the variable with the provided name.
+    //!   Returns a null pointer if the variable name is not found.
     Variable* getVariable(std::string);
     
     //! Provide a string representation of the variable map
     //! \return A string representing the variable map
     std::string toString() override;
     
+};
+
+class VarmapFormatter
+{
+public:
+  ValueVarmap* varmap_;
+  
+  VarmapFormatter(ValueVarmap*);
+  virtual ~VarmapFormatter();
+  
+  virtual std::string format() = 0;
+};
+
+class VarmapFormatterXML : public VarmapFormatter
+{
+public:
+  VarmapFormatterXML(ValueVarmap*);
+  
+  std::string format() override;
 };
 
 #endif /* RCHSM_VALUEVARMAP_H_ */

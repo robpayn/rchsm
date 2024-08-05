@@ -3,6 +3,7 @@
  */
 
 #include "Holon_R.h"
+#include "../../CHSM/Value.h"
 
 SEXP Holon_getValueString(SEXP extHolonPtr)
 {
