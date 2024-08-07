@@ -23,11 +23,11 @@ C_Model <- R6Class(
     #'
     #' @param className
     #'   (Optional) Name of the class used in accessing c++ functions.
-    #'   Default value is "Model"
+    #'   Default value is "Machine"
     #' @param name
     #'   Name of the model
     #' 
-    initialize = function(className = "Model", name = "Model") {
+    initialize = function(className = "Machine", name = "Model") {
       super$initialize(className = className, name = name)
     },
     
@@ -46,7 +46,7 @@ C_Model <- R6Class(
     createCell = function(name, .holon = NULL) {
       
       cCell = .Call(
-        "Model_createCell", 
+        paste0(self$cClassName, "_createCell"), 
         self$.external, 
         name, 
         .holon
@@ -74,7 +74,7 @@ C_Model <- R6Class(
     createBound = function(name, .cellFrom, .cellTo, .holon = NULL) {
       
       cBound = .Call(
-        "Model_createBound", 
+        paste0(self$cClassName, "_createBound"), 
         self$.external, 
         name,
         .cellFrom,

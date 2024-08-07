@@ -34,14 +34,14 @@ A Composite Hierarchy State Machine model.
 \subsection{Method \code{new()}}{
 Constructs an object that is a new instance of the class
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_Model$new(className = "Model", name = "Model")}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{C_Model$new(className = "Machine", name = "Model")}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{className}}{(Optional) Name of the class used in accessing c++ functions.
-Default value is "Model"}
+Default value is "Machine"}
 
 \item{\code{name}}{Name of the model}
 }

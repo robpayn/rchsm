@@ -3,7 +3,7 @@
  */
 
 #include "Holon.h"
-#include "ValueVarmap.h"
+#include "values/ValueVarmap.h"
 
 // Constructors /////////////////////
 

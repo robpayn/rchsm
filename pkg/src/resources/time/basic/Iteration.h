@@ -5,7 +5,7 @@
 #ifndef RCHSM_ITERATION_BASIC_H_
 #define RCHSM_ITERATION_BASIC_H_
 
-#include "../../../CHSM/ValueLong.h"
+#include "../../../CHSM/values/ValueLong.h"
 #include "../../../CHSM/Dynamic.h"
 
 class Iteration : public ValueLong, public Dynamic

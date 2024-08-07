@@ -1,28 +1,27 @@
 /*
- * BehCellDOConc_R.cpp
+ * BehCellTime_R.cpp
  */
 
-#include "BehCellDOConc_R.h"
-#include "../../../../../CHSM/Cell.h"
+#include "BehCellTime_R.h"
+#include "../../../../CHSM/Cell.h"
 
-void BehCellDOConc_finalizer(SEXP externalPointer) {
-  
-  BehCellDOConc* pointer = (BehCellDOConc*)R_ExternalPtrAddr(externalPointer);
+void BehCellTime_finalizer(SEXP externalPointer) 
+{
+  BehCellTime* pointer = (BehCellTime*)R_ExternalPtrAddr(externalPointer);
   R_ClearExternalPtr(externalPointer);
   delete pointer;
-  
 }
 
-SEXP BehCellDOConc_destructor(SEXP externalPointer)
+SEXP BehCellTime_destructor(SEXP externalPointer)
 {
-  BehCellDOConc_finalizer(externalPointer);
+  BehCellTime_finalizer(externalPointer);
   
   return R_NilValue;
 }
 
-SEXP BehCellDOConc_constructor()
+SEXP BehCellTime_constructor()
 {
-  BehCellDOConc* pointer = new BehCellDOConc();
+  BehCellTime* pointer = new BehCellTime();
   
   SEXP externalPointer = PROTECT(
     R_MakeExternalPtr(pointer, R_NilValue, R_NilValue)
@@ -30,7 +29,7 @@ SEXP BehCellDOConc_constructor()
   
   R_RegisterCFinalizer(
     externalPointer,
-    BehCellDOConc_finalizer
+    BehCellTime_finalizer
   );
   
   UNPROTECT(1);
@@ -38,14 +37,14 @@ SEXP BehCellDOConc_constructor()
   return externalPointer;
 }
 
-SEXP BehCellDOConc_createVariables(
-  SEXP rPointerBeh, 
+SEXP BehCellTime_createVariables(
+  SEXP rPointerBeh,
   SEXP rPointerMachine,
   SEXP rPointerCell
 )
 {
-  BehCellDOConc* pointerBeh = 
-    static_cast <BehCellDOConc*> (R_ExternalPtrAddr(rPointerBeh));
+  BehCellTime* pointerBeh = 
+    static_cast <BehCellTime*> (R_ExternalPtrAddr(rPointerBeh));
   Machine* pointerMachine =
     static_cast <Machine*> (R_ExternalPtrAddr(rPointerMachine));
   Cell* pointerCell =

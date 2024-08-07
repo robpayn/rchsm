@@ -2,10 +2,10 @@
  * VariableVarmap.h
  */
 
-#ifndef RCHSM_VALUEVARMAP_H_
-#define RCHSM_VALUEVARMAP_H_
+#ifndef CHSM_VALUES_VALUEVARMAP_H_
+#define CHSM_VALUES_VALUEVARMAP_H_
 
-#include "Value.h"
+#include "../Value.h"
 #include <unordered_map>
 
 class VarmapFormatter;
@@ -25,21 +25,20 @@ class ValueVarmap : public Value
     
     // Constructors /////////////////////
 
-    //! Create a new instance with the provided variable
-    //!   \param Variable* Pointer to the variable associated with the value
+    //! Create a new instance
     ValueVarmap();
     
     
     // Destructor ///////////////////////
 
-    virtual ~ValueVarmap() override;
+    virtual ~ValueVarmap();
     
     
     // Methods //////////////////////////
     
     //! Add a variable to the variable map
     //!   \param Variable* Pointer to variable to be added
-    //! \return Nothing returned
+    //! \return No return value
     /*!
       Note that the variable map will assume ownership of the Variable at the 
       pointer provided.
@@ -50,7 +49,7 @@ class ValueVarmap : public Value
     
     //! Set the value based on the string representation provided.
     //!   \param std::string The string to be converted to the value
-    //! \return Nothing returned
+    //! \return No return value
     void fromString(std::string) override;
     
     //! Get a variable with the provided name
@@ -58,6 +57,14 @@ class ValueVarmap : public Value
     //! \return Pointer to the variable with the provided name.
     //!   Returns a null pointer if the variable name is not found.
     Variable* getVariable(std::string);
+    
+    //! Query if the value is defined
+    //! \return A boolean true if the value is defined, false otherwise.
+    /*!
+      A variable map value is considered defined if it contains
+      at least one variable.
+    */
+    bool isDefined() override;
     
     //! Provide a string representation of the variable map
     //! \return A string representing the variable map
@@ -84,4 +91,4 @@ public:
   std::string format() override;
 };
 
-#endif /* RCHSM_VALUEVARMAP_H_ */
+#endif /* CHSM_VALUES_VALUEVARMAP_H_ */

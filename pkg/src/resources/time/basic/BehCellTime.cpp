@@ -3,14 +3,17 @@
  */
 
 #include "BehCellTime.h"
+#include "Time.h"
+#include "Iteration.h"
+#include "../../../Machine.h"
 
 BehCellTime::BehCellTime() {}
 
-void BehCellTime::createVariables(Holon* holon) 
+void BehCellTime::createVariables(Machine* machine, Holon* holon) 
 {
   Variable* variable = new Variable("Time", new Time());
-  holon->addVariable(variable);
-  
+  machine->installVariable(variable, holon);
+
   variable = new Variable("Iteration", new Iteration());
-  holon->addVariable(variable);
+  machine->installVariable(variable, holon);
 }

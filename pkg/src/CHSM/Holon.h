@@ -2,8 +2,8 @@
  * Holon.h
  */
 
-#ifndef RCHSM_HOLON_H_
-#define RCHSM_HOLON_H_
+#ifndef CHSM_HOLON_H_
+#define CHSM_HOLON_H_
 
 #include "Variable.h"
 
@@ -53,4 +53,4 @@ class Holon : public Variable
     Variable* getVariable(std::string);
 };
 
-#endif /* RCHSM_HOLON_H_ */
+#endif /* CHSM_HOLON_H_ */

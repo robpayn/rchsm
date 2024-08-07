@@ -2,8 +2,8 @@
  * BehCellDOConc.h
  */
 
-#ifndef RCHSM_SOLUTES_DO_CONC_BEHAVIOR_CELL_H_
-#define RCHSM_SOLUTES_DO_CONC_BEHAVIOR_CELL_H_
+#ifndef CHSM_RESOURCES_SOLUTES_DO_CONC_BEHCELLDOCONC_H_
+#define CHSM_RESOURCES_SOLUTES_DO_CONC_BEHCELLDOCONC_H_
 
 #include "../../../../CHSM/Behavior.h"
 
@@ -17,7 +17,7 @@ class BehCellDOConc : public Behavior
     
     // Methods
     
-    void createVariables(Holon* holon) override;
+    void createVariables(Machine*, Holon*) override;
 };
 
-#endif /* RCHSM_SOLUTES_DO_CONC_BEHAVIOR_CELL_H_ */
+#endif /* CHSM_RESOURCES_SOLUTES_DO_CONC_BEHCELLDOCONC_H_ */

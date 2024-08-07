@@ -5,7 +5,7 @@
 #ifndef RCHSM_MATRIX_H_
 #define RCHSM_MATRIX_H_
 
-#include "CHSM/ValueVarmap.h"
+#include "CHSM/values/ValueVarmap.h"
 #include "CHSM/Dynamic.h"
 
 class Matrix : public ValueVarmap, public Dynamic

@@ -2,8 +2,8 @@
  * Value.h
  */
 
-#ifndef RCHSM_VALUE_H_
-#define RCHSM_VALUE_H_
+#ifndef CHSM_VALUE_H_
+#define CHSM_VALUE_H_
 
 #include <sstream>
 #include <string>
@@ -43,6 +43,8 @@ class Value
     //! \return No return value
     virtual void fromString(std::string) = 0;
     
+    virtual bool isDefined() = 0;
+    
     //! Set the pointer to the variable containing this value
     //!   \param Variable* Pointer to the variable containing this value.
     //! \return No return value
@@ -53,4 +55,4 @@ class Value
     virtual std::string toString() = 0;
 };
 
-#endif /* RCHSM_VALUE_H_ */
+#endif /* CHSM_VALUE_H_ */

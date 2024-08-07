@@ -6,35 +6,41 @@
 #' @export
 #'
 #' @title
-#'   BehCellDOConc Object
+#'   A CHSM Behavior
 #'
 #' @description
-#'   An R6 class mapping to a C++ BehCellDOConc object
+#'   An R6 class mapping to a C++ composite Hierarchy State Machine object
 #'
 #'   Implementation is provided by C++ objects.
 #'
-C_BehCellDOConc <- R6Class(
-  classname = "C_BehCellDOConc",
+C_Behavior <- R6Class(
+  classname = "C_Behavior",
   inherit = C_Object,
   public = list(
     
     #' @description
     #'   Constructs an object that is a new instance of the class
+    #' 
+    #' @param className
+    #'   The name of the associated C class
     #'
-    initialize = function() {
-      super$initialize("BehCellDOConc")
+    initialize = function(className) {
+      super$initialize(className = className)
     },
     
     #' @description
     #'   Create the variables controlling the behavior in the provided holon
     #'
+    #' @param .machine
+    #'   The machine object where the variables should be registered
     #' @param .holon
     #'   The holon object where the variables should be created
     #'   
-    createVariables = function(.holon) {
+    createVariables = function(.machine, .holon) {
       .Call(
-        "BehCellDOConc_createVariables",
+        paste0(self$cClassName, "_createVariables"),
         self$.external,
+        .machine,
         .holon
       )
       invisible(NULL)

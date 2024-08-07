@@ -3,12 +3,13 @@
  */
 
 #include "Cell.h"
+#include "Bound.h"
 
 Cell::Cell(std::string name) :
   Holon(name)
 {}
 
-void Cell::addBound(Bound* bound) 
+void Cell::attachBound(Bound* bound) 
 {
   
   if (bounds_.find(bound->name_) == bounds_.end()) {

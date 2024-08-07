@@ -5,7 +5,7 @@
 #ifndef RCHSM_TIME_BASIC_H_
 #define RCHSM_TIME_BASIC_H_
 
-#include "../../../CHSM/ValueDouble.h"
+#include "../../../CHSM/values/ValueDouble.h"
 #include "../../../CHSM/Dynamic.h"
 #include "../../../CHSM/Cell.h"
 

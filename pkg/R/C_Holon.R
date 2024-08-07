@@ -9,7 +9,7 @@
 #'   CHSM Holon Object
 #'
 #' @description
-#'   A holon in a composite Hierarchy State Machine model.
+#'   A holon in a composite Hierarchy State Machine
 #'
 #'   Implementation is provided by C++ objects.
 #'

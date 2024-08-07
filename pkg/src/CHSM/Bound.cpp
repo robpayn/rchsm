@@ -16,10 +16,10 @@ Bound::Bound(std::string name, Cell* cellFrom, Cell* cellTo) :
 {
   
   if (cellFrom_ != nullptr) {
-    cellFrom_->addBound(this);
+    cellFrom_->attachBound(this);
   }
   if (cellTo_ != nullptr) {
-    cellTo_->addBound(this);
+    cellTo_->attachBound(this);
   }
   
 };

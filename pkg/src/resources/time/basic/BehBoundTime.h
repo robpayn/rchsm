@@ -2,8 +2,8 @@
  * BehBoundTime.h
  */
 
-#ifndef RCHSM_TIME_BEHAVIOR_BOUND_H_
-#define RCHSM_TIME_BEHAVIOR_BOUND_H_
+#ifndef CHSM_RESOURCES_TIME_BEHBOUNDTIME_H_
+#define CHSM_RESOURCES_TIME_BEHBOUNDTIME_H_
 
 #include "../../../CHSM/Behavior.h"
 
@@ -16,7 +16,7 @@ class BehBoundTime : public Behavior
 
     // Methods
     
-    void createVariables(Holon* holon) override;
+    void createVariables(Machine*, Holon*) override;
 };
 
-#endif /* RCHSM_TIME_BEHAVIOR_BOUND_H_ */
+#endif /* CHSM_RESOURCES_TIME_BEHBOUNDTIME_H_ */

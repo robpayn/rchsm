@@ -2,12 +2,10 @@
  * BehCellTime.h
  */
 
-#ifndef RCHSM_TIME_BEHAVIOR_CELL_H_
-#define RCHSM_TIME_BEHAVIOR_CELL_H_
+#ifndef CHSM_RESOURCES_TIME_BASIC_BEHCELLTIME_H_
+#define CHSM_RESOURCES_TIME_BASIC_BEHCELLTIME_H_
 
 #include "../../../CHSM/Behavior.h"
-#include "Time.h"
-#include "Iteration.h"
 
 class BehCellTime : public Behavior
 {
@@ -18,7 +16,7 @@ class BehCellTime : public Behavior
 
     // Methods
     
-    void createVariables(Holon* holon) override;
+    void createVariables(Machine*, Holon*) override;
 };
 
-#endif /* RCHSM_TIME_BEHAVIOR_CELL_H_ */
+#endif /* CHSM_RESOURCES_TIME_BASIC_BEHCELLTIME_H_ */

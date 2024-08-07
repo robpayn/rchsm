@@ -5,7 +5,7 @@
 #ifndef RCHSM_TIMESTEP_BASIC_H_
 #define RCHSM_TIMESTEP_BASIC_H_
 
-#include "../../../CHSM/ValueDouble.h"
+#include "../../../CHSM/values/ValueDouble.h"
 
 class TimeStep : public ValueDouble
 {

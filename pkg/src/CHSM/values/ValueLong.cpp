@@ -20,7 +20,16 @@ void ValueLong::fromString(std::string valueString)
   int_ = stol(valueString);
 }
 
+bool ValueLong::isDefined()
+{
+  return !(int_ == LONG_MIN);
+}
+
 std::string ValueLong::toString()
 {
-  return std::to_string(int_);
+  if (isDefined()) {
+    return std::to_string(int_);
+  } else {
+    return std::string("Undefined");
+  }
 }

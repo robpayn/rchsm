@@ -6,7 +6,7 @@
 #define RCHSM_SOLUTES_DO_CONC_STATEDOCONC_H_
 
 #include "../../../../CHSM/Dynamic.h"
-#include "../../../../CHSM/ValueDouble.h"
+#include "../../../../CHSM/values/ValueDouble.h"
 #include <string>
 
 class StateDOConc : public ValueDouble, public Dynamic

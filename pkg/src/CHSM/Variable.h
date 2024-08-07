@@ -2,8 +2,8 @@
  * Variable.h
  */
 
-#ifndef RCHSM_VARIABLE_H_
-#define RCHSM_VARIABLE_H_
+#ifndef CHSM_VARIABLE_H_
+#define CHSM_VARIABLE_H_
 
 #include <string>
 #include <sstream>
@@ -74,11 +74,11 @@ class Variable
     T_VALUE* getValue()
     {
       T_VALUE* valuePointer = dynamic_cast <T_VALUE*> (value_);
-      if (valuePointer != nullptr) {
+      if (valuePointer) {
         return valuePointer;
       } else {
         std::ostringstream error;
-        error << "Type requested is not valid for the value in variable" 
+        error << "Type requested is not valid for the value in variable " 
               << name_;
         throw std::runtime_error(error.str());
       }
@@ -102,4 +102,4 @@ class Variable
     
 };
 
-#endif /* RCHSM_VARIABLE_H_ */
+#endif /* CHSM_VARIABLE_H_ */

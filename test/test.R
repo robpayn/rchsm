@@ -4,25 +4,28 @@ library(rchsm, lib.loc = "./build")
 
 model <- C_Model$new()
 
-cell <- C_Cell$new(
-  model$createCell(name = "Cell01")
+.cell <- model$createCell(name = "CellTime")
+beh <- C_Behavior$new("BehCellTime")
+beh$createVariables(.machine = model$.external, .holon = .cell)
+
+.bound <- model$createBound(
+  name = "BoundTime",
+  .cellFrom = NULL,
+  .cellTo = .cell
 )
+beh <- C_Behavior$new("BehBoundTime")
+beh$createVariables(.machine = model$.external, .holon = .bound)
 
-beh <- C_BehCellDOConc$new()
+.cell <- model$createCell(name = "Cell01")
+.cell2 <- model$createCell(name = "Cell02")
 
-beh$createVariables(.holon = cell$.external)
-
-
-cell2 <- C_Cell$new(
-  model$createCell(name = "Cell02")
+.bound <- model$createBound(
+  name = "Bound01",
+  .cellFrom = .cell,
+  .cellTo = .cell2
 )
-
-bound <- C_Bound$new(
-  model$createBound(
-    name = "Bound01", 
-    .cellFrom = cell$externalPointer, 
-    .cellTo = cell2$externalPointer
-  )
-)
+beh <- C_Behavior$new("BehCellDOConc")
+beh$createVariables(.machine = model$.external, .holon = .bound)
 
 cat(model$getValueString())
+

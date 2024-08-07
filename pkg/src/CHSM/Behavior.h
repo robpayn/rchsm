@@ -2,15 +2,18 @@
  * Behavior.h
  */
 
-#ifndef RCHSM_BEHAVIOR_H_
-#define RCHSM_BEHAVIOR_H_
+#ifndef CHSM_BEHAVIOR_H_
+#define CHSM_BEHAVIOR_H_
 
-#include "Holon.h"
+class Holon;
+class Machine;
 
 class Behavior
 {
   public:
-    virtual void createVariables(Holon* holon) = 0;
+    virtual ~Behavior() {};
+    
+    virtual void createVariables(Machine*, Holon*) = 0;
 };
 
-#endif /* RCHSM_BEHAVIOR_H_ */
+#endif /* CHSM_BEHAVIOR_H_ */

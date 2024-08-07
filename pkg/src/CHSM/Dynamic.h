@@ -2,8 +2,8 @@
  * Dynamic.h
  */
 
-#ifndef RCHSM_DYNAMIC_H_
-#define RCHSM_DYNAMIC_H_
+#ifndef CHSM_DYNAMIC_H_
+#define CHSM_DYNAMIC_H_
 
 //! CHSM abstraction for defining an object that can be updated
 /*!
@@ -33,4 +33,4 @@ class Dynamic
     virtual void update() = 0;
 };
 
-#endif /* RCHSM_DYNAMIC_H_ */
+#endif /* CHSM_DYNAMIC_H_ */

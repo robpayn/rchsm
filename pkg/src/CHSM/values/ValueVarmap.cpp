@@ -3,8 +3,10 @@
  */
 
 #include "ValueVarmap.h"
-#include "Variable.h"
-#include "Holon.h"
+#include "../Variable.h"
+#include "../Holon.h"
+
+// #include <iostream>
 
 // Constructors /////////////////////
 
@@ -20,6 +22,7 @@ ValueVarmap::~ValueVarmap()
 {
   std::unordered_map<std::string, Variable*>::iterator iter = map_.begin();
   while (iter != map_.end()) {
+    // std::cerr << iter->second->name_ << ", ";
     delete iter->second;
     iter->second = nullptr;
     iter++;
@@ -57,9 +60,18 @@ Variable* ValueVarmap::getVariable(std::string name)
   }
 }
 
+bool ValueVarmap::isDefined()
+{
+  return !map_.empty();
+}
+
 std::string ValueVarmap::toString()
 {
-  return formatter_->format();
+  if (isDefined()) {
+    return formatter_->format();
+  } else {
+    return std::string("Undefined");
+  }
 }
 
 VarmapFormatter::VarmapFormatter(ValueVarmap* varmap) :
@@ -99,8 +111,9 @@ std::string VarmapFormatterXML::format()
         typeName = std::string("Variable");
       }
       stream << indent
-        << "<" << typeName << " name=\"" << iter->first << "\">"
-        << iter->second->value_->toString();
+        << "<" << typeName << " name=\"" << iter->first << "\" " <<
+        "holon=\"" << iter->second->holon_->name_ << "\">" <<
+        iter->second->value_->toString();
       if (
         holon && 
         static_cast <ValueVarmap*> (holon->value_)->map_.size() > 0
