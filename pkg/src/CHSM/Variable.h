@@ -25,6 +25,7 @@ class Holon;
 class Variable
 {
   public:
+    
     // Attributes ///////////////////////
     
     //! The name of the variable
@@ -38,10 +39,6 @@ class Variable
     
     
     // Constructors /////////////////////
-    
-    //! Constructor based on a provided name
-    //!   \param std::string The name for the new variable object.
-    Variable(std::string);
     
     //! Constructor based on a provided name and value object
     //!   \param std::string The name for the new variable object.
@@ -97,9 +94,15 @@ class Variable
       and the Value will be deleted if the variable destructor is called.
     */
     void setValue(Value*);
+      
+  protected:
     
-    // void setValueFromString(std::string stringValue);
+    // Constructors /////////////////////
     
+    //! Constructor based on a provided name
+    //!   \param std::string The name for the new variable object.
+    Variable(std::string);
+
 };
 
 #endif /* CHSM_VARIABLE_H_ */

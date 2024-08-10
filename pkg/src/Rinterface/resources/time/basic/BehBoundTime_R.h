@@ -13,7 +13,7 @@ extern "C"
 {
   SEXP BehBoundTime_constructor();
   SEXP BehBoundTime_destructor(SEXP);
-  SEXP BehBoundTime_createVariables(SEXP, SEXP, SEXP);
+  SEXP BehBoundTime_createVariables(SEXP, SEXP, SEXP, SEXP);
 }
 
 

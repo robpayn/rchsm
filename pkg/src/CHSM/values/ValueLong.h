@@ -14,7 +14,7 @@ class ValueLong : public Value
   public:
     // Attributes
     
-    long int_ = LONG_MIN;
+    long v_ = LONG_MIN;
     
     // Constructors
     

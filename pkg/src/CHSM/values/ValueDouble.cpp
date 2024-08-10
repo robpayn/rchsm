@@ -7,7 +7,7 @@
 ValueDouble::ValueDouble() {};
 
 ValueDouble::ValueDouble(double value) :
-  real_(value)
+  v_(value)
 {}
 
 ValueDouble::ValueDouble(std::string valueString)
@@ -20,18 +20,18 @@ ValueDouble::~ValueDouble()
 
 void ValueDouble::fromString(std::string valueString)
 {
-  real_ = stod(valueString);
+  v_ = stod(valueString);
 }
 
 bool ValueDouble::isDefined()
 {
-  return !std::isnan(real_);
+  return !std::isnan(v_);
 }
 
 std::string ValueDouble::toString()
 {
   if(isDefined()) {
-    return std::to_string(real_);
+    return std::to_string(v_);
   } else {
     return std::string("Undefined");
   }

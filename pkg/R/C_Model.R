@@ -32,30 +32,6 @@ C_Model <- R6Class(
     },
     
     #' @description
-    #'   Creates a new cell in the model
-    #'   
-    #' @param name 
-    #'   The name of the cell to be created
-    #' @param .holon
-    #'   (Optional) R6 holon object where the cell should be created.
-    #'   Default NULL value results in creation of the cell in the model holon
-    #' 
-    #' @return 
-    #'   A new R6 cell object mapped to the C++ cell object that was created.
-    #'   
-    createCell = function(name, .holon = NULL) {
-      
-      cCell = .Call(
-        paste0(self$cClassName, "_createCell"), 
-        self$.external, 
-        name, 
-        .holon
-      )
-      return(cCell)
-      
-    },
-    
-    #' @description
     #'   Creates a new bound in the model
     #'   
     #' @param name 
@@ -70,23 +46,47 @@ C_Model <- R6Class(
     #' 
     #' @return 
     #'   A new R6 bound object mapped to the C++ bound object that was created.
+    #'   The function will cause a fatal error in R if the c object returns
+    #'     an error message.
     #'   
     createBound = function(name, .cellFrom, .cellTo, .holon = NULL) {
       
-      cBound = .Call(
-        paste0(self$cClassName, "_createBound"), 
-        self$.external, 
-        name,
-        .cellFrom,
-        .cellTo,
-        .holon
+      return(
+        self$callFunction(
+          name = "createBound",
+          name,
+          .cellFrom,
+          .cellTo,
+          .holon
+        )
       )
-      if (is.character(cBound)) {
-        stop(cBound);
-      } else {
-        return(cBound)
-      }
+
+    },
+    
+    #' @description
+    #'   Creates a new cell in the model
+    #'   
+    #' @param name 
+    #'   The name of the cell to be created
+    #' @param .holon
+    #'   (Optional) R6 holon object where the cell should be created.
+    #'   Default NULL value results in creation of the cell in the model holon
+    #' 
+    #' @return 
+    #'   A new R6 cell object mapped to the C++ cell object that was created.
+    #'   The function will cause a fatal error in R if the c object returns
+    #'     an error message.
+    #'   
+    createCell = function(name, .holon = NULL) {
       
+      return(
+        self$callFunction(
+          name = "createCell",
+          name,
+          .holon
+        )
+      )
+
     }
     
   )

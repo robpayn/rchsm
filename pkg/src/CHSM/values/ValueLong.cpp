@@ -7,7 +7,7 @@
 ValueLong::ValueLong() {}
 
 ValueLong::ValueLong(long value) : 
-  int_(value)
+  v_(value)
 {}
 
 ValueLong::ValueLong(std::string valueString)
@@ -17,18 +17,18 @@ ValueLong::ValueLong(std::string valueString)
 
 void ValueLong::fromString(std::string valueString)
 {
-  int_ = stol(valueString);
+  v_ = stol(valueString);
 }
 
 bool ValueLong::isDefined()
 {
-  return !(int_ == LONG_MIN);
+  return !(v_ == LONG_MIN);
 }
 
 std::string ValueLong::toString()
 {
   if (isDefined()) {
-    return std::to_string(int_);
+    return std::to_string(v_);
   } else {
     return std::string("Undefined");
   }

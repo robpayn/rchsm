@@ -40,7 +40,11 @@ SEXP BehCellTime_constructor()
 SEXP BehCellTime_createVariables(
   SEXP rPointerBeh,
   SEXP rPointerMachine,
-  SEXP rPointerCell
+  SEXP rPointerCell,
+  SEXP initTime,
+  SEXP initIteration,
+  SEXP initTimeValid,
+  SEXP initTimeMax
 )
 {
   BehCellTime* pointerBeh = 
@@ -50,7 +54,14 @@ SEXP BehCellTime_createVariables(
   Cell* pointerCell =
     static_cast <Cell*> (R_ExternalPtrAddr(rPointerCell));
   
-  pointerBeh->createVariables(pointerMachine, pointerCell);
+  pointerBeh->createVariables(
+    pointerMachine, 
+    pointerCell,
+    asReal(initTime),
+    asInteger(initIteration),
+    asInteger(initTimeValid),
+    asReal(initTimeMax)
+  );
   
   return R_NilValue;
 }

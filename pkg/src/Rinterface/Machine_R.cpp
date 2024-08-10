@@ -41,36 +41,11 @@ SEXP Machine_constructor(SEXP name)
     
   } catch (std::runtime_error &thrown) {
     
-    return mkString(thrown.what());
+    std::ostringstream error;
+    error << "<CERROR>\n" << thrown.what();
+    return mkString(error.str().c_str());
     
   }
-}
-
-SEXP Machine_createCell(SEXP extMachinePtr, SEXP name, SEXP extHolonPtr) 
-{
-  
-  Machine* machinePtr = 
-    static_cast <Machine*> (R_ExternalPtrAddr(extMachinePtr));
-  
-  Holon* holonPtr;
-  if (extHolonPtr == R_NilValue) {
-    holonPtr = nullptr;
-  } else {
-    holonPtr = static_cast <Holon*> (R_ExternalPtrAddr(extHolonPtr));
-  }
-  
-  Cell* cellPtr = machinePtr->createCell(
-    CHAR(asChar(name)), 
-    holonPtr
-  );
-
-  SEXP extCellPtr = PROTECT(
-    R_MakeExternalPtr(cellPtr, R_NilValue, R_NilValue)
-  );
-  UNPROTECT(1);
-
-  return extCellPtr;
-
 }
 
 SEXP Machine_createBound(
@@ -113,7 +88,7 @@ SEXP Machine_createBound(
       cellToPtr, 
       holonPtr
     );
-  
+    
     SEXP extBoundPtr = PROTECT(
       R_MakeExternalPtr(boundPtr, R_NilValue, R_NilValue)
     );
@@ -122,8 +97,75 @@ SEXP Machine_createBound(
     
   } catch (std::runtime_error &thrown) {
     
-    return mkString(thrown.what());
+    std::ostringstream error;
+    error << "<CERROR>\n" << thrown.what();
+    return mkString(error.str().c_str());
     
   }
+  
+}
 
+SEXP Machine_createCell(SEXP extMachinePtr, SEXP name, SEXP extHolonPtr) 
+{
+  
+  Machine* machinePtr = 
+    static_cast <Machine*> (R_ExternalPtrAddr(extMachinePtr));
+  
+  Holon* holonPtr;
+  if (extHolonPtr == R_NilValue) {
+    holonPtr = nullptr;
+  } else {
+    holonPtr = static_cast <Holon*> (R_ExternalPtrAddr(extHolonPtr));
+  }
+  
+  Cell* cellPtr = machinePtr->createCell(
+    CHAR(asChar(name)), 
+    holonPtr
+  );
+
+  SEXP extCellPtr = PROTECT(
+    R_MakeExternalPtr(cellPtr, R_NilValue, R_NilValue)
+  );
+  UNPROTECT(1);
+
+  return extCellPtr;
+
+}
+
+SEXP Machine_init(SEXP extMachinePtr)
+{
+  try {
+    
+    Machine* machinePtr =
+      static_cast <Machine*> (R_ExternalPtrAddr(extMachinePtr));
+    machinePtr->init();
+    
+  } catch (std::runtime_error &thrown) {
+    
+    std::ostringstream error;
+    error << "<CERROR>\n" << thrown.what();
+    return mkString(error.str().c_str());
+    
+  }
+    
+  return R_NilValue;
+}
+
+SEXP Machine_run(SEXP extMachinePtr)
+{
+  try {
+    
+    Machine* machinePtr =
+      static_cast <Machine*> (R_ExternalPtrAddr(extMachinePtr));
+    machinePtr->run();
+    
+  } catch (std::runtime_error &thrown) {
+    
+    std::ostringstream error;
+    error << "<CERROR>\n" << thrown.what();
+    return mkString(error.str().c_str());
+    
+  }
+  
+  return R_NilValue;
 }

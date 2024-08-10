@@ -62,6 +62,42 @@ C_Object <- R6Class(
         
       }
     },
+    #' @description
+    #'   Call a C function representing one of the methods of the class
+    #'
+    #' @param name
+    #'   Character string with the name of the method to be called
+    #' @param ...
+    #'   Further arguments to be passed on to the C function
+    #' @param cClassName
+    #'   (Optional) A character string representing the C class name for the
+    #'     function to be called.
+    #'   Defaults to the C class name associated with the derived class.
+    #'   This should be changed if the function associated with a base class
+    #'     needs to be called.
+    #' 
+    #' @return 
+    #'   SEXP object returned by the function.
+    #'   If the object is a character string starting with "<CERROR>", the
+    #'     program will be stopped with the error message provided from C.
+    #'   A null return value will be returned invisibly.
+    callFunction = function(name, ..., cClassName = self$cClassName) {
+      returnVal <- .Call(
+        paste0(cClassName, "_", name),
+        self$.external,
+        ...
+      )
+      if (is.character(returnVal)) {
+        if (grepl(pattern = "^<CERROR>", x = returnVal)) {
+          stop(returnVal);
+        }
+      }
+      if (is.null(returnVal)) {
+        invisible(NULL)
+      } else {
+        return(returnVal)
+      }
+    },
     
     #' @description
     #'   Calls the wrapper of the destructor of the C object to release memory.

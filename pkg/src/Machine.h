@@ -14,6 +14,9 @@ class Bound;
 class Machine : public Holon
 {
   public:
+    // Attributes
+    
+    bool* timeValid_ = nullptr;
     
     // Constructors/Destructor
     
@@ -21,11 +24,19 @@ class Machine : public Holon
     
     virtual ~Machine();
     
+    // Methods
+    
+    void init();
+    
     void installVariable(Variable*, Holon*);
     
-    Bound* createBound (std::string, Cell*, Cell*, Holon*);
+    Bound* createBound(std::string, Cell*, Cell*, Holon*);
     
-    Cell* createCell (std::string, Holon*);
+    Cell* createCell(std::string, Holon*);
+    
+    Variable* createVariable(std::string, Value*, Holon*);
+    
+    void run();
     
 };
 

@@ -13,7 +13,7 @@ class ValueDouble : public Value
   public:
     // Attributes
     
-    double real_ = nan("");
+    double v_ = nan("");
     
     // Constructors
     

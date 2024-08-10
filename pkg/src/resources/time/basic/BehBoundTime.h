@@ -17,6 +17,8 @@ class BehBoundTime : public Behavior
     // Methods
     
     void createVariables(Machine*, Holon*) override;
+    
+    void createVariables(Machine*, Holon*, double);
 };
 
 #endif /* CHSM_RESOURCES_TIME_BEHBOUNDTIME_H_ */

@@ -17,6 +17,8 @@ class BehCellTime : public Behavior
     // Methods
     
     void createVariables(Machine*, Holon*) override;
+    
+    void createVariables(Machine*, Holon*, double, long, bool, double);
 };
 
 #endif /* CHSM_RESOURCES_TIME_BASIC_BEHCELLTIME_H_ */

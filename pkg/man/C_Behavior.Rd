@@ -22,6 +22,7 @@ An R6 class mapping to a C++ composite Hierarchy State Machine object
 \if{html}{\out{
 <details open><summary>Inherited methods</summary>
 <ul>
+<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Object" data-id="callFunction"><a href='../../rchsm/html/C_Object.html#method-C_Object-callFunction'><code>rchsm::C_Object$callFunction()</code></a></span></li>
 <li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Object" data-id="finalize"><a href='../../rchsm/html/C_Object.html#method-C_Object-finalize'><code>rchsm::C_Object$finalize()</code></a></span></li>
 </ul>
 </details>
@@ -47,17 +48,19 @@ Constructs an object that is a new instance of the class
 \if{html}{\out{<a id="method-C_Behavior-createVariables"></a>}}
 \if{latex}{\out{\hypertarget{method-C_Behavior-createVariables}{}}}
 \subsection{Method \code{createVariables()}}{
-Create the variables controlling the behavior in the provided holon
+Create the variables controlling the behavior in the provided holon.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_Behavior$createVariables(.machine, .holon)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{C_Behavior$createVariables(.machine, .holon, ...)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{.machine}}{The machine object where the variables should be registered}
+\item{\code{.machine}}{The machine object where the variables should be registered.}
 
-\item{\code{.holon}}{The holon object where the variables should be created}
+\item{\code{.holon}}{The holon object where the variables should be created.}
+
+\item{\code{...}}{Initial value arguments to be passed on to the associated C function.}
 }
 \if{html}{\out{</div>}}
 }

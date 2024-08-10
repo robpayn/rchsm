@@ -37,8 +37,3 @@ void Variable::setValue(Value* value)
   value_ = value;
   value_->setVariable(this);
 }
-
-// void Variable::setValueFromString(std::string stringValue)
-// {
-//   value_->fromString(stringValue);
-// }

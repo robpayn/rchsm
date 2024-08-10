@@ -3,13 +3,21 @@
  */
 
 #include "BehBoundTime.h"
-#include "TimeStep.h"
+#include "../../../CHSM/values/ValueDouble.h"
 #include "../../../Machine.h"
 
 BehBoundTime::BehBoundTime() {}
 
 void BehBoundTime::createVariables(Machine* machine, Holon* holon) 
 {
-  Variable* variable = new Variable("TimeStep", new TimeStep());
-  machine->installVariable(variable, holon);
+  machine->createVariable("TimeStep", new ValueDouble(), holon);
+}
+
+void BehBoundTime::createVariables(
+  Machine* machine, 
+  Holon* holon, 
+  double initTimeStep
+) 
+{
+  machine->createVariable("TimeStep", new ValueDouble(initTimeStep), holon);
 }

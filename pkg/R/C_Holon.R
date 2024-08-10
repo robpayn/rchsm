@@ -47,7 +47,14 @@ C_Holon <- R6Class(
     #'   A single element character vector representing the contents of the
     #'   holon.
     getValueString = function() {
-      .Call("Holon_getValueString", self$.external)
+      
+      return(
+        self$callFunction(
+          name = "getValueString",
+          cClassName = "Holon"
+        )
+      )
+      
     }
     
   )

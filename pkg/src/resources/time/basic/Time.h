@@ -2,8 +2,8 @@
  * Time.h
  */
 
-#ifndef RCHSM_TIME_BASIC_H_
-#define RCHSM_TIME_BASIC_H_
+#ifndef RESOURCES_TIME_BASIC_TIME_H_
+#define RESOURCES_TIME_BASIC_TIME_H_
 
 #include "../../../CHSM/values/ValueDouble.h"
 #include "../../../CHSM/Dynamic.h"
@@ -18,6 +18,8 @@ class Time : public ValueDouble, public Dynamic
     
     Dynamic* iteration_;
     
+    Dynamic* timeValid_;
+    
     // Constructors/Destructor
     
     Time();
@@ -31,4 +33,4 @@ class Time : public ValueDouble, public Dynamic
     void update() override;
 };
 
-#endif /* RCHSM_TIME_BASIC_H_ */
+#endif /* RESOURCES_TIME_BASIC_TIME_H_ */

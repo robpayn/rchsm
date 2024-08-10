@@ -22,6 +22,7 @@ A holon in a composite Hierarchy State Machine
 \if{html}{\out{
 <details open><summary>Inherited methods</summary>
 <ul>
+<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Object" data-id="callFunction"><a href='../../rchsm/html/C_Object.html#method-C_Object-callFunction'><code>rchsm::C_Object$callFunction()</code></a></span></li>
 <li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Object" data-id="finalize"><a href='../../rchsm/html/C_Object.html#method-C_Object-finalize'><code>rchsm::C_Object$finalize()</code></a></span></li>
 </ul>
 </details>

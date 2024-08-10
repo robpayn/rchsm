@@ -6,6 +6,19 @@
 
 Matrix::Matrix() {}
 
-void Matrix::setDependencies() {}
+void Matrix::setDependencies() {
+  
+  time_->setDependencies();
+  
+}
 
-void Matrix::update() {}
+void Matrix::setTime(Dynamic* time)
+{
+  time_ = time;
+}
+
+void Matrix::update() {
+  
+  time_->update();
+  
+}

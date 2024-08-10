@@ -15,7 +15,7 @@ class MemoryDouble : public Memory
   public:
     ValueDouble* val_ = nullptr;
     
-    double* realm_ = nullptr;
+    double* m_ = nullptr;
     
     MemoryDouble(int);
     

@@ -21,25 +21,25 @@ MemoryDouble::MemoryDouble(ValueDouble* value, int memSize) :
 
 MemoryDouble::~MemoryDouble()
 {
-  delete []realm_;
+  delete []m_;
 }
 
 void MemoryDouble::allocateMemory()
 {
-  if (realm_) {
-    delete realm_;
-    realm_ = nullptr;
+  if (m_) {
+    delete m_;
+    m_ = nullptr;
   }
   if (memSize_ > 0)
   {
-    realm_ = new double[memSize_];
+    m_ = new double[memSize_];
   }
 }
 
 void MemoryDouble::recall(int index)
 {
   if (index >= 0 && index < memSize_) {
-    val_->real_ = realm_[index];
+    val_->v_ = m_[index];
   } else {
     throwIndexError(index, "recall");
   }
@@ -53,7 +53,7 @@ void MemoryDouble::setValue(Value* value)
 void MemoryDouble::store(int index) 
 {
   if (index >= 0 && index < memSize_) {
-    realm_[index] = val_->real_;
+    m_[index] = val_->v_;
   } else {
     throwIndexError(index, "store");
   }

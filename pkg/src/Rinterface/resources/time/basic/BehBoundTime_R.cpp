@@ -40,7 +40,8 @@ SEXP BehBoundTime_constructor()
 SEXP BehBoundTime_createVariables(
     SEXP rPointerBeh,
     SEXP rPointerMachine,
-    SEXP rPointerBound
+    SEXP rPointerBound,
+    SEXP initTimeStep
 )
 {
   BehBoundTime* pointerBeh = 
@@ -50,7 +51,11 @@ SEXP BehBoundTime_createVariables(
   Bound* pointerBound =
     static_cast <Bound*> (R_ExternalPtrAddr(rPointerBound));
   
-  pointerBeh->createVariables(pointerMachine, pointerBound);
+  pointerBeh->createVariables(
+    pointerMachine, 
+    pointerBound, 
+    asReal(initTimeStep)
+  );
   
   return R_NilValue;
 }

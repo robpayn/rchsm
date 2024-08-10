@@ -35,19 +35,32 @@ void Time::setDependencies()
   std::unordered_map<std::string, Variable*>::iterator iter = boundVars.begin();
 
   ValueDouble* value = iter->second->getValue<ValueDouble>();
-  timeStep_ = &(value->real_);
+  timeStep_ = &(value->v_);
 
   Variable* variable = var_->holon_->getVariable("Iteration");
-  if (variable) {
-    iteration_ = dynamic_cast <Dynamic*> (variable->value_);
-  } else {
-    throw std::runtime_error("No iteration variable found in the time cell.\n");
+  if (!variable) {
+    throw std::runtime_error(
+      "No iteration variable found in the time cell.\n"
+    );
   }
+  iteration_ = dynamic_cast <Dynamic*> (variable->value_);
+  iteration_->setDependencies();
+  
+  variable = var_->holon_->getVariable("TimeValid");
+  if (!variable) {
+    throw std::runtime_error(
+      "No time valid variable found in the time cell.\n"
+    );
+  }
+  timeValid_ = dynamic_cast <Dynamic*> (variable->value_);
+  timeValid_->setDependencies();
+  
 }
 
 void Time::update() {
   
-  real_ = real_ + *timeStep_;
+  v_ = v_ + *timeStep_;
+  timeValid_->update();
   iteration_->update();
   
 }

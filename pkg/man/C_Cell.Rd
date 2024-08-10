@@ -21,6 +21,7 @@ An R6 class mapping to a C++ Cell object
 \if{html}{\out{
 <details open><summary>Inherited methods</summary>
 <ul>
+<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Object" data-id="callFunction"><a href='../../rchsm/html/C_Object.html#method-C_Object-callFunction'><code>rchsm::C_Object$callFunction()</code></a></span></li>
 <li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Object" data-id="finalize"><a href='../../rchsm/html/C_Object.html#method-C_Object-finalize'><code>rchsm::C_Object$finalize()</code></a></span></li>
 <li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Holon" data-id="getValueString"><a href='../../rchsm/html/C_Holon.html#method-C_Holon-getValueString'><code>rchsm::C_Holon$getValueString()</code></a></span></li>
 </ul>

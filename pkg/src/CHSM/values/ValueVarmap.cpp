@@ -110,17 +110,19 @@ std::string VarmapFormatterXML::format()
       } else {
         typeName = std::string("Variable");
       }
-      stream << indent
-        << "<" << typeName << " name=\"" << iter->first << "\" " <<
-        "holon=\"" << iter->second->holon_->name_ << "\">" <<
-        iter->second->value_->toString();
-      if (
-        holon && 
-        static_cast <ValueVarmap*> (holon->value_)->map_.size() > 0
-      ) {
-        stream << indent;
-      }
-      stream << "</" << typeName << ">\n";
+      stream << 
+        indent <<
+          "<" << typeName << " " <<
+            "name=\"" << iter->first << "\"" << 
+          ">" <<
+          iter->second->value_->toString();
+          if (
+            holon && 
+            static_cast <ValueVarmap*> (holon->value_)->map_.size() > 0
+          ) {
+            stream << indent;
+          }
+          stream << "</" << typeName << ">\n";
       iter++;
     }
     return stream.str();

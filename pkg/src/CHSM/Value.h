@@ -5,7 +5,6 @@
 #ifndef CHSM_VALUE_H_
 #define CHSM_VALUE_H_
 
-#include <sstream>
 #include <string>
 
 class Variable;

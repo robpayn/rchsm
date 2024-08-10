@@ -15,14 +15,15 @@ A Composite Hierarchy State Machine model.
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-C_Model-new}{\code{C_Model$new()}}
-\item \href{#method-C_Model-createCell}{\code{C_Model$createCell()}}
 \item \href{#method-C_Model-createBound}{\code{C_Model$createBound()}}
+\item \href{#method-C_Model-createCell}{\code{C_Model$createCell()}}
 \item \href{#method-C_Model-clone}{\code{C_Model$clone()}}
 }
 }
 \if{html}{\out{
 <details open><summary>Inherited methods</summary>
 <ul>
+<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Object" data-id="callFunction"><a href='../../rchsm/html/C_Object.html#method-C_Object-callFunction'><code>rchsm::C_Object$callFunction()</code></a></span></li>
 <li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Object" data-id="finalize"><a href='../../rchsm/html/C_Object.html#method-C_Object-finalize'><code>rchsm::C_Object$finalize()</code></a></span></li>
 <li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Holon" data-id="getValueString"><a href='../../rchsm/html/C_Holon.html#method-C_Holon-getValueString'><code>rchsm::C_Holon$getValueString()</code></a></span></li>
 </ul>
@@ -46,29 +47,6 @@ Default value is "Machine"}
 \item{\code{name}}{Name of the model}
 }
 \if{html}{\out{</div>}}
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-C_Model-createCell"></a>}}
-\if{latex}{\out{\hypertarget{method-C_Model-createCell}{}}}
-\subsection{Method \code{createCell()}}{
-Creates a new cell in the model
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_Model$createCell(name, .holon = NULL)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{name}}{The name of the cell to be created}
-
-\item{\code{.holon}}{(Optional) R6 holon object where the cell should be created.
-Default NULL value results in creation of the cell in the model holon}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-A new R6 cell object mapped to the C++ cell object that was created.
 }
 }
 \if{html}{\out{<hr>}}
@@ -96,6 +74,33 @@ Default NULL value results in creation of the bound in the model holon}
 }
 \subsection{Returns}{
 A new R6 bound object mapped to the C++ bound object that was created.
+  The function will cause a fatal error in R if the c object returns
+    an error message.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-C_Model-createCell"></a>}}
+\if{latex}{\out{\hypertarget{method-C_Model-createCell}{}}}
+\subsection{Method \code{createCell()}}{
+Creates a new cell in the model
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{C_Model$createCell(name, .holon = NULL)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{name}}{The name of the cell to be created}
+
+\item{\code{.holon}}{(Optional) R6 holon object where the cell should be created.
+Default NULL value results in creation of the cell in the model holon}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+A new R6 cell object mapped to the C++ cell object that was created.
+  The function will cause a fatal error in R if the c object returns
+    an error message.
 }
 }
 \if{html}{\out{<hr>}}
