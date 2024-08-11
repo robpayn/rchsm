@@ -4,16 +4,15 @@
 
 #include "Iteration.h"
 
-Iteration::Iteration() 
-{
-  phase_ = 0;
-}
+Iteration::Iteration(int phase) :
+  ValueLong(),
+  Dynamic(phase)
+{}
 
-Iteration::Iteration(long init) :
-  ValueLong(init)
-{
-  phase_ = 0;
-}
+Iteration::Iteration(int phase, long init) :
+  ValueLong(init),
+  Dynamic(phase)
+{}
 
 void Iteration::setDependencies() {}
 

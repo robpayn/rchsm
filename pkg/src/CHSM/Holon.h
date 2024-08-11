@@ -9,48 +9,70 @@
 
 class ValueVarmap;
 
-//! A CHSM Holon
-/*!
-  A holon in a Composite Hierarchy State Machine is a type of CHSM Variable 
-  where the value of the variable is defined by a collection of other 
-  Variables. 
-  The composition relationship is implemented by the value of the holon 
-  variable being of type ValueVarmap. 
-  Hierarchies emerge from holons being variables within other holons.
-  This is an adaptation of the composite pattern.
+/*! 
+  \brief 
+    A CHSM Holon
+  \details
+    A holon in a Composite Hierarchy State Machine is a type of CHSM Variable 
+    where the value of the variable is defined by a collection of other 
+    Variables. 
+    The composition relationship is implemented by the value of the holon 
+    variable being of type ValueVarmap. 
+    Hierarchies emerge from holons being variables within other holons.
+    This is an adaptation of the composite pattern.
 */
 class Holon : public Variable
 {
   public:
+    
     // Constructors /////////////////////
     
-    //! Constructor based on a provided name
-    //!   \param std::string The name for the new holon object.
+    /*! 
+      \brief 
+        Constructor based on a provided name
+      \param std::string 
+        The name for the new holon object.
+    */
     Holon(std::string);
     
-    //! Construct a new instance based on the name and value provided
-    //!   \param std::string The name for the new holon object.
-    //!   \param ValueVarmap* Pointer to the variable map value for this holon
+    /*! 
+      \brief
+        Construct a new instance based on the name and value provided
+      \param std::string 
+        The name for the new holon object.
+      \param ValueVarmap* 
+        Pointer to the variable map value for this holon
+    */
     Holon(std::string, ValueVarmap*);
     
     
     // Methods //////////////////////////
     
-    //! Add a Variable to the holon
-    //!   \param Variable* A pointer to a variable
-    //! \return No return value
-    /*!
-      Note that the holon will assume ownership of the Variable referenced
-      by the pointer.
-      The Variable will be deleted if the holon's destructor is called.
+    /*! 
+      \brief 
+        Add a Variable to the holon
+      \param Variable* 
+        A pointer to a variable
+      \return 
+        No return value
+      \details
+        Note that the holon will assume ownership of the Variable referenced
+        by the pointer.
+        The Variable will be deleted if the holon's destructor is called.
     */
     void addVariable(Variable*);
     
-    //! Get a variable with the provided name
-    //!   \param std::string Name of the variable to retrieve.
-    //! \return Pointer to the variable with the provided name. 
-    //!   Returns a null pointer if the variable name is not found.
+    /*! 
+      \brief
+        Get a variable with the provided name
+      \param std::string 
+        Name of the variable to retrieve.
+      \return 
+        Pointer to the variable with the provided name. 
+        Returns a null pointer if the variable name is not found.
+    */
     Variable* getVariable(std::string);
+    
 };
 
 #endif /* CHSM_HOLON_H_ */

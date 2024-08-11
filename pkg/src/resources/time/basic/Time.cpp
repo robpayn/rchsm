@@ -4,17 +4,15 @@
 
 #include "Time.h"
 
-Time::Time() :
-  ValueDouble()
-{
-  phase_ = 0;
-}
+Time::Time(int phase) :
+  ValueDouble(),
+  Dynamic(phase)
+{}
 
-Time::Time(double init) :
-  ValueDouble(init)
-{
-  phase_ = 0;
-}
+Time::Time(int phase, double init) :
+  ValueDouble(init),
+  Dynamic(phase)
+{}
 
 void Time::setDependencies() 
 {

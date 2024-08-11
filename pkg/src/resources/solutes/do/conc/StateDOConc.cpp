@@ -4,10 +4,10 @@
 
 #include "StateDOConc.h"
 
-StateDOConc::StateDOConc()
-{
-  phase_ = 2;
-}
+StateDOConc::StateDOConc(int phase) :
+  ValueDouble(),
+  Dynamic(phase)
+{}
 
 void StateDOConc::setDependencies() {}
 

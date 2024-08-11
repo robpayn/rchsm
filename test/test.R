@@ -34,8 +34,9 @@ beh$createVariables(
   .cellFrom = .cell,
   .cellTo = .cell2
 )
+
 beh <- C_Behavior$new("BehCellDOConc")
-beh$createVariables(.machine = model$.external, .holon = .bound)
+beh$createVariables(.machine = model$.external, .holon = .cell)
 
 model$callFunction("init")
 

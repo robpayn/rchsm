@@ -13,9 +13,9 @@ class Iteration : public ValueLong, public Dynamic
   public:
     // Constructors/Destructor
     
-    Iteration();
+    Iteration(int);
     
-    Iteration(long);
+    Iteration(int, long);
     
     // Methods
     

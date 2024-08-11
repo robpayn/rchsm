@@ -6,17 +6,15 @@
 #include "../../../CHSM/Holon.h"
 #include "../../../CHSM/values/ValueDouble.h"
 
-TimeValid::TimeValid() :
-  ValueBoolean()
-{
-  phase_ = 0;
-}
+TimeValid::TimeValid(int phase) :
+  ValueBoolean(),
+  Dynamic(phase)
+{}
 
-TimeValid::TimeValid(bool init) :
-  ValueBoolean(init)
-{
-  phase_ = 0;
-}
+TimeValid::TimeValid(int phase, bool init) :
+  ValueBoolean(init),
+  Dynamic(phase)
+{}
 
 void TimeValid::setDependencies() 
 {

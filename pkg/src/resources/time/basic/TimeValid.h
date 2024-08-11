@@ -18,9 +18,9 @@ public:
   
   // Constructors/Destructor
   
-  TimeValid();
+  TimeValid(int);
   
-  TimeValid(bool);
+  TimeValid(int, bool);
   
   // Methods
   

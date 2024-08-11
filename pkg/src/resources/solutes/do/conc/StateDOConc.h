@@ -14,7 +14,7 @@ class StateDOConc : public ValueDouble, public Dynamic
 public:
   // Constructors/Destructor
   
-  StateDOConc();
+  StateDOConc(int);
   
   // Methods
   

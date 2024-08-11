@@ -22,9 +22,9 @@ class Time : public ValueDouble, public Dynamic
     
     // Constructors/Destructor
     
-    Time();
+    Time(int);
     
-    Time(double);
+    Time(int, double);
     
     // Methods
     
