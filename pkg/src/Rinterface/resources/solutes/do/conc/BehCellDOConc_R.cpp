@@ -41,7 +41,8 @@ SEXP BehCellDOConc_constructor()
 SEXP BehCellDOConc_createVariables(
   SEXP rPointerBeh, 
   SEXP rPointerMachine,
-  SEXP rPointerCell
+  SEXP rPointerCell,
+  SEXP initDOConc
 )
 {
   BehCellDOConc* pointerBeh = 
@@ -51,7 +52,11 @@ SEXP BehCellDOConc_createVariables(
   Cell* pointerCell =
     static_cast <Cell*> (R_ExternalPtrAddr(rPointerCell));
   
-  pointerBeh->createVariables(pointerMachine, pointerCell);
+  pointerBeh->createVariables(
+    pointerMachine, 
+    pointerCell,
+    asReal(initDOConc)
+  );
   
   return R_NilValue;
 }

@@ -5,10 +5,9 @@
 #include "StateDOConc.h"
 
 StateDOConc::StateDOConc(int phase) :
-  ValueDouble(),
-  Dynamic(phase)
+  StateDouble(phase)
 {}
 
-void StateDOConc::setDependencies() {}
-
-void StateDOConc::update() {}
+StateDOConc::StateDOConc(int phase, double initValue) :
+  StateDouble(phase, initValue)
+{}

@@ -18,6 +18,9 @@ class BehCellDOConc : public Behavior
     // Methods
     
     void createVariables(Machine*, Holon*) override;
+    
+    void createVariables(Machine*, Holon*, double);
+    
 };
 
 #endif /* CHSM_RESOURCES_SOLUTES_DO_CONC_BEHCELLDOCONC_H_ */

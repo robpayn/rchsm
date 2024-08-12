@@ -28,7 +28,7 @@ class Time : public ValueDouble, public Dynamic
     
     // Methods
     
-    void setDependencies() override;
+    void setDependencies(DepManager*) override;
     
     void update() override;
 };

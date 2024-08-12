@@ -26,9 +26,10 @@ void Matrix::regDynamic(Dynamic* dynamic) {
   }
 }
 
-void Matrix::setDependencies() {
+void Matrix::setDependencies(DepManager*) {
   
-  time_->setDependencies();
+  time_->setDependencies(dm_);
+  dm_->manageDependencies();
   
 }
 

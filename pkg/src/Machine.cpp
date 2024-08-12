@@ -47,7 +47,7 @@ void Machine::init()
   }
   timeValid_ = &(static_cast <ValueBoolean*> (timeValidVar->value_)->v_);
   
-  matrix->setDependencies();
+  matrix->setDependencies(nullptr);
 }
 
 void Machine::installVariable(Variable* variable, Holon* holon)

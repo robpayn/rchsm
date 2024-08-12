@@ -24,7 +24,7 @@ class Matrix : public ValueVarmap, public Dynamic
     
     void regDynamic(Dynamic*);
     
-    void setDependencies() override;
+    void setDependencies(DepManager*) override;
     
     void setTime(Dynamic* time);
     

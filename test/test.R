@@ -36,7 +36,7 @@ beh$createVariables(
 )
 
 beh <- C_Behavior$new("BehCellDOConc")
-beh$createVariables(.machine = model$.external, .holon = .cell)
+beh$createVariables(.machine = model$.external, .holon = .cell, initDOConc = 8)
 
 model$callFunction("init")
 

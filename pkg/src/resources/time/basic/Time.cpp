@@ -3,6 +3,9 @@
  */
 
 #include "Time.h"
+#include "../../../CHSM/DepManager.h"
+
+#include "../../../CHSM/values/ValueBoolean.h"
 
 Time::Time(int phase) :
   ValueDouble(),
@@ -14,7 +17,7 @@ Time::Time(int phase, double init) :
   Dynamic(phase)
 {}
 
-void Time::setDependencies() 
+void Time::setDependencies(DepManager* dm) 
 {
   
   std::unordered_map<std::string, Variable*> boundVars = 
@@ -32,9 +35,8 @@ void Time::setDependencies()
 
   std::unordered_map<std::string, Variable*>::iterator iter = boundVars.begin();
 
-  ValueDouble* value = iter->second->getValue<ValueDouble>();
-  timeStep_ = &(value->v_);
-
+  timeStep_ = &(dm->setDependency<ValueDouble>(this, iter->second)->v_);
+  
   Variable* variable = var_->holon_->getVariable("Iteration");
   if (!variable) {
     throw std::runtime_error(
@@ -42,7 +44,7 @@ void Time::setDependencies()
     );
   }
   iteration_ = dynamic_cast <Dynamic*> (variable->value_);
-  iteration_->setDependencies();
+  iteration_->setDependencies(dm);
   
   variable = var_->holon_->getVariable("TimeValid");
   if (!variable) {
@@ -51,7 +53,7 @@ void Time::setDependencies()
     );
   }
   timeValid_ = dynamic_cast <Dynamic*> (variable->value_);
-  timeValid_->setDependencies();
+  timeValid_->setDependencies(dm);
   
 }
 

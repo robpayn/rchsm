@@ -14,7 +14,7 @@ Iteration::Iteration(int phase, long init) :
   Dynamic(phase)
 {}
 
-void Iteration::setDependencies() {}
+void Iteration::setDependencies(DepManager* dm) {}
 
 void Iteration::update() {
   

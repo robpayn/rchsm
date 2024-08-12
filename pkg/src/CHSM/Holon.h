@@ -73,6 +73,12 @@ class Holon : public Variable
     */
     Variable* getVariable(std::string);
     
+    template<class T_VALUE>
+    T_VALUE* getVarValue(std::string name)
+    {
+      return getVariable(name)->getValue<T_VALUE>();
+    }
+    
 };
 
 #endif /* CHSM_HOLON_H_ */

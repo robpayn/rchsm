@@ -5,6 +5,8 @@
 #ifndef CHSM_DYNAMIC_H_
 #define CHSM_DYNAMIC_H_
 
+class DepManager;
+
 /*! 
   \brief
     CHSM abstraction for defining an object that can be updated
@@ -38,7 +40,7 @@ class Dynamic
       \return 
         No return value
     */
-    virtual void setDependencies() = 0;
+    virtual void setDependencies(DepManager*) = 0;
     
     /*! 
       \brief

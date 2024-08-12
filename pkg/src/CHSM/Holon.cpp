@@ -36,5 +36,5 @@ void Holon::addVariable(Variable* var)
 
 Variable* Holon::getVariable(std::string name)
 {
-  return static_cast <ValueVarmap*> (value_)->getVariable(name);
+  return getValue<ValueVarmap>()->getVariable(name);
 }

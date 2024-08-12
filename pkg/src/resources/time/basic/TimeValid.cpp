@@ -16,7 +16,7 @@ TimeValid::TimeValid(int phase, bool init) :
   Dynamic(phase)
 {}
 
-void TimeValid::setDependencies() 
+void TimeValid::setDependencies(DepManager* dm) 
 {
   Variable* variable = var_->holon_->getVariable("Time");
   if (variable) {

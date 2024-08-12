@@ -24,7 +24,7 @@ public:
   
   // Methods
   
-  void setDependencies() override;
+  void setDependencies(DepManager*) override;
   
   void update() override;
 };
