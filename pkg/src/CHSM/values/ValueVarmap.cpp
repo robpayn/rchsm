@@ -20,13 +20,11 @@ ValueVarmap::ValueVarmap()
 
 ValueVarmap::~ValueVarmap()
 {
-  std::unordered_map<std::string, Variable*>::iterator iter = map_.begin();
-  while (iter != map_.end()) {
-    // std::cerr << iter->second->name_ << ", ";
-    delete iter->second;
-    iter->second = nullptr;
-    iter++;
+  for(std::pair elem : map_) {
+    delete elem.second;
+    elem.second = nullptr;
   }
+  
   delete formatter_;
 }
 
@@ -96,14 +94,12 @@ std::string VarmapFormatterXML::format()
 
   std::string indent = std::string(2 * depth, ' ');
 
-  std::unordered_map<std::string, Variable*>::iterator iter =
-    varmap_->map_.begin();
-  
-  if (iter != varmap_->map_.end()) {
+  if (varmap_->map_.size() > 0) {
     std::ostringstream stream;
     stream << "\n";
-    while(iter != varmap_->map_.end()) {
-      Holon* holon = dynamic_cast <Holon*> (iter->second);
+    
+    for(std::pair elem : varmap_->map_) {
+      Holon* holon = dynamic_cast <Holon*> (elem.second);
       std::string typeName;
       if (holon) {
         typeName = std::string("Holon");
@@ -113,18 +109,18 @@ std::string VarmapFormatterXML::format()
       stream << 
         indent <<
           "<" << typeName << " " <<
-            "name=\"" << iter->first << "\"" << 
-          ">" <<
-          iter->second->value_->toString();
-          if (
-            holon && 
+            "name=\"" << elem.first << "\"" << 
+              ">" <<
+                elem.second->value_->toString();
+      if (
+          holon && 
             static_cast <ValueVarmap*> (holon->value_)->map_.size() > 0
-          ) {
-            stream << indent;
-          }
-          stream << "</" << typeName << ">\n";
-      iter++;
+      ) {
+        stream << indent;
+      }
+      stream << "</" << typeName << ">\n";
     }
+    
     return stream.str();
   } else {
     return std::string("");

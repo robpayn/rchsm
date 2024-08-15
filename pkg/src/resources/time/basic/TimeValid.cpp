@@ -35,12 +35,11 @@ void TimeValid::setDependencies(DepManager* dm)
       "No maximum time variable with name TimeMax found in the time cell.\n"
     );
   }
-  
 }
 
 void TimeValid::update() 
 {
   
-  v_ = *time_ <= *timeMax_; 
+  v_ = *time_ < *timeMax_; 
   
 }

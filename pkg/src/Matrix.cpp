@@ -3,6 +3,10 @@
  */
 
 #include "Matrix.h"
+#include "CHSM/Bound.h"
+#include "CHSM/values/ValueDouble.h"
+#include "CHSM/DepManInstallOrder.h"
+#include "CHSM/SolverForwardEuler.h"
 
 //DEBUG CODE
 // #include <iostream>
@@ -10,12 +14,14 @@
 Matrix::Matrix() :
   ValueVarmap(),
   Dynamic(-1),
-  dm_(new DepManager(2))
+  dm_(new DepManInstallOrder(3)),
+  solver_(new SolverForwardEuler())
 {}
 
 Matrix::~Matrix()
 {
   delete dm_;
+  delete solver_;
 }
 
 void Matrix::regDynamic(Dynamic* dynamic) {
@@ -26,20 +32,31 @@ void Matrix::regDynamic(Dynamic* dynamic) {
   }
 }
 
-void Matrix::setDependencies(DepManager*) {
-  
-  time_->setDependencies(dm_);
-  dm_->manageDependencies();
-  
-}
+void Matrix::setDependencies(DepManager* dm) {
 
-void Matrix::setTime(Dynamic* time)
-{
-  time_ = time;
+  dm_->manageDependencies();
+  solver_->setDynamics(dm_);
+  
+  Bound* bound = dynamic_cast<Bound*>(getVariable("BoundTime"));
+  if(!bound) {
+    std::ostringstream error;
+    error << "Matrix could not find the BoundTime bound.";
+    throw error.str();
+  }
+
+  ValueDouble* val = bound->getVarValue<ValueDouble>("TimeStep");
+  if(val) {
+    solver_->setTimeStep(&(val->v_));
+  } else {
+    std::ostringstream error;
+    error << "Matrix could not find the TimeStep variable.";
+    throw error.str();
+  };
+  
 }
 
 void Matrix::update() {
   
-  time_->update();
+  solver_->solve();
   
 }

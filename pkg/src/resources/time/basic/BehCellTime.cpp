@@ -28,7 +28,7 @@ void BehCellTime::createVariables(
   double initTimeMax
 ) 
 {
-  int phase = -1;
+  int phase = 0;
   machine->createVariable("Time", new Time(phase, initTime), holon);
   machine->createVariable(
     "Iteration", 

@@ -7,7 +7,6 @@
 
 #include "../../../CHSM/values/ValueDouble.h"
 #include "../../../CHSM/Dynamic.h"
-#include "../../../CHSM/Cell.h"
 
 class Time : public ValueDouble, public Dynamic
 {
@@ -15,10 +14,6 @@ class Time : public ValueDouble, public Dynamic
     // Attributes
     
     double* timeStep_;
-    
-    Dynamic* iteration_;
-    
-    Dynamic* timeValid_;
     
     // Constructors/Destructor
     

@@ -7,16 +7,17 @@
 
 #include "CHSM/values/ValueVarmap.h"
 #include "CHSM/Dynamic.h"
-#include <list>
 #include "CHSM/DepManager.h"
+#include "CHSM/Solver.h"
+#include <vector>
 
 class Matrix : public ValueVarmap, public Dynamic
 {
   public:
     
-    Dynamic* time_ = nullptr;
-    
     DepManager* dm_ = nullptr;
+    
+    Solver* solver_ = nullptr;
     
     Matrix();
     
@@ -26,9 +27,8 @@ class Matrix : public ValueVarmap, public Dynamic
     
     void setDependencies(DepManager*) override;
     
-    void setTime(Dynamic* time);
-    
     void update() override;
+    
 };
 
 #endif /* CHSM_MATRIX_H_ */

@@ -9,7 +9,7 @@
 BehCellDOConc::BehCellDOConc() {};
 
 void BehCellDOConc::createVariables(Machine* machine, Holon* holon) {
-  int phase = 1;
+  int phase = 2;
   machine->createVariable("DOConc", new StateDOConc(phase), holon);
 }
 
@@ -19,7 +19,7 @@ void BehCellDOConc::createVariables(
   double initDOConc
 ) 
 {
-  int phase = 1;
+  int phase = 2;
   machine->createVariable(
     "DOConc", 
     new StateDOConc(phase, initDOConc), 

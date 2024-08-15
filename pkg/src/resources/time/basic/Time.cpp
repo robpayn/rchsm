@@ -3,9 +3,9 @@
  */
 
 #include "Time.h"
+#include "../../../CHSM/Cell.h"
 #include "../../../CHSM/DepManager.h"
-
-#include "../../../CHSM/values/ValueBoolean.h"
+#include <unordered_map>
 
 Time::Time(int phase) :
   ValueDouble(),
@@ -33,34 +33,14 @@ void Time::setDependencies(DepManager* dm)
     );
   }
 
-  std::unordered_map<std::string, Variable*>::iterator iter = boundVars.begin();
-
-  timeStep_ = &(dm->setDependency<ValueDouble>(this, iter->second)->v_);
-  
-  Variable* variable = var_->holon_->getVariable("Iteration");
-  if (!variable) {
-    throw std::runtime_error(
-      "No iteration variable found in the time cell.\n"
-    );
-  }
-  iteration_ = dynamic_cast <Dynamic*> (variable->value_);
-  iteration_->setDependencies(dm);
-  
-  variable = var_->holon_->getVariable("TimeValid");
-  if (!variable) {
-    throw std::runtime_error(
-      "No time valid variable found in the time cell.\n"
-    );
-  }
-  timeValid_ = dynamic_cast <Dynamic*> (variable->value_);
-  timeValid_->setDependencies(dm);
+  timeStep_ = &(
+    dm->setDependency<ValueDouble>(this, boundVars.begin()->second)->v_
+  );
   
 }
 
 void Time::update() {
   
   v_ = v_ + *timeStep_;
-  timeValid_->update();
-  iteration_->update();
-  
+
 }

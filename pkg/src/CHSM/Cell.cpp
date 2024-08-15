@@ -29,15 +29,13 @@ std::unordered_map<std::string, Variable*>
     
   std::unordered_map<std::string, Variable*> map;
   
-  std::unordered_map<std::string, Bound*>::iterator iter = bounds_.begin();
-  while(iter != bounds_.end()) {
-    Variable* variable = iter->second->getVariable(name);
+  for(std::pair elem : bounds_) {
+    Variable* variable = elem.second->getVariable(name);
     if (variable) {
       map[variable->name_] = variable;
     }
-    iter++;
   }
-    
+  
   return map;
     
 }

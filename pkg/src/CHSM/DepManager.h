@@ -10,6 +10,7 @@
 #include <string>
 #include <sstream>
 #include <list>
+#include <vector>
 
 class Dynamic;
 
@@ -27,7 +28,7 @@ class DepManager
     
     virtual void addDynamic(Dynamic*);
     
-    virtual void createDependency(Value*, Value*);
+    virtual void createDependency(Value*, Value*) = 0;
     
     virtual void manageDependencies();
     
@@ -69,6 +70,8 @@ class DepManager
     }
     
     virtual unsigned int size(int);
+    
+    virtual std::vector<Dynamic*> sort(int) = 0;
     
 };
 

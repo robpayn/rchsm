@@ -8,78 +8,24 @@ An R6 class mapping to a C++ object
 
   Implementation is provided by C++ objects.
 }
-\section{Public fields}{
-\if{html}{\out{<div class="r6-fields">}}
-\describe{
-\item{\code{.external}}{The external pointer to the associated C++ Cell object}
-
-\item{\code{cClassName}}{The name of the C class}
-}
-\if{html}{\out{</div>}}
+\section{Super class}{
+\code{rchsm::C_ObjectRef} -> \code{C_Object}
 }
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-C_Object-new}{\code{C_Object$new()}}
-\item \href{#method-C_Object-callFunction}{\code{C_Object$callFunction()}}
 \item \href{#method-C_Object-finalize}{\code{C_Object$finalize()}}
 \item \href{#method-C_Object-clone}{\code{C_Object$clone()}}
 }
 }
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-C_Object-new"></a>}}
-\if{latex}{\out{\hypertarget{method-C_Object-new}{}}}
-\subsection{Method \code{new()}}{
-Constructs an object that is a new instance of the class
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_Object$new(className, .external = NULL, ...)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{className}}{The name of the of the C class being mapped}
-
-\item{\code{.external}}{(Optional) If an external pointer is provided instead of the default
-NULL value, then the new R6 object will be associated with the 
-existing C++ Object referenced by the pointer.}
-
-\item{\code{...}}{Abstract arguments to be passed to the C++ constructor}
-}
-\if{html}{\out{</div>}}
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-C_Object-callFunction"></a>}}
-\if{latex}{\out{\hypertarget{method-C_Object-callFunction}{}}}
-\subsection{Method \code{callFunction()}}{
-Call a C function representing one of the methods of the class
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_Object$callFunction(name, ..., cClassName = self$cClassName)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{name}}{Character string with the name of the method to be called}
-
-\item{\code{...}}{Further arguments to be passed on to the C function}
-
-\item{\code{cClassName}}{(Optional) A character string representing the C class name for the
-  function to be called.
-Defaults to the C class name associated with the derived class.
-This should be changed if the function associated with a base class
-  needs to be called.}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-SEXP object returned by the function.
-  If the object is a character string starting with "<CERROR>", the
-    program will be stopped with the error message provided from C.
-  A null return value will be returned invisibly.
-}
-}
+\if{html}{\out{
+<details open><summary>Inherited methods</summary>
+<ul>
+<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_ObjectRef" data-id="callFunction"><a href='../../rchsm/html/C_ObjectRef.html#method-C_ObjectRef-callFunction'><code>rchsm::C_ObjectRef$callFunction()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_ObjectRef" data-id="initialize"><a href='../../rchsm/html/C_ObjectRef.html#method-C_ObjectRef-initialize'><code>rchsm::C_ObjectRef$initialize()</code></a></span></li>
+</ul>
+</details>
+}}
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-C_Object-finalize"></a>}}
 \if{latex}{\out{\hypertarget{method-C_Object-finalize}{}}}

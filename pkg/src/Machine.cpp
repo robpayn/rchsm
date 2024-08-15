@@ -20,24 +20,11 @@ Machine::~Machine() {};
 
 void Machine::init()
 {
-  Matrix* matrix = getValue<Matrix>();
-  
+
   Cell* cellTime = static_cast <Cell*> (getVariable("CellTime"));
   if (!cellTime) {
     throw std::runtime_error("Time cell with the name CellTime not found.");
   }
-  
-  Variable* timeVar = cellTime->getVariable("Time");
-  if (!timeVar) {
-    throw std::runtime_error(
-      "Time variable with the name Time not found in time cell."
-    );
-  }
-  Dynamic* time = dynamic_cast <Dynamic*> (timeVar->value_);
-  if (!time) {
-    throw std::runtime_error("Time value is not dynamic.");
-  }
-  matrix->setTime(time);
   
   Variable* timeValidVar = cellTime->getVariable("TimeValid");
   if (!timeValidVar) {
@@ -47,7 +34,8 @@ void Machine::init()
   }
   timeValid_ = &(static_cast <ValueBoolean*> (timeValidVar->value_)->v_);
   
-  matrix->setDependencies(nullptr);
+  getValue<Matrix>()->setDependencies(nullptr);
+  
 }
 
 void Machine::installVariable(Variable* variable, Holon* holon)
@@ -108,7 +96,6 @@ void Machine::run()
 {
   Matrix* matrix = getValue<Matrix>();
   
-  matrix->time_->update();
   while(*timeValid_) {
     
     matrix->update();

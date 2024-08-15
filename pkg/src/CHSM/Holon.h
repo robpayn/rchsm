@@ -76,7 +76,12 @@ class Holon : public Variable
     template<class T_VALUE>
     T_VALUE* getVarValue(std::string name)
     {
-      return getVariable(name)->getValue<T_VALUE>();
+      Variable* variable = getVariable(name);
+      if(variable) {
+        return variable->getValue<T_VALUE>();
+      } else {
+        return nullptr;
+      }
     }
     
 };
