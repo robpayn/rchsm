@@ -27,13 +27,18 @@ MemoryDouble::~MemoryDouble()
 void MemoryDouble::allocateMemory()
 {
   if (m_) {
-    delete m_;
+    delete []m_;
     m_ = nullptr;
   }
   if (memSize_ > 0)
   {
     m_ = new double[memSize_];
   }
+}
+
+Value* MemoryDouble::getValue()
+{
+  return val_;
 }
 
 void MemoryDouble::recall(int index)
@@ -57,13 +62,4 @@ void MemoryDouble::store(int index)
   } else {
     throwIndexError(index, "store");
   }
-}
-
-void MemoryDouble::throwIndexError(int index, std::string mode) 
-{
-  std::ostringstream error;
-  error << "Memory " << mode << " index value " << std::to_string(index) <<
-    " is out of range for variable " << val_->var_->name_ <<
-    " in holon " << val_->var_->holon_->name_ << ".";
-  throw std::runtime_error(error.str());
 }

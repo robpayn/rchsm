@@ -23,28 +23,40 @@ C_Behavior <- R6Class(
     #' 
     #' @param className
     #'   The name of the associated C class
+    #' @param ...
+    #'   Generic arguments that will be passed on to the C constructor
+    #' @param regFinalizer
+    #'   (Optional) Logical to indicate if a finalizer should be registered (TRUE)
+    #'   or not (FALSE).
+    #'   Defaults to TRUE.
+    #'   See super class C_Object for more information.
     #'
-    initialize = function(className) {
-      super$initialize(className = className)
+    initialize = function(className, ..., regFinalizer = TRUE) {
+      super$initialize(
+        className = className,
+        ...,
+        regFinalizer = regFinalizer
+      )
     },
     
     #' @description
     #'   Create the variables controlling the behavior in the provided holon.
     #'
-    #' @param .machine
+    #' @param machine
     #'   The machine object where the variables should be registered.
-    #' @param .holon
+    #' @param holon
     #'   The holon object where the variables should be created.
     #' @param ...
-    #'   Initial value arguments to be passed on to the associated C function.
+    #'   Further arguments to be passed on to the associated C function.
+    #'   These are often initial values for the variable being created.
     #'   
-    createVariables = function(.machine, .holon, ...) {
+    createVariables = function(machine, holon, ...) {
       
       return(
         self$callFunction(
-          name = "createVariables",
-          .machine,
-          .holon,
+          fun = "createVariables",
+          machine$.external,
+          holon$.external,
           ...
         )
       )

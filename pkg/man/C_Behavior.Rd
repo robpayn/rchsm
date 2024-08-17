@@ -8,8 +8,8 @@ An R6 class mapping to a C++ composite Hierarchy State Machine object
 
   Implementation is provided by C++ objects.
 }
-\section{Super classes}{
-\code{rchsm::C_ObjectRef} -> \code{\link[rchsm:C_Object]{rchsm::C_Object}} -> \code{C_Behavior}
+\section{Super class}{
+\code{\link[rchsm:C_Object]{rchsm::C_Object}} -> \code{C_Behavior}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -22,8 +22,7 @@ An R6 class mapping to a C++ composite Hierarchy State Machine object
 \if{html}{\out{
 <details open><summary>Inherited methods</summary>
 <ul>
-<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_ObjectRef" data-id="callFunction"><a href='../../rchsm/html/C_ObjectRef.html#method-C_ObjectRef-callFunction'><code>rchsm::C_ObjectRef$callFunction()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Object" data-id="finalize"><a href='../../rchsm/html/C_Object.html#method-C_Object-finalize'><code>rchsm::C_Object$finalize()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Object" data-id="callFunction"><a href='../../rchsm/html/C_Object.html#method-C_Object-callFunction'><code>rchsm::C_Object$callFunction()</code></a></span></li>
 </ul>
 </details>
 }}
@@ -33,13 +32,20 @@ An R6 class mapping to a C++ composite Hierarchy State Machine object
 \subsection{Method \code{new()}}{
 Constructs an object that is a new instance of the class
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_Behavior$new(className)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{C_Behavior$new(className, ..., regFinalizer = TRUE)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{className}}{The name of the associated C class}
+
+\item{\code{...}}{Generic arguments that will be passed on to the C constructor}
+
+\item{\code{regFinalizer}}{(Optional) Logical to indicate if a finalizer should be registered (TRUE)
+or not (FALSE).
+Defaults to TRUE.
+See super class C_Object for more information.}
 }
 \if{html}{\out{</div>}}
 }
@@ -50,17 +56,18 @@ Constructs an object that is a new instance of the class
 \subsection{Method \code{createVariables()}}{
 Create the variables controlling the behavior in the provided holon.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_Behavior$createVariables(.machine, .holon, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{C_Behavior$createVariables(machine, holon, ...)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{.machine}}{The machine object where the variables should be registered.}
+\item{\code{machine}}{The machine object where the variables should be registered.}
 
-\item{\code{.holon}}{The holon object where the variables should be created.}
+\item{\code{holon}}{The holon object where the variables should be created.}
 
-\item{\code{...}}{Initial value arguments to be passed on to the associated C function.}
+\item{\code{...}}{Further arguments to be passed on to the associated C function.
+These are often initial values for the variable being created.}
 }
 \if{html}{\out{</div>}}
 }

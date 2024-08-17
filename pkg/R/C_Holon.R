@@ -24,19 +24,23 @@ C_Holon <- R6Class(
     #' @param className
     #'   (Optional) Name of the class used in accessing c++ functions.
     #'   Default value is "Holon"
+    #' @param ...
+    #'   Abstract arguments passed to the constructor of the super class
+    #' @param regFinalizer
+    #'   Logical to indicate if a finalizer should be registered (TRUE)
+    #'   or not (FALSE).
+    #'   See super class C_Object for more information.
     #' @param .external
     #'   (Optional) If an external pointer is provided instead of the default
     #'   NULL value, then the new R6 object will be associated with the 
     #'   existing C++ Object referenced by the pointer.
-    #' @param ...
-    #'   Abstract arguments passed to the constructor of the super class
-    #'
     #' 
-    initialize = function(className = "Holon", .external = NULL, ...) {
+    initialize = function(className = "Holon", ..., regFinalizer, .external = NULL) {
       super$initialize(
         className = className, 
-        .external = .external, 
-        ...
+        ...,
+        regFinalizer = regFinalizer,
+        .external = .external
       )
     },
     
@@ -50,7 +54,7 @@ C_Holon <- R6Class(
       
       return(
         self$callFunction(
-          name = "getValueString",
+          fun = "getValueString",
           cClassName = "Holon"
         )
       )

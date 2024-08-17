@@ -19,7 +19,7 @@ SEXP Cell_destructor(SEXP externalPointer)
   return R_NilValue;
 }
 
-SEXP Cell_constructor(SEXP name)
+SEXP Cell_constructor(SEXP name, SEXP regFinalizer)
 {
   Cell* pointer = new Cell(CHAR(asChar(name)));
   
@@ -27,7 +27,9 @@ SEXP Cell_constructor(SEXP name)
     R_MakeExternalPtr(pointer, R_NilValue, R_NilValue)
   );
   
-  R_RegisterCFinalizer(externalPointer, Cell_finalizer);
+  if(asLogical(regFinalizer)) {
+    R_RegisterCFinalizer(externalPointer, Cell_finalizer);
+  }
   
   UNPROTECT(1);
   

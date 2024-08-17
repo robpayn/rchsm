@@ -23,17 +23,29 @@ SEXP Machine_destructor(SEXP externalPointer)
   
 }
 
-SEXP Machine_constructor(SEXP name) 
+SEXP Machine_constructor(
+  SEXP name, 
+  SEXP extDepManagerPtr, 
+  SEXP extSolverPtr,
+  SEXP regFinalizer
+) 
 {
   try {
     
-    Machine* pointer = new Machine(CHAR(asChar(name)));
+    DepManager* dmPtr = 
+      static_cast <DepManager*> (R_ExternalPtrAddr(extDepManagerPtr));
+    Solver* solverPtr = 
+      static_cast <Solver*> (R_ExternalPtrAddr(extSolverPtr));
+    
+    Machine* pointer = new Machine(CHAR(asChar(name)), dmPtr, solverPtr);
   
     SEXP externalPointer = PROTECT(
       R_MakeExternalPtr(pointer, R_NilValue, R_NilValue)
     );
     
-    R_RegisterCFinalizer(externalPointer, Machine_finalizer);
+    if(asLogical(regFinalizer)) {
+      R_RegisterCFinalizer(externalPointer, Machine_finalizer);
+    }
     
     UNPROTECT(1);
     
@@ -93,6 +105,7 @@ SEXP Machine_createBound(
       R_MakeExternalPtr(boundPtr, R_NilValue, R_NilValue)
     );
     UNPROTECT(1);
+    
     return extBoundPtr;
     
   } catch (std::runtime_error &thrown) {

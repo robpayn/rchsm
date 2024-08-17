@@ -11,11 +11,11 @@
 //DEBUG CODE
 // #include <iostream>
 
-Matrix::Matrix() :
+Matrix::Matrix(DepManager* dm, Solver* solver) :
   ValueVarmap(),
   Dynamic(-1),
-  dm_(new DepManInstallOrder(3)),
-  solver_(new SolverForwardEuler())
+  dm_(dm),
+  solver_(solver)
 {}
 
 Matrix::~Matrix()

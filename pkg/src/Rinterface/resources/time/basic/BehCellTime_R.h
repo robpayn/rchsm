@@ -11,7 +11,7 @@
 
 extern "C"
 {
-  SEXP BehCellTime_constructor();
+  SEXP BehCellTime_constructor(SEXP);
   SEXP BehCellTime_destructor(SEXP);
   SEXP BehCellTime_createVariables(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 }

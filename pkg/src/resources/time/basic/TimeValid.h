@@ -5,10 +5,9 @@
 #ifndef RESOURCES_TIME_BASIC_TIMEVALID_H_
 #define RESOURCES_TIME_BASIC_TIMEVALID_H_
 
-#include "../../../CHSM/values/ValueBoolean.h"
-#include "../../../CHSM/Dynamic.h"
+#include "../../../CHSM/values/ValueBooleanMemory.h"
 
-class TimeValid : public ValueBoolean, public Dynamic
+class TimeValid : public ValueBooleanMemory
 {
 public:
   

@@ -7,13 +7,11 @@
 #include "../../../CHSM/values/ValueDouble.h"
 
 TimeValid::TimeValid(int phase) :
-  ValueBoolean(),
-  Dynamic(phase)
+  ValueBooleanMemory(phase)
 {}
 
 TimeValid::TimeValid(int phase, bool init) :
-  ValueBoolean(init),
-  Dynamic(phase)
+  ValueBooleanMemory(phase, init)
 {}
 
 void TimeValid::setDependencies(DepManager* dm) 

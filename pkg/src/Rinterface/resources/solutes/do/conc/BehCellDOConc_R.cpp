@@ -20,7 +20,7 @@ SEXP BehCellDOConc_destructor(SEXP externalPointer)
   return R_NilValue;
 }
 
-SEXP BehCellDOConc_constructor()
+SEXP BehCellDOConc_constructor(SEXP regFinalizer)
 {
   BehCellDOConc* pointer = new BehCellDOConc();
   
@@ -28,10 +28,9 @@ SEXP BehCellDOConc_constructor()
     R_MakeExternalPtr(pointer, R_NilValue, R_NilValue)
   );
   
-  R_RegisterCFinalizer(
-    externalPointer,
-    BehCellDOConc_finalizer
-  );
+  if(asLogical(regFinalizer)) {
+    R_RegisterCFinalizer(externalPointer, BehCellDOConc_finalizer);
+  }
   
   UNPROTECT(1);
   

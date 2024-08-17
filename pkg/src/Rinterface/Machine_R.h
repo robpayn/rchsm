@@ -32,7 +32,7 @@ extern "C"
     \return SEXP
       R external pointer to the new machine object
   */
-  SEXP Machine_constructor(SEXP);
+  SEXP Machine_constructor(SEXP, SEXP, SEXP, SEXP);
   
   /*!
     \relatesalso Machine

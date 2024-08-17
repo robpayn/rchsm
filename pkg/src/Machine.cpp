@@ -7,13 +7,14 @@
 #include "CHSM/Bound.h"
 #include "CHSM/Cell.h"
 #include "CHSM/values/ValueBoolean.h"
+#include "CHSM/Rate.h"
 
 #include <iostream>
 
 // Constructors/Destructor
 
-Machine::Machine(std::string name) :
-  Holon(name, new Matrix())
+Machine::Machine(std::string name, DepManager* dm, Solver* solver) :
+  Holon(name, new Matrix(dm, solver))
 {};
 
 Machine::~Machine() {};
@@ -44,6 +45,10 @@ void Machine::installVariable(Variable* variable, Holon* holon)
   Dynamic* dynamic = dynamic_cast<Dynamic*>(variable->value_);
   if(dynamic) {
     getValue<Matrix>()->regDynamic(dynamic);
+  }
+  Rate* rate = dynamic_cast<Rate*>(variable->value_);
+  if(rate) {
+    rate->attachStates();
   }
 }
 

@@ -5,16 +5,22 @@
 #include "StateDouble.h"
 #include "../Holon.h"
 #include "../DepManager.h"
+#include <sstream>
 
 StateDouble::StateDouble(int phase) :
-  ValueDouble(),
-  Dynamic(phase)
+  ValueDoubleMemory(phase)
 {}
 
 StateDouble::StateDouble(int phase, double initValue) :
-  ValueDouble(initValue),
-  Dynamic(phase)
+  ValueDoubleMemory(phase, initValue)
 {}
+
+void StateDouble::attachRate(ValueDouble* bound)
+{
+  
+  rates_.push_back(&(bound->v_));
+  
+}
 
 void StateDouble::setDependencies(DepManager* dm)
 {
@@ -28,9 +34,38 @@ void StateDouble::setDependencies(DepManager* dm)
 
 }
 
+std::string StateDouble::toString()
+{
+  
+  std::ostringstream string;
+  
+  string << "<State rates=\"";
+  bool first = true;
+  for(double* rate : rates_) {
+    if (first) {
+      first = false;
+    } else {
+      string << ",";
+    }
+    string << std::to_string(*rate);
+  }
+  string << "\">";
+  
+  string << ValueDouble::toString();
+  
+  string << "</State>";
+  
+  return string.str();
+  
+}
+
 void StateDouble::update()
 {
   
-  v_ = v_ + netRate_ * *dt_;
+  double netRate = 0;
+  for(double* rate : rates_) {
+    netRate += *rate;
+  }
+  v_ += netRate * *dt_;
   
 }

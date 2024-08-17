@@ -8,8 +8,8 @@ A holon in a composite Hierarchy State Machine
 
   Implementation is provided by C++ objects.
 }
-\section{Super classes}{
-\code{rchsm::C_ObjectRef} -> \code{\link[rchsm:C_Object]{rchsm::C_Object}} -> \code{C_Holon}
+\section{Super class}{
+\code{\link[rchsm:C_Object]{rchsm::C_Object}} -> \code{C_Holon}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -22,8 +22,7 @@ A holon in a composite Hierarchy State Machine
 \if{html}{\out{
 <details open><summary>Inherited methods</summary>
 <ul>
-<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_ObjectRef" data-id="callFunction"><a href='../../rchsm/html/C_ObjectRef.html#method-C_ObjectRef-callFunction'><code>rchsm::C_ObjectRef$callFunction()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Object" data-id="finalize"><a href='../../rchsm/html/C_Object.html#method-C_Object-finalize'><code>rchsm::C_Object$finalize()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Object" data-id="callFunction"><a href='../../rchsm/html/C_Object.html#method-C_Object-callFunction'><code>rchsm::C_Object$callFunction()</code></a></span></li>
 </ul>
 </details>
 }}
@@ -33,7 +32,7 @@ A holon in a composite Hierarchy State Machine
 \subsection{Method \code{new()}}{
 Constructs an object that is a new instance of the class
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_Holon$new(className = "Holon", .external = NULL, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{C_Holon$new(className = "Holon", ..., regFinalizer, .external = NULL)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -42,11 +41,15 @@ Constructs an object that is a new instance of the class
 \item{\code{className}}{(Optional) Name of the class used in accessing c++ functions.
 Default value is "Holon"}
 
+\item{\code{...}}{Abstract arguments passed to the constructor of the super class}
+
+\item{\code{regFinalizer}}{Logical to indicate if a finalizer should be registered (TRUE)
+or not (FALSE).
+See super class C_Object for more information.}
+
 \item{\code{.external}}{(Optional) If an external pointer is provided instead of the default
 NULL value, then the new R6 object will be associated with the 
 existing C++ Object referenced by the pointer.}
-
-\item{\code{...}}{Abstract arguments passed to the constructor of the super class}
 }
 \if{html}{\out{</div>}}
 }

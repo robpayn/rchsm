@@ -8,13 +8,11 @@
 #include <unordered_map>
 
 Time::Time(int phase) :
-  ValueDouble(),
-  Dynamic(phase)
+  ValueDoubleMemory(phase)
 {}
 
 Time::Time(int phase, double init) :
-  ValueDouble(init),
-  Dynamic(phase)
+  ValueDoubleMemory(phase, init)
 {}
 
 void Time::setDependencies(DepManager* dm) 

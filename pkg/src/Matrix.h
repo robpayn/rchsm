@@ -19,7 +19,7 @@ class Matrix : public ValueVarmap, public Dynamic
     
     Solver* solver_ = nullptr;
     
-    Matrix();
+    Matrix(DepManager*, Solver*);
     
     virtual ~Matrix();
     

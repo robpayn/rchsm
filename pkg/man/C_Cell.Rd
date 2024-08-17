@@ -9,7 +9,7 @@ An R6 class mapping to a C++ Cell object
   Implementation is provided by C++ objects.
 }
 \section{Super classes}{
-\code{rchsm::C_ObjectRef} -> \code{\link[rchsm:C_Object]{rchsm::C_Object}} -> \code{\link[rchsm:C_Holon]{rchsm::C_Holon}} -> \code{C_Cell}
+\code{\link[rchsm:C_Object]{rchsm::C_Object}} -> \code{\link[rchsm:C_Holon]{rchsm::C_Holon}} -> \code{C_Cell}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -21,8 +21,7 @@ An R6 class mapping to a C++ Cell object
 \if{html}{\out{
 <details open><summary>Inherited methods</summary>
 <ul>
-<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_ObjectRef" data-id="callFunction"><a href='../../rchsm/html/C_ObjectRef.html#method-C_ObjectRef-callFunction'><code>rchsm::C_ObjectRef$callFunction()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Object" data-id="finalize"><a href='../../rchsm/html/C_Object.html#method-C_Object-finalize'><code>rchsm::C_Object$finalize()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Object" data-id="callFunction"><a href='../../rchsm/html/C_Object.html#method-C_Object-callFunction'><code>rchsm::C_Object$callFunction()</code></a></span></li>
 <li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Holon" data-id="getValueString"><a href='../../rchsm/html/C_Holon.html#method-C_Holon-getValueString'><code>rchsm::C_Holon$getValueString()</code></a></span></li>
 </ul>
 </details>
@@ -33,7 +32,7 @@ An R6 class mapping to a C++ Cell object
 \subsection{Method \code{new()}}{
 Constructs an object that is a new instance of the class
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_Cell$new(source, className = "Cell")}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{C_Cell$new(source, className = "Cell", regFinalizer = TRUE)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -47,6 +46,13 @@ Providing an external pointer will result in a new cell object
 
 \item{\code{className}}{(Optional) Name of the class used in accessing c++ functions.
 Default value is "Cell"}
+
+\item{\code{regFinalizer}}{(Optional) Logical to indicate if a finalizer should be 
+registered (TRUE) or not (FALSE).
+Defaults to TRUE.
+Note this argument has no effect if the object is created from
+an existing external pointer.
+See super class C_Object for more information.}
 }
 \if{html}{\out{</div>}}
 }

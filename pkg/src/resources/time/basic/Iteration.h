@@ -2,13 +2,12 @@
  * Iteration.h
  */
 
-#ifndef RCHSM_ITERATION_BASIC_H_
-#define RCHSM_ITERATION_BASIC_H_
+#ifndef RESOURCES_TIME_BASIC_ITERATION_H_
+#define RESOURCES_TIME_BASIC_ITERATION_H_
 
-#include "../../../CHSM/values/ValueLong.h"
-#include "../../../CHSM/Dynamic.h"
+#include "../../../CHSM/values/ValueLongMemory.h"
 
-class Iteration : public ValueLong, public Dynamic
+class Iteration : public ValueLongMemory
 {
   public:
     // Constructors/Destructor
@@ -24,4 +23,4 @@ class Iteration : public ValueLong, public Dynamic
     void update() override;
 };
 
-#endif /* RCHSM_ITERATION_BASIC_H_ */
+#endif /* RESOURCES_TIME_BASIC_ITERATION_H_ */

@@ -2,8 +2,8 @@
  * Holon_R.h
  */
 
-#ifndef RCHSM_HOLON_R_H_
-#define RCHSM_HOLON_R_H_
+#ifndef RINTERFACE_CHSM_HOLON_R_H_
+#define RINTERFACE_CHSM_HOLON_R_H_
 
 #include <R.h>
 #include <Rinternals.h>
@@ -14,4 +14,4 @@ extern "C"
   SEXP Holon_getValueString(SEXP);
 }
 
-#endif /* RCHSM_HOLON_R_H_ */
+#endif /* RINTERFACE_CHSM_HOLON_R_H_ */

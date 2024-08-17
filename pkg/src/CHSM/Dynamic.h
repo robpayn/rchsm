@@ -32,7 +32,7 @@ class Dynamic
     
     // Methods //////////////////////////
     
-    Dynamic(int phase);
+    Dynamic(int);
     
     /*! 
       \brief

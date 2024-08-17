@@ -5,6 +5,7 @@
 #include "ValueVarmap.h"
 #include "../Variable.h"
 #include "../Holon.h"
+#include "StateDouble.h"
 
 // #include <iostream>
 
@@ -109,16 +110,16 @@ std::string VarmapFormatterXML::format()
       stream << 
         indent <<
           "<" << typeName << " " <<
-            "name=\"" << elem.first << "\"" << 
-              ">" <<
-                elem.second->value_->toString();
-      if (
-          holon && 
-            static_cast <ValueVarmap*> (holon->value_)->map_.size() > 0
-      ) {
-        stream << indent;
-      }
-      stream << "</" << typeName << ">\n";
+            "name=\"" << elem.first << "\"" <<
+          ">" <<
+          elem.second->value_->toString();
+          if (
+              holon && 
+                static_cast <ValueVarmap*> (holon->value_)->map_.size() > 0
+          ) {
+            stream << indent;
+          }
+          stream << "</" << typeName << ">\n";
     }
     
     return stream.str();

@@ -26,9 +26,30 @@ C_Model <- R6Class(
     #'   Default value is "Machine"
     #' @param name
     #'   Name of the model
+    #' @param depManager
+    #'   The dependency manager C object the machine should use
+    #' @param solver
+    #'   The solver C object the machine should use
+    #' @param regFinalizer
+    #'   (Optional) Logical to indicate if a finalizer should be 
+    #'   registered (TRUE) or not (FALSE).
+    #'   Defaults to TRUE.
+    #'   See super class C_Object for more information.
     #' 
-    initialize = function(className = "Machine", name = "Model") {
-      super$initialize(className = className, name = name)
+    initialize = function(
+      className = "Machine", 
+      name = "Model", 
+      depManager, 
+      solver,
+      regFinalizer = TRUE
+    ) {
+      super$initialize(
+        className = className, 
+        name = name, 
+        .depManager = depManager$.external,
+        .solver = solver$.external,
+        regFinalizer = regFinalizer
+      )
     },
     
     #' @description
@@ -36,11 +57,11 @@ C_Model <- R6Class(
     #'   
     #' @param name 
     #'   The name of the bound to be created
-    #' @param .cellFrom
+    #' @param cellFrom
     #'   R6 bound object for the from cell
-    #' @param .cellTo
+    #' @param cellTo
     #'   R6 bound object for the to cell
-    #' @param .holon
+    #' @param holon
     #'   (Optional) R6 holon object where the bound should be created.
     #'   Default NULL value results in creation of the bound in the model holon
     #' 
@@ -49,15 +70,15 @@ C_Model <- R6Class(
     #'   The function will cause a fatal error in R if the c object returns
     #'     an error message.
     #'   
-    createBound = function(name, .cellFrom, .cellTo, .holon = NULL) {
+    createBound = function(name, cellFrom, cellTo, holon = NULL) {
       
       return(
         self$callFunction(
-          name = "createBound",
+          fun = "createBound",
           name,
-          .cellFrom,
-          .cellTo,
-          .holon
+          cellFrom$.external,
+          cellTo$.external,
+          holon$.external
         )
       )
 
@@ -68,7 +89,7 @@ C_Model <- R6Class(
     #'   
     #' @param name 
     #'   The name of the cell to be created
-    #' @param .holon
+    #' @param holon
     #'   (Optional) R6 holon object where the cell should be created.
     #'   Default NULL value results in creation of the cell in the model holon
     #' 
@@ -77,13 +98,13 @@ C_Model <- R6Class(
     #'   The function will cause a fatal error in R if the c object returns
     #'     an error message.
     #'   
-    createCell = function(name, .holon = NULL) {
+    createCell = function(name, holon = NULL) {
       
       return(
         self$callFunction(
-          name = "createCell",
+          fun = "createCell",
           name,
-          .holon
+          holon$.external
         )
       )
 

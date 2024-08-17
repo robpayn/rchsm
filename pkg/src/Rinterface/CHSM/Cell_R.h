@@ -9,12 +9,12 @@
 #include <Rinternals.h>
 #include "../../CHSM/Cell.h"
 
-void Cell_finalizer(SEXP externalPointer);
+void Cell_finalizer(SEXP);
 
 extern "C"
 {
-  SEXP Cell_constructor(SEXP name);
-  SEXP Cell_destructor(SEXP externalPointer);
+  SEXP Cell_constructor(SEXP, SEXP);
+  SEXP Cell_destructor(SEXP);
 }
 
 #endif /* RCHSM_CELL_R_H_ */

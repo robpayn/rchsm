@@ -10,6 +10,8 @@
 class Matrix;
 class Cell;
 class Bound;
+class DepManager;
+class Solver;
 
 /*!
   \brief
@@ -35,7 +37,7 @@ class Machine : public Holon
       \param std::string
         Character string with the name of the machine
     */
-    Machine(std::string);
+    Machine(std::string, DepManager*, Solver*);
     
     virtual ~Machine();
     

@@ -9,12 +9,12 @@
 #include <Rinternals.h>
 #include "../../CHSM/Bound.h"
 
-void Bound_finalizer(SEXP externalPointer);
+void Bound_finalizer(SEXP);
   
 extern "C"
 {
-  SEXP Bound_constructor(SEXP name);
-  SEXP Bound_destructor(SEXP externalPointer);
+  SEXP Bound_constructor(SEXP, SEXP);
+  SEXP Bound_destructor(SEXP);
 }
 
 #endif /* RCHSM_BOUND_R_H_ */

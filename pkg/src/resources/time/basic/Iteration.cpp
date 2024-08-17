@@ -5,13 +5,11 @@
 #include "Iteration.h"
 
 Iteration::Iteration(int phase) :
-  ValueLong(),
-  Dynamic(phase)
+  ValueLongMemory(phase)
 {}
 
 Iteration::Iteration(int phase, long init) :
-  ValueLong(init),
-  Dynamic(phase)
+  ValueLongMemory(phase, init)
 {}
 
 void Iteration::setDependencies(DepManager* dm) {}

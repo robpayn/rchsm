@@ -23,6 +23,8 @@ class MemoryDouble : public Memory
     
     virtual ~MemoryDouble();
     
+    Value* getValue() override;
+    
     void recall(int) override; 
     
     void setValue(Value*) override;
@@ -32,8 +34,6 @@ class MemoryDouble : public Memory
   private:
     
     void allocateMemory();
-    
-    void throwIndexError(int, std::string);
     
 };
 

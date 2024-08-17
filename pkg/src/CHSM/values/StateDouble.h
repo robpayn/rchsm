@@ -5,14 +5,16 @@
 #ifndef CHSM_VALUES_STATEDOUBLE_H_
 #define CHSM_VALUES_STATEDOUBLE_H_
 
-#include "ValueDouble.h"
-#include "../Dynamic.h"
+#include "ValueDoubleMemory.h"
+#include <list>
 
-class StateDouble : public ValueDouble, public Dynamic
+class Bound;
+
+class StateDouble : public ValueDoubleMemory
 {
   public:
     
-    double netRate_ = 0;
+    std::list<double*> rates_;
     
     double* dt_ = nullptr;
     
@@ -20,7 +22,11 @@ class StateDouble : public ValueDouble, public Dynamic
     
     StateDouble(int, double);
     
+    void attachRate(ValueDouble*);
+    
     void setDependencies(DepManager*) override;
+    
+    std::string toString() override;
     
     void update() override;
     

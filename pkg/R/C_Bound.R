@@ -30,13 +30,24 @@ C_Bound <- R6Class(
     #' @param className
     #'   (Optional) Name of the class used in accessing c++ functions.
     #'   Default value is "Bound"
+    #' @param regFinalizer
+    #'   (Optional) Logical to indicate if a finalizer should be 
+    #'   registered (TRUE) or not (FALSE).
+    #'   Defaults to TRUE.
+    #'   Note this argument has no effect if the object is created from
+    #'   an existing external pointer.
+    #'   See super class C_Object for more information.
     #'     
-    initialize = function(source, className = "Bound") {
+    initialize = function(source, className = "Bound", regFinalizer = TRUE) {
       
       if (typeof(source) == "externalptr") {
         super$initialize(className = className, .external = source)
       } else if (is.character(source)) {
-        super$initialize(className = className, name = source)
+        super$initialize(
+          className = className, 
+          name = source, 
+          regFinalizer = regFinalizer
+        )
       } else {
         stop("Provided source is not a valid bound name or external pointer.")
       }

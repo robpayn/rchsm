@@ -9,7 +9,7 @@ A Composite Hierarchy State Machine model.
   Implementation is provided by C++ objects.
 }
 \section{Super classes}{
-\code{rchsm::C_ObjectRef} -> \code{\link[rchsm:C_Object]{rchsm::C_Object}} -> \code{\link[rchsm:C_Holon]{rchsm::C_Holon}} -> \code{C_Model}
+\code{\link[rchsm:C_Object]{rchsm::C_Object}} -> \code{\link[rchsm:C_Holon]{rchsm::C_Holon}} -> \code{C_Model}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -23,8 +23,7 @@ A Composite Hierarchy State Machine model.
 \if{html}{\out{
 <details open><summary>Inherited methods</summary>
 <ul>
-<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_ObjectRef" data-id="callFunction"><a href='../../rchsm/html/C_ObjectRef.html#method-C_ObjectRef-callFunction'><code>rchsm::C_ObjectRef$callFunction()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Object" data-id="finalize"><a href='../../rchsm/html/C_Object.html#method-C_Object-finalize'><code>rchsm::C_Object$finalize()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Object" data-id="callFunction"><a href='../../rchsm/html/C_Object.html#method-C_Object-callFunction'><code>rchsm::C_Object$callFunction()</code></a></span></li>
 <li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Holon" data-id="getValueString"><a href='../../rchsm/html/C_Holon.html#method-C_Holon-getValueString'><code>rchsm::C_Holon$getValueString()</code></a></span></li>
 </ul>
 </details>
@@ -35,7 +34,13 @@ A Composite Hierarchy State Machine model.
 \subsection{Method \code{new()}}{
 Constructs an object that is a new instance of the class
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_Model$new(className = "Machine", name = "Model")}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{C_Model$new(
+  className = "Machine",
+  name = "Model",
+  depManager,
+  solver,
+  regFinalizer = TRUE
+)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -45,6 +50,15 @@ Constructs an object that is a new instance of the class
 Default value is "Machine"}
 
 \item{\code{name}}{Name of the model}
+
+\item{\code{depManager}}{The dependency manager C object the machine should use}
+
+\item{\code{solver}}{The solver C object the machine should use}
+
+\item{\code{regFinalizer}}{(Optional) Logical to indicate if a finalizer should be 
+registered (TRUE) or not (FALSE).
+Defaults to TRUE.
+See super class C_Object for more information.}
 }
 \if{html}{\out{</div>}}
 }
@@ -55,7 +69,7 @@ Default value is "Machine"}
 \subsection{Method \code{createBound()}}{
 Creates a new bound in the model
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_Model$createBound(name, .cellFrom, .cellTo, .holon = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{C_Model$createBound(name, cellFrom, cellTo, holon = NULL)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -63,11 +77,11 @@ Creates a new bound in the model
 \describe{
 \item{\code{name}}{The name of the bound to be created}
 
-\item{\code{.cellFrom}}{R6 bound object for the from cell}
+\item{\code{cellFrom}}{R6 bound object for the from cell}
 
-\item{\code{.cellTo}}{R6 bound object for the to cell}
+\item{\code{cellTo}}{R6 bound object for the to cell}
 
-\item{\code{.holon}}{(Optional) R6 holon object where the bound should be created.
+\item{\code{holon}}{(Optional) R6 holon object where the bound should be created.
 Default NULL value results in creation of the bound in the model holon}
 }
 \if{html}{\out{</div>}}
@@ -84,7 +98,7 @@ A new R6 bound object mapped to the C++ bound object that was created.
 \subsection{Method \code{createCell()}}{
 Creates a new cell in the model
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_Model$createCell(name, .holon = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{C_Model$createCell(name, holon = NULL)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -92,7 +106,7 @@ Creates a new cell in the model
 \describe{
 \item{\code{name}}{The name of the cell to be created}
 
-\item{\code{.holon}}{(Optional) R6 holon object where the cell should be created.
+\item{\code{holon}}{(Optional) R6 holon object where the cell should be created.
 Default NULL value results in creation of the cell in the model holon}
 }
 \if{html}{\out{</div>}}

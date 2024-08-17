@@ -19,7 +19,7 @@ SEXP Bound_destructor(SEXP externalPointer)
   return R_NilValue;
 }
 
-SEXP Bound_constructor(SEXP name)
+SEXP Bound_constructor(SEXP name, SEXP regFinalizer)
 {
   Bound* pointer = new Bound(CHAR(asChar(name)));
   
@@ -27,7 +27,9 @@ SEXP Bound_constructor(SEXP name)
     R_MakeExternalPtr(pointer, R_NilValue, R_NilValue)
   );
   
-  R_RegisterCFinalizer(externalPointer, Bound_finalizer);
+  if(asLogical(regFinalizer)) {
+    R_RegisterCFinalizer(externalPointer, Bound_finalizer);
+  }
   
   UNPROTECT(1);
   

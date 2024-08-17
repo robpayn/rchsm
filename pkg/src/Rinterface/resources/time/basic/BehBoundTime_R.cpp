@@ -19,7 +19,7 @@ SEXP BehBoundTime_destructor(SEXP externalPointer)
   return R_NilValue;
 }
 
-SEXP BehBoundTime_constructor()
+SEXP BehBoundTime_constructor(SEXP regFinalizer)
 {
   BehBoundTime* pointer = new BehBoundTime();
   
@@ -27,10 +27,9 @@ SEXP BehBoundTime_constructor()
     R_MakeExternalPtr(pointer, R_NilValue, R_NilValue)
   );
   
-  R_RegisterCFinalizer(
-    externalPointer,
-    BehBoundTime_finalizer
-  );
+  if(asLogical(regFinalizer)) {
+    R_RegisterCFinalizer(externalPointer, BehBoundTime_finalizer);
+  }
   
   UNPROTECT(1);
   

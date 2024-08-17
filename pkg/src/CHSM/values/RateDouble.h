@@ -5,20 +5,20 @@
 #ifndef CHSM_VALUES_RATEDOUBLE_H_
 #define CHSM_VALUES_RATEDOUBLE_H_
 
-#include "ValueDouble.h"
-#include "../Dynamic.h"
+#include "ValueDoubleMemory.h"
+#include "../Rate.h"
 
-class RateDouble : public ValueDouble, public Dynamic
+class RateDouble : public ValueDoubleMemory, public Rate
 {
   public:
     
-    RateDouble(int);
+    std::string stateName_;
     
-    RateDouble(int, double);
+    RateDouble(int, std::string);
     
-    void setDependencies(DepManager*) override;
+    RateDouble(int, double, std::string);
     
-    void update() override;
+    void attachStates() override;
     
 };
 

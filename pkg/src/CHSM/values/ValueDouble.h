@@ -33,7 +33,7 @@ class ValueDouble : public Value
     
     bool isDefined() override;
   
-    std::string toString() override;
+    virtual std::string toString() override;
 };
 
 #endif /* CHSM_VALUES_VALUEDOUBLE_H_ */

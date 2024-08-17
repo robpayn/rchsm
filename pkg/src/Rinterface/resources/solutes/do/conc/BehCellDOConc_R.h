@@ -11,7 +11,7 @@
 
 extern "C"
 {
-  SEXP BehCellDOConc_constructor();
+  SEXP BehCellDOConc_constructor(SEXP);
   SEXP BehCellDOConc_destructor(SEXP);
   SEXP BehCellDOConc_createVariables(SEXP, SEXP, SEXP, SEXP);
 }
