@@ -8,6 +8,7 @@
 #include "CHSM/Cell.h"
 #include "CHSM/values/ValueBoolean.h"
 #include "CHSM/Rate.h"
+#include "CHSM/Reporter.h"
 
 #include <iostream>
 
@@ -17,7 +18,13 @@ Machine::Machine(std::string name, DepManager* dm, Solver* solver) :
   Holon(name, new Matrix(dm, solver))
 {};
 
-Machine::~Machine() {};
+Machine::~Machine() {
+  
+  for(Reporter* reporter : reporters_) {
+    delete reporter;
+  }
+  
+};
 
 void Machine::init()
 {
@@ -37,6 +44,12 @@ void Machine::init()
   
   getValue<Matrix>()->setDependencies(nullptr);
   
+}
+
+void Machine::installReporter(Reporter* reporter)
+{
+  reporters_.push_back(reporter);
+  reporter->init(getValue<Matrix>());
 }
 
 void Machine::installVariable(Variable* variable, Holon* holon)
@@ -99,11 +112,34 @@ Variable* Machine::createVariable(std::string name, Value* value, Holon* holon)
 
 void Machine::run()
 {
+  
   Matrix* matrix = getValue<Matrix>();
+
+  for(Reporter* reporter : reporters_) {
+    reporter->open();
+  }
+  
+  for(Reporter* reporter : reporters_) {
+    if(reporter->isActive()) {
+      reporter->collectData();
+      reporter->saveData();
+    }
+  }
   
   while(*timeValid_) {
     
     matrix->update();
+    for(Reporter* reporter : reporters_) {
+      if(reporter->isActive()) {
+        reporter->collectData();
+        reporter->saveData();
+      }
+    }
     
   }
+  
+  for(Reporter* reporter : reporters_) {
+    reporter->close();
+  }
+  
 }

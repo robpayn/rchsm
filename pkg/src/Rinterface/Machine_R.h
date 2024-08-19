@@ -16,8 +16,6 @@
 
 #include <R.h>
 #include <Rinternals.h>
-#include "../Machine.h"
-#include "../Matrix.h"
 
 void Machine_finalizer(SEXP externalPointer);
   
@@ -102,6 +100,8 @@ extern "C"
       <CERROR>.
   */
   SEXP Machine_init(SEXP);
+  
+  SEXP Machine_installReporter(SEXP, SEXP);
 
   /*!
     \relatesalso Machine

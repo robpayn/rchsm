@@ -5,8 +5,10 @@ SOURCES = \
   $(wildcard CHSM/values/*.cpp) \
   $(wildcard Rinterface/CHSM/*.cpp) \
   $(wildcard resources/time/basic/*.cpp) \
+  $(wildcard resources/solutes/conc/*.cpp) \
   $(wildcard resources/solutes/do/conc/*.cpp) \
   $(wildcard Rinterface/resources/time/basic/*.cpp) \
+  $(wildcard Rinterface/resources/solutes/conc/*.cpp) \
   $(wildcard Rinterface/resources/solutes/do/conc/*.cpp)
   
 OBJECTS = $(SOURCES:.cpp=.o)

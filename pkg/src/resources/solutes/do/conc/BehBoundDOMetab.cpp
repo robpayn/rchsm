@@ -20,7 +20,7 @@ void BehBoundDOMetab::createVariables(
     double initDOER
 ) 
 {
-  int phase = 2;
+  int phase = 1;
   machine->createVariable(
       "DOGPP", 
       new RateDOGPP(phase, initDOGPP, "DOConc"), 

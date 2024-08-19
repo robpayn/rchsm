@@ -3,6 +3,7 @@
  */
 
 #include "Machine_R.h"
+#include "../Machine.h"
 
 void Machine_finalizer(SEXP externalPointer) 
 {
@@ -161,6 +162,27 @@ SEXP Machine_init(SEXP extMachinePtr)
     
   }
     
+  return R_NilValue;
+}
+
+SEXP Machine_installReporter(SEXP extMachinePtr, SEXP extReporterPtr)
+{
+  try {
+    
+    Machine* machinePtr =
+      static_cast<Machine*>(R_ExternalPtrAddr(extMachinePtr));
+    Reporter* reporterPtr =
+      static_cast<Reporter*>(R_ExternalPtrAddr(extReporterPtr));
+    machinePtr->installReporter(reporterPtr);
+    
+  } catch (std::runtime_error &thrown) {
+    
+    std::ostringstream error;
+    error << "<CERROR>\n" << thrown.what();
+    return mkString(error.str().c_str());
+    
+  }
+  
   return R_NilValue;
 }
 

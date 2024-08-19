@@ -6,12 +6,14 @@
 #define CHSM_MACHINE_H_
 
 #include "CHSM/Holon.h"
+#include <list>
 
 class Matrix;
 class Cell;
 class Bound;
 class DepManager;
 class Solver;
+class Reporter;
 
 /*!
   \brief
@@ -22,6 +24,8 @@ class Machine : public Holon
   public:
     
     // Attributes
+    
+    std::list<Reporter*> reporters_;
     
     /*!
       \brief
@@ -53,6 +57,8 @@ class Machine : public Holon
         No return value.
     */
     void init();
+    
+    void installReporter(Reporter*);
     
     /*!
       \brief

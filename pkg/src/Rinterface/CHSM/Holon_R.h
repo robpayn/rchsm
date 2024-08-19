@@ -12,6 +12,7 @@
 extern "C"
 {
   SEXP Holon_getValueString(SEXP);
+  SEXP Holon_getVariable(SEXP, SEXP);
 }
 
 #endif /* RINTERFACE_CHSM_HOLON_R_H_ */
