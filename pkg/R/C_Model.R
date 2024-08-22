@@ -21,15 +21,16 @@ C_Model <- R6Class(
     #' @description
     #'   Constructs an object that is a new instance of the class
     #'
-    #' @param className
-    #'   (Optional) Name of the class used in accessing c++ functions.
-    #'   Default value is "Machine"
-    #' @param name
-    #'   Name of the model
     #' @param depManager
     #'   The dependency manager C object the machine should use
     #' @param solver
     #'   The solver C object the machine should use
+    #' @param name
+    #'   (Optional) Name of the model.
+    #'     Default value is "Model".
+    #' @param className
+    #'   (Optional) Name of the class used in accessing c++ functions.
+    #'   Default value is "Machine"
     #' @param regFinalizer
     #'   (Optional) Logical to indicate if a finalizer should be 
     #'   registered (TRUE) or not (FALSE).
@@ -37,12 +38,13 @@ C_Model <- R6Class(
     #'   See super class C_Object for more information.
     #' 
     initialize = function(
-      className = "Machine", 
-      name = "Model", 
       depManager, 
       solver,
+      name = "Model", 
+      className = "Machine", 
       regFinalizer = TRUE
-    ) {
+    ) 
+    {
       super$initialize(
         className = className, 
         name = name, 
@@ -70,18 +72,19 @@ C_Model <- R6Class(
     #'   The function will cause a fatal error in R if the c object returns
     #'     an error message.
     #'   
-    createBound = function(name, cellFrom, cellTo, holon = NULL) {
-      
+    createBound = function(name, cellFrom, cellTo, holon = NULL) 
+    {
       return(
-        self$callFunction(
-          fun = "createBound",
-          name,
-          cellFrom$.external,
-          cellTo$.external,
-          holon$.external
+        C_Bound$new(
+          self$callFunction(
+            fun = "createBound",
+            name,
+            cellFrom$.external,
+            cellTo$.external,
+            holon$.external
+          )
         )
       )
-
     },
     
     #' @description
@@ -98,16 +101,68 @@ C_Model <- R6Class(
     #'   The function will cause a fatal error in R if the c object returns
     #'     an error message.
     #'   
-    createCell = function(name, holon = NULL) {
-      
+    createCell = function(name, holon = NULL) 
+    {
+      return(
+        C_Cell$new(
+          self$callFunction(fun = "createCell", name, holon$.external)
+        )
+      )
+    },
+    
+    #' @description
+    #'   Creates a new variable in the model
+    #'
+    #' @param name
+    #'   Character string with the name of the variable
+    #' @param value
+    #'   Value object of the new variable 
+    #' @param holon
+    #'   Holon object containing the new variable
+    #'   
+    #' @return
+    #'   External pointer to the variable that was created
+    #'   
+    createVariable = function(name, value, holon) 
+    {
       return(
         self$callFunction(
-          fun = "createCell",
+          fun = "createVariable",
           name,
+          value$.external,
           holon$.external
         )
       )
-
+    },
+    
+    #' @description
+    #'   Initialize the state machine
+    #'   
+    init = function()
+    {
+      self$callFunction(fun = "init")
+      invisible(NULL)
+    },
+    
+    #' @description
+    #'   Install a reporter in the state machine
+    #'   
+    #' @param reporter
+    #'   The reporter object to install
+    #'   
+    installReporter = function(reporter) 
+    {
+      self$callFunction(fun = "installReporter", reporter$.external)
+      invisible(NULL)
+    },
+    
+    #' @description
+    #'   Run the state machine simulation
+    #'   
+    run = function()
+    {
+      self$callFunction(fun = "run")
+      invisible(NULL)
     }
     
   )

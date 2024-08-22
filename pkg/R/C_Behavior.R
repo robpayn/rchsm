@@ -31,12 +31,9 @@ C_Behavior <- R6Class(
     #'   Defaults to TRUE.
     #'   See super class C_Object for more information.
     #'
-    initialize = function(className, ..., regFinalizer = TRUE) {
-      super$initialize(
-        className = className,
-        ...,
-        regFinalizer = regFinalizer
-      )
+    initialize = function(className, ..., regFinalizer = TRUE) 
+    {
+      super$initialize(className = className, ..., regFinalizer = regFinalizer)
     },
     
     #' @description
@@ -50,8 +47,8 @@ C_Behavior <- R6Class(
     #'   Further arguments to be passed on to the associated C function.
     #'   These are often initial values for the variable being created.
     #'   
-    createVariables = function(machine, holon, ...) {
-      
+    createVariables = function(machine, holon, ...) 
+    {
       return(
         self$callFunction(
           fun = "createVariables",
@@ -60,7 +57,6 @@ C_Behavior <- R6Class(
           ...
         )
       )
-      
     }
     
   )

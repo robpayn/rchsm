@@ -42,8 +42,7 @@ SEXP BehCellTime_createVariables(
   SEXP rPointerCell,
   SEXP initTime,
   SEXP initIteration,
-  SEXP initTimeValid,
-  SEXP initTimeMax
+  SEXP initTimeValid
 )
 {
   BehCellTime* pointerBeh = 
@@ -58,8 +57,7 @@ SEXP BehCellTime_createVariables(
     pointerCell,
     asReal(initTime),
     asInteger(initIteration),
-    asInteger(initTimeValid),
-    asReal(initTimeMax)
+    asInteger(initTimeValid)
   );
   
   return R_NilValue;

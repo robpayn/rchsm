@@ -26,8 +26,6 @@ class StateDouble : public ValueDoubleMemory
     
     void setDependencies(DepManager*) override;
     
-    std::string toString() override;
-    
     void update() override;
     
 };

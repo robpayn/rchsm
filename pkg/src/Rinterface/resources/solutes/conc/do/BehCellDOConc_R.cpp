@@ -3,6 +3,7 @@
  */
 
 #include "BehCellDOConc_R.h"
+#include "../../../../../resources/solutes/conc/do/BehCellDOConc.h"
 #include "../../../../../CHSM/Cell.h"
 
 void BehCellDOConc_finalizer(SEXP externalPointer) {

@@ -146,6 +146,46 @@ SEXP Machine_createCell(SEXP extMachinePtr, SEXP name, SEXP extHolonPtr)
 
 }
 
+SEXP Machine_createVariable(
+  SEXP extMachinePtr, 
+  SEXP name, 
+  SEXP extValuePtr, 
+  SEXP extHolonPtr
+)
+{
+
+  try {
+    
+    Machine* machinePtr =
+      static_cast<Machine*>(R_ExternalPtrAddr(extMachinePtr));
+    Value* valuePtr =
+      static_cast<Value*>(R_ExternalPtrAddr(extValuePtr));
+    Holon* holonPtr =
+      static_cast<Holon*>(R_ExternalPtrAddr(extHolonPtr));
+    
+    Variable* varPtr = machinePtr->createVariable(
+      CHAR(asChar(name)),
+      valuePtr,
+      holonPtr
+    );
+    
+    SEXP extVarPtr = PROTECT(
+      R_MakeExternalPtr(varPtr, R_NilValue, R_NilValue)
+    );
+    UNPROTECT(1);
+    
+    return extVarPtr;
+    
+  } catch (std::runtime_error &thrown) {
+    
+    std::ostringstream error;
+    error << "<CERROR>\n" << thrown.what();
+    return mkString(error.str().c_str());
+    
+  }
+
+}
+
 SEXP Machine_init(SEXP extMachinePtr)
 {
   try {

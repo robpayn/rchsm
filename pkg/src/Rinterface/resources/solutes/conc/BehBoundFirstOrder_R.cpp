@@ -3,11 +3,13 @@
  */
 
 #include "BehBoundFirstOrder_R.h"
+#include "../../../../resources/solutes/conc/BehBoundFirstOrder.h"
 #include "../../../../CHSM/Bound.h"
 
 void BehBoundFirstOrder_finalizer(SEXP externalPointer) {
   
-  BehBoundFirstOrder* pointer = (BehBoundFirstOrder*)R_ExternalPtrAddr(externalPointer);
+  BehBoundFirstOrder* pointer = 
+    static_cast<BehBoundFirstOrder*>(R_ExternalPtrAddr(externalPointer));
   R_ClearExternalPtr(externalPointer);
   delete pointer;
   
@@ -41,8 +43,7 @@ SEXP BehBoundFirstOrder_createVariables(
   SEXP rPointerBeh, 
   SEXP rPointerMachine,
   SEXP rPointerBound,
-  SEXP initRate,
-  SEXP initRateCoeff
+  SEXP initRate
 )
 {
   
@@ -56,8 +57,7 @@ SEXP BehBoundFirstOrder_createVariables(
   pointerBeh->createVariables(
     pointerMachine, 
     pointerBound,
-    asReal(initRate),
-    asReal(initRateCoeff)
+    asReal(initRate)
   );
   
   return R_NilValue;

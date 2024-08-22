@@ -27,6 +27,13 @@ extern "C"
       R interface function for creating a new machine object
     \param SEXP
       R character string with the name of the machine
+    \param SEXP
+      External pointer to the dependency manager
+    \param SEXP
+      External pointer to the solver
+    \param SEXP
+      R logical value indicating if a finalizer should be registered.
+      Value of TRUE registers a finalizer, FALSE does not.
     \return SEXP
       R external pointer to the new machine object
   */
@@ -88,6 +95,23 @@ extern "C"
   SEXP Machine_createCell(SEXP, SEXP, SEXP);
   
   /*!
+    \relatealso Machine
+    \brief
+      R interface function for creating a variable in the machine
+    \param SEXP
+      An R external pointer to the Machine object
+    \param SEXP
+      R character string with the name of the variable
+    \param SEXP
+      External pointer to the value of the variable
+    \param SEXP
+      External pointer to the holon in which the variable should be created
+    \return
+      External pointer to the variable that was created
+  */
+  SEXP Machine_createVariable(SEXP, SEXP, SEXP, SEXP);
+  
+  /*!
     \relatesalso Machine
     \brief
       Initialize the state machine
@@ -101,6 +125,17 @@ extern "C"
   */
   SEXP Machine_init(SEXP);
   
+  /*!
+    \relatealso Machine
+    \brief
+      Install a reporter in the state machine
+    \param SEXP
+      R external pointer to the state machine.
+    \param SEXP
+      R external pointer to the reporter to be installed
+    \return
+      Returns an R NULL value
+  */
   SEXP Machine_installReporter(SEXP, SEXP);
 
   /*!

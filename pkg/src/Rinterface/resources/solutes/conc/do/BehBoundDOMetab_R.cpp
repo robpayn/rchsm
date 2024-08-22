@@ -3,6 +3,7 @@
  */
 
 #include "BehBoundDOMetab_R.h"
+#include "../../../../../resources/solutes/conc/do/BehBoundDOMetab.h"
 #include "../../../../../CHSM/Bound.h"
 
 void BehBoundDOMetab_finalizer(SEXP externalPointer) {

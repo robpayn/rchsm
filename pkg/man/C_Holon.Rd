@@ -8,14 +8,14 @@ A holon in a composite Hierarchy State Machine
 
   Implementation is provided by C++ objects.
 }
-\section{Super class}{
-\code{\link[rchsm:C_Object]{rchsm::C_Object}} -> \code{C_Holon}
+\section{Super classes}{
+\code{\link[rchsm:C_Object]{rchsm::C_Object}} -> \code{\link[rchsm:C_Variable]{rchsm::C_Variable}} -> \code{C_Holon}
 }
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-C_Holon-new}{\code{C_Holon$new()}}
-\item \href{#method-C_Holon-getValueString}{\code{C_Holon$getValueString()}}
+\item \href{#method-C_Holon-getVariablePointer}{\code{C_Holon$getVariablePointer()}}
 \item \href{#method-C_Holon-clone}{\code{C_Holon$clone()}}
 }
 }
@@ -23,6 +23,7 @@ A holon in a composite Hierarchy State Machine
 <details open><summary>Inherited methods</summary>
 <ul>
 <li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Object" data-id="callFunction"><a href='../../rchsm/html/C_Object.html#method-C_Object-callFunction'><code>rchsm::C_Object$callFunction()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Variable" data-id="getValueString"><a href='../../rchsm/html/C_Variable.html#method-C_Variable-getValueString'><code>rchsm::C_Variable$getValueString()</code></a></span></li>
 </ul>
 </details>
 }}
@@ -55,17 +56,23 @@ existing C++ Object referenced by the pointer.}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-C_Holon-getValueString"></a>}}
-\if{latex}{\out{\hypertarget{method-C_Holon-getValueString}{}}}
-\subsection{Method \code{getValueString()}}{
-Constructs an object that is a new instance of the class.
+\if{html}{\out{<a id="method-C_Holon-getVariablePointer"></a>}}
+\if{latex}{\out{\hypertarget{method-C_Holon-getVariablePointer}{}}}
+\subsection{Method \code{getVariablePointer()}}{
+Get an external pointer to the named variable
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_Holon$getValueString()}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{C_Holon$getVariablePointer(name)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{name}}{Character string with the name of the variable to retrieve}
+}
+\if{html}{\out{</div>}}
+}
 \subsection{Returns}{
-A single element character vector representing the contents of the
-  holon.
+An external pointer to the variable
 }
 }
 \if{html}{\out{<hr>}}

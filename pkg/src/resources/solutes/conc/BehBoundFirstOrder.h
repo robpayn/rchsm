@@ -32,7 +32,7 @@ public:
   
   void createVariables(Machine*, Holon*) override;
   
-  void createVariables(Machine*, Holon*, double, double);
+  void createVariables(Machine*, Holon*, double);
   
   void setNames();
   

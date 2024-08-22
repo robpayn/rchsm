@@ -1,83 +1,66 @@
-
 library(rchsm, lib.loc = "./build")
 
 model <- C_Model$new(
-  depManager = C_Object$new(
-    className = "DepManInstallOrder", 
-    numPhases = 3,
-    regFinalizer = FALSE
-  ), 
-  solver = C_Object$new(
-    className = "SolverForwardEuler", 
-    regFinalizer = FALSE
-  )
+  depManager = C_DepManInstallOrder$new(numPhases = 3), 
+  solver = C_SolverForwardEuler$new()
 )
 
-cell <- C_Cell$new(source = model$createCell("CellTime"))
+cell <- model$createCell("CellTime")
 beh <- C_Behavior$new(className = "BehCellTime")
 beh$createVariables(
   machine = model, 
   holon = cell,
   initTime = 0,
   initIteration = 0,
-  initTimeValid = TRUE,
-  initTimeMax = 50
+  initTimeValid = TRUE
+)
+model$createVariable(
+  name = "TimeMax",
+  value = C_Value$new(type = "ValueDouble", initValue = 40),
+  holon = cell
 )
 
-bound <- C_Bound$new(source = model$createBound("BoundTime", NULL, cell))
-beh <- C_Behavior$new(className = "BehBoundTime")
-beh$createVariables(
-  machine = model, 
-  holon = bound, 
-  initTimeStep = 2
+bound <-model$createBound("BoundTime", NULL, cell)
+model$createVariable(
+  name = "TimeStep",
+  value = C_Value$new(type = "ValueDouble", initValue = 1),
+  holon = bound
 )
 
-reporter <- C_Object$new(
-  className = "ReporterTable", 
-  interval = 1, 
-  regFinalizer = FALSE
-)
-model$callFunction(fun = "installReporter", reporter$.external)
-reporter$callFunction(
-  "trackVariable", 
-  cell$callFunction("getVariable", "Iteration", cClassName = "Holon")
-)
-reporter$callFunction(
-  "trackVariable", 
-  cell$callFunction("getVariable", "Time", cClassName = "Holon")
-)
+reporter <- C_ReporterTable$new(interval = 1)
+model$installReporter(reporter)
+reporter$trackVariable(variable = cell$getVariablePointer("Iteration"))
+reporter$trackVariable(variable = cell$getVariablePointer("Time"))
 
 
-cell <- C_Cell$new(model$createCell("Cell01"))
+cell <-model$createCell("Cell01")
 beh <- C_Behavior$new(className = "BehCellSolute", "Nitrate")
 beh$createVariables( 
   machine = model, 
   holon = cell, 
   initNitrate = 10
 )
-reporter$callFunction(
-  "trackVariable", 
-  cell$callFunction("getVariable", "NitrateConc", cClassName = "Holon")
-)
+reporter$trackVariable(variable = cell$getVariablePointer("NitrateConc"))
 
-bound <- C_Bound$new(model$createBound("Bound01", NULL, cell))
+bound <- model$createBound("Bound01", NULL, cell)
 beh <- C_Behavior$new(className = "BehBoundFirstOrder", "Nitrate")
 beh$createVariables(
   machine = model,
   holon = bound,
-  initRate = 0,
-  initCoeff = 0.15
+  initRate = 0
 )
-reporter$callFunction(
-  "trackVariable", 
-  bound$callFunction("getVariable", "NitrateUptake", cClassName = "Holon")
+model$createVariable(
+  name = "NitrateRateCoeff",
+  value = C_Value$new(type = "ValueDouble", initValue = 0.2),
+  holon = bound
 )
+reporter$trackVariable(variable = bound$getVariablePointer("NitrateUptake"))
 
-model$callFunction("init")
+model$init()
 
 cat(model$getValueString())
 
-model$callFunction("run")
+model$run()
 
 cat(model$getValueString())
 

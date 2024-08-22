@@ -9,7 +9,7 @@ A Composite Hierarchy State Machine model.
   Implementation is provided by C++ objects.
 }
 \section{Super classes}{
-\code{\link[rchsm:C_Object]{rchsm::C_Object}} -> \code{\link[rchsm:C_Holon]{rchsm::C_Holon}} -> \code{C_Model}
+\code{\link[rchsm:C_Object]{rchsm::C_Object}} -> \code{\link[rchsm:C_Variable]{rchsm::C_Variable}} -> \code{\link[rchsm:C_Holon]{rchsm::C_Holon}} -> \code{C_Model}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -17,6 +17,10 @@ A Composite Hierarchy State Machine model.
 \item \href{#method-C_Model-new}{\code{C_Model$new()}}
 \item \href{#method-C_Model-createBound}{\code{C_Model$createBound()}}
 \item \href{#method-C_Model-createCell}{\code{C_Model$createCell()}}
+\item \href{#method-C_Model-createVariable}{\code{C_Model$createVariable()}}
+\item \href{#method-C_Model-init}{\code{C_Model$init()}}
+\item \href{#method-C_Model-installReporter}{\code{C_Model$installReporter()}}
+\item \href{#method-C_Model-run}{\code{C_Model$run()}}
 \item \href{#method-C_Model-clone}{\code{C_Model$clone()}}
 }
 }
@@ -24,7 +28,8 @@ A Composite Hierarchy State Machine model.
 <details open><summary>Inherited methods</summary>
 <ul>
 <li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Object" data-id="callFunction"><a href='../../rchsm/html/C_Object.html#method-C_Object-callFunction'><code>rchsm::C_Object$callFunction()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Holon" data-id="getValueString"><a href='../../rchsm/html/C_Holon.html#method-C_Holon-getValueString'><code>rchsm::C_Holon$getValueString()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Variable" data-id="getValueString"><a href='../../rchsm/html/C_Variable.html#method-C_Variable-getValueString'><code>rchsm::C_Variable$getValueString()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Holon" data-id="getVariablePointer"><a href='../../rchsm/html/C_Holon.html#method-C_Holon-getVariablePointer'><code>rchsm::C_Holon$getVariablePointer()</code></a></span></li>
 </ul>
 </details>
 }}
@@ -35,10 +40,10 @@ A Composite Hierarchy State Machine model.
 Constructs an object that is a new instance of the class
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{C_Model$new(
-  className = "Machine",
-  name = "Model",
   depManager,
   solver,
+  name = "Model",
+  className = "Machine",
   regFinalizer = TRUE
 )}\if{html}{\out{</div>}}
 }
@@ -46,14 +51,15 @@ Constructs an object that is a new instance of the class
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{className}}{(Optional) Name of the class used in accessing c++ functions.
-Default value is "Machine"}
-
-\item{\code{name}}{Name of the model}
-
 \item{\code{depManager}}{The dependency manager C object the machine should use}
 
 \item{\code{solver}}{The solver C object the machine should use}
+
+\item{\code{name}}{(Optional) Name of the model.
+Default value is "Model".}
+
+\item{\code{className}}{(Optional) Name of the class used in accessing c++ functions.
+Default value is "Machine"}
 
 \item{\code{regFinalizer}}{(Optional) Logical to indicate if a finalizer should be 
 registered (TRUE) or not (FALSE).
@@ -116,6 +122,67 @@ A new R6 cell object mapped to the C++ cell object that was created.
   The function will cause a fatal error in R if the c object returns
     an error message.
 }
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-C_Model-createVariable"></a>}}
+\if{latex}{\out{\hypertarget{method-C_Model-createVariable}{}}}
+\subsection{Method \code{createVariable()}}{
+Creates a new variable in the model
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{C_Model$createVariable(name, value, holon)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{name}}{Character string with the name of the variable}
+
+\item{\code{value}}{Value object of the new variable}
+
+\item{\code{holon}}{Holon object containing the new variable}
+}
+\if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+External pointer to the variable that was created
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-C_Model-init"></a>}}
+\if{latex}{\out{\hypertarget{method-C_Model-init}{}}}
+\subsection{Method \code{init()}}{
+Initialize the state machine
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{C_Model$init()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-C_Model-installReporter"></a>}}
+\if{latex}{\out{\hypertarget{method-C_Model-installReporter}{}}}
+\subsection{Method \code{installReporter()}}{
+Install a reporter in the state machine
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{C_Model$installReporter(reporter)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{reporter}}{The reporter object to install}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-C_Model-run"></a>}}
+\if{latex}{\out{\hypertarget{method-C_Model-run}{}}}
+\subsection{Method \code{run()}}{
+Run the state machine simulation
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{C_Model$run()}\if{html}{\out{</div>}}
+}
+
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-C_Model-clone"></a>}}

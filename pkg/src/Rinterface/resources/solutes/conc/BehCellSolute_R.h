@@ -7,7 +7,6 @@
 
 #include <R.h>
 #include <Rinternals.h>
-#include "../../../../resources/solutes/conc/BehCellSolute.h"
 
 extern "C"
 {

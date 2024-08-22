@@ -3,6 +3,7 @@
  */
 
 #include "BehCellSolute_R.h"
+#include "../../../../resources/solutes/conc/BehCellSolute.h"
 #include "../../../../CHSM/Cell.h"
 
 void BehCellSolute_finalizer(SEXP externalPointer) {

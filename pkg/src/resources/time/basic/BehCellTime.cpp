@@ -16,7 +16,6 @@ void BehCellTime::createVariables(Machine* machine, Holon* holon)
   machine->createVariable("Time", new Time(phase), holon);
   machine->createVariable("Iteration", new Iteration(phase), holon);
   machine->createVariable("TimeValid", new TimeValid(phase), holon);
-  machine->createVariable("TimeMax", new ValueDouble(), holon);
 }
 
 void BehCellTime::createVariables(
@@ -24,8 +23,7 @@ void BehCellTime::createVariables(
   Holon* holon,
   double initTime,
   long initIteration,
-  bool initTimeValid,
-  double initTimeMax
+  bool initTimeValid
 ) 
 {
   int phase = 0;
@@ -38,11 +36,6 @@ void BehCellTime::createVariables(
   machine->createVariable(
     "TimeValid", 
     new TimeValid(phase, initTimeValid), 
-    holon
-  );
-  machine->createVariable(
-    "TimeMax", 
-    new ValueDouble(initTimeMax), 
     holon
   );
 }

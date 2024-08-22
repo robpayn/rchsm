@@ -34,31 +34,6 @@ void StateDouble::setDependencies(DepManager* dm)
 
 }
 
-std::string StateDouble::toString()
-{
-  
-  std::ostringstream string;
-  
-  string << "<State rates=\"";
-  bool first = true;
-  for(double* rate : rates_) {
-    if (first) {
-      first = false;
-    } else {
-      string << ",";
-    }
-    string << std::to_string(*rate);
-  }
-  string << "\">";
-  
-  string << ValueDouble::toString();
-  
-  string << "</State>";
-  
-  return string.str();
-  
-}
-
 void StateDouble::update()
 {
   

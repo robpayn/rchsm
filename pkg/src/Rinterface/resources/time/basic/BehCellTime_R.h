@@ -2,8 +2,8 @@
  * BehCellTime.h
  */
 
-#ifndef RESOURCES_TIME_BASIC_BEHCELLTIME_R_H_
-#define RESOURCES_TIME_BASIC_BEHCELLTIME_R_H_
+#ifndef RINTERFACE_RESOURCES_TIME_BASIC_BEHCELLTIME_R_H_
+#define RINTERFACE_RESOURCES_TIME_BASIC_BEHCELLTIME_R_H_
 
 #include <R.h>
 #include <Rinternals.h>
@@ -13,7 +13,7 @@ extern "C"
 {
   SEXP BehCellTime_constructor(SEXP);
   SEXP BehCellTime_destructor(SEXP);
-  SEXP BehCellTime_createVariables(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
+  SEXP BehCellTime_createVariables(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP);
 }
 
-#endif /* RESOURCES_TIME_BASIC_BEHCELLTIME_R_H_ */
+#endif /* RINTERFACE_RESOURCES_TIME_BASIC_BEHCELLTIME_R_H_ */

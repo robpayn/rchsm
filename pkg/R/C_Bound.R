@@ -38,7 +38,8 @@ C_Bound <- R6Class(
     #'   an existing external pointer.
     #'   See super class C_Object for more information.
     #'     
-    initialize = function(source, className = "Bound", regFinalizer = TRUE) {
+    initialize = function(source, className = "Bound", regFinalizer = TRUE) 
+    {
       
       if (typeof(source) == "externalptr") {
         super$initialize(className = className, .external = source)

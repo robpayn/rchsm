@@ -2,8 +2,8 @@
  * BehCellTime.h
  */
 
-#ifndef CHSM_RESOURCES_TIME_BASIC_BEHCELLTIME_H_
-#define CHSM_RESOURCES_TIME_BASIC_BEHCELLTIME_H_
+#ifndef RESOURCES_TIME_BASIC_BEHCELLTIME_H_
+#define RESOURCES_TIME_BASIC_BEHCELLTIME_H_
 
 #include "../../../CHSM/Behavior.h"
 
@@ -18,7 +18,7 @@ class BehCellTime : public Behavior
     
     void createVariables(Machine*, Holon*) override;
     
-    void createVariables(Machine*, Holon*, double, long, bool, double);
+    void createVariables(Machine*, Holon*, double, long, bool);
 };
 
-#endif /* CHSM_RESOURCES_TIME_BASIC_BEHCELLTIME_H_ */
+#endif /* RESOURCES_TIME_BASIC_BEHCELLTIME_H_ */

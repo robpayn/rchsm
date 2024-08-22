@@ -2,8 +2,8 @@
  * Cell_R.h
  */
 
-#ifndef RCHSM_CELL_R_H_
-#define RCHSM_CELL_R_H_
+#ifndef RINTERFACE_CHSM_CELL_R_H_
+#define RINTERFACE_CHSM_CELL_R_H_
 
 #include <R.h>
 #include <Rinternals.h>
@@ -17,4 +17,4 @@ extern "C"
   SEXP Cell_destructor(SEXP);
 }
 
-#endif /* RCHSM_CELL_R_H_ */
+#endif /* RINTERFACE_CHSM_CELL_R_H_ */

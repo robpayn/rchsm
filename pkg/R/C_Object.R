@@ -102,7 +102,8 @@ C_Object <- R6Class(
     #'     program will be stopped with the error message provided from C.
     #'   A null return value will be returned invisibly.
     #'   
-    callFunction = function(fun, ..., cClassName = self$cClassName) {
+    callFunction = function(fun, ..., cClassName = self$cClassName) 
+    {
       returnVal <- .Call(
         paste0(cClassName, "_", fun),
         self$.external,

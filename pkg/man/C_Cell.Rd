@@ -9,7 +9,7 @@ An R6 class mapping to a C++ Cell object
   Implementation is provided by C++ objects.
 }
 \section{Super classes}{
-\code{\link[rchsm:C_Object]{rchsm::C_Object}} -> \code{\link[rchsm:C_Holon]{rchsm::C_Holon}} -> \code{C_Cell}
+\code{\link[rchsm:C_Object]{rchsm::C_Object}} -> \code{\link[rchsm:C_Variable]{rchsm::C_Variable}} -> \code{\link[rchsm:C_Holon]{rchsm::C_Holon}} -> \code{C_Cell}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -22,7 +22,8 @@ An R6 class mapping to a C++ Cell object
 <details open><summary>Inherited methods</summary>
 <ul>
 <li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Object" data-id="callFunction"><a href='../../rchsm/html/C_Object.html#method-C_Object-callFunction'><code>rchsm::C_Object$callFunction()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Holon" data-id="getValueString"><a href='../../rchsm/html/C_Holon.html#method-C_Holon-getValueString'><code>rchsm::C_Holon$getValueString()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Variable" data-id="getValueString"><a href='../../rchsm/html/C_Variable.html#method-C_Variable-getValueString'><code>rchsm::C_Variable$getValueString()</code></a></span></li>
+<li><span class="pkg-link" data-pkg="rchsm" data-topic="C_Holon" data-id="getVariablePointer"><a href='../../rchsm/html/C_Holon.html#method-C_Holon-getVariablePointer'><code>rchsm::C_Holon$getVariablePointer()</code></a></span></li>
 </ul>
 </details>
 }}

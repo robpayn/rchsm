@@ -6,16 +6,16 @@
 #' @export
 #'
 #' @title
-#'   CHSM Holon Object
+#'   CHSM Variable Object
 #'
 #' @description
-#'   A holon in a composite Hierarchy State Machine
+#'   A Variable in a composite Hierarchy State Machine
 #'
 #'   Implementation is provided by C++ objects.
 #'
-C_Holon <- R6Class(
-  classname = "C_Holon",
-  inherit = C_Variable,
+C_Variable <- R6Class(
+  classname = "C_Variable",
+  inherit = C_Object,
   public = list(
     
     #' @description
@@ -35,7 +35,7 @@ C_Holon <- R6Class(
     #'   NULL value, then the new R6 object will be associated with the 
     #'   existing C++ Object referenced by the pointer.
     #' 
-    initialize = function(className = "Holon", ..., regFinalizer, .external = NULL) 
+    initialize = function(className = "Variable", ..., regFinalizer, .external = NULL) 
     {
       super$initialize(
         className = className, 
@@ -46,17 +46,15 @@ C_Holon <- R6Class(
     },
     
     #' @description
-    #'   Get an external pointer to the named variable
-    #'   
-    #' @param name
-    #'   Character string with the name of the variable to retrieve
-    #'   
+    #'   Get the value of the variable as a character string
+    #'
     #' @return 
-    #'   An external pointer to the variable
-    getVariablePointer = function(name) 
+    #'   A single element character vector representing the value.
+    #'   
+    getValueString = function() 
     {
       return(
-        self$callFunction(fun = "getVariable", name, cClassName = "Holon")
+        self$callFunction(fun = "getValueString", cClassName = "Variable")
       )
     }
     

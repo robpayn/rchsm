@@ -7,11 +7,9 @@
 
 #include <R.h>
 #include <Rinternals.h>
-#include "../../CHSM/Holon.h"
 
 extern "C"
 {
-  SEXP Holon_getValueString(SEXP);
   SEXP Holon_getVariable(SEXP, SEXP);
 }
 

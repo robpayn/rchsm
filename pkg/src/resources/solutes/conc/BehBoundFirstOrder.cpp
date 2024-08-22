@@ -26,19 +26,13 @@ void BehBoundFirstOrder::createVariables(Machine* machine, Holon* holon) {
 void BehBoundFirstOrder::createVariables(
     Machine* machine, 
     Holon* holon, 
-    double initUptake,
-    double initRateCoeff
+    double initUptake
 ) 
 {
   int phase = 1;
   machine->createVariable(
       rateName_, 
       new RateFirstOrder(phase, initUptake, stateName_, coeffName_), 
-      holon
-  );
-  machine->createVariable(
-      coeffName_, 
-      new ValueDouble(initRateCoeff), 
       holon
   );
 }
