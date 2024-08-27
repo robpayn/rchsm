@@ -18,7 +18,9 @@ C_SolverForwardEuler <- R6Class(
     
     #' @description
     #'   Create an instance of the solver
-    #'   
+    #' 
+    #' @param timeStep
+    #'   Variable object for the time step
     #' @param className
     #'   (Optional) Character string with the name of the class.
     #'     Defaults to "SolverForwardEuler".
@@ -29,12 +31,14 @@ C_SolverForwardEuler <- R6Class(
     #'   See super class C_Object for more information.
     #'   
     initialize = function(
+      timeStep,
       className = "SolverForwardEuler", 
       regFinalizer = FALSE
     ) 
     {
       super$initialize(
-        className = className, 
+        className = className,
+        timeStep$.external,
         regFinalizer = regFinalizer
       )
     }

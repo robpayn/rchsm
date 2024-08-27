@@ -23,10 +23,11 @@ SEXP ReporterTable_destructor(SEXP externalPointer)
   return R_NilValue;
 }
 
-SEXP ReporterTable_constructor(SEXP interval, SEXP regFinalizer)
+SEXP ReporterTable_constructor(SEXP interval, SEXP extVarPtr, SEXP regFinalizer)
 {
+  Variable* varPtr = static_cast<Variable*>(R_ExternalPtrAddr(extVarPtr));
   
-  ReporterTable* pointer = new ReporterTable(asInteger(interval));
+  ReporterTable* pointer = new ReporterTable(asInteger(interval), *varPtr);
   
   SEXP externalPointer = PROTECT(
     R_MakeExternalPtr(pointer, R_NilValue, R_NilValue)
@@ -39,7 +40,6 @@ SEXP ReporterTable_constructor(SEXP interval, SEXP regFinalizer)
   UNPROTECT(1);
   
   return externalPointer;
-  
 }
 
 SEXP ReporterTable_getDataFrame(SEXP extRepPtr)
@@ -103,13 +103,24 @@ SEXP ReporterTable_getDataFrame(SEXP extRepPtr)
   return df;
 }
 
+SEXP ReporterTable_trackRate(SEXP extRepPtr, SEXP extVarPtr, SEXP from, SEXP to)
+{
+  ReporterTable* repPtr = 
+    static_cast<ReporterTable*>(R_ExternalPtrAddr(extRepPtr));
+  Variable* varPtr = static_cast<Variable*>(R_ExternalPtrAddr(extVarPtr));
+  
+  repPtr->trackRate(*varPtr, asInteger(from), asInteger(to));
+  
+  return R_NilValue;
+}
+
 SEXP ReporterTable_trackVariable(SEXP extRepPtr, SEXP extVarPtr)
 {
   ReporterTable* repPtr = 
     static_cast<ReporterTable*>(R_ExternalPtrAddr(extRepPtr));
   Variable* varPtr = static_cast<Variable*>(R_ExternalPtrAddr(extVarPtr));
   
-  repPtr->trackVariable(varPtr);
+  repPtr->trackVariable(*varPtr);
   
   return R_NilValue;
 }

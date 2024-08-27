@@ -5,10 +5,12 @@
 #ifndef RESOURCES_SOLUTES_CONC_BEHCELLSOLUTE_H_
 #define RESOURCES_SOLUTES_CONC_BEHCELLSOLUTE_H_
 
-#include "../../../CHSM/Behavior.h"
 #include <string>
 
-class BehCellSolute : public Behavior
+class Matrix;
+class Holon;
+
+class BehCellSolute
 {
 public:
   
@@ -22,9 +24,7 @@ public:
   
   // Methods
   
-  void createVariables(Machine*, Holon*) override;
-  
-  void createVariables(Machine*, Holon*, double);
+  void createVariables(Matrix*, Holon&, double);
   
   void setNames();
   

@@ -23,7 +23,7 @@ public:
   
   // Methods
   
-  void setDependencies(DepManager*) override;
+  void setDependencies(DepManager&) override;
   
   void update() override;
 };

@@ -5,10 +5,12 @@
 #ifndef RESOURCES_SOLUTES_CONC_BEHBOUNDFIRSTORDER_H_
 #define RESOURCES_SOLUTES_CONC_BEHBOUNDFIRSTORDER_H_
 
-#include "../../../CHSM/Behavior.h"
 #include <string>
 
-class BehBoundFirstOrder : public Behavior
+class Matrix;
+class Holon;
+
+class BehBoundFirstOrder
 {
 public:
   
@@ -18,7 +20,7 @@ public:
   
   std::string stateName_ = "";
   
-  std::string rateSuffix_ = "Uptake";
+  std::string rateSuffix_ = "Rate";
   
   std::string rateName_ = "";
   
@@ -30,9 +32,7 @@ public:
   
   // Methods
   
-  void createVariables(Machine*, Holon*) override;
-  
-  void createVariables(Machine*, Holon*, double);
+  void createVariables(Matrix*, Holon&, double);
   
   void setNames();
   

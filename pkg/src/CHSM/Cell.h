@@ -30,7 +30,7 @@ class Cell : public Holon
     
     /*! 
       \brief
-        An unordered map of the bound holons attached to this cell holon
+        A map of pointers to bound holons attached to this cell holon
     */
     std::unordered_map<std::string, Bound*> bounds_;
     
@@ -39,6 +39,7 @@ class Cell : public Holon
     /*! 
       \brief
         Constructs a new instance by name
+     
       \param std::string 
         The name for the new cell
     */
@@ -49,8 +50,10 @@ class Cell : public Holon
     /*! 
       \brief
         Attach a bound to the cell
+     
       \param Bound* 
         Pointer to the bound to attach
+     
       \return 
         No return value
     */
@@ -59,10 +62,12 @@ class Cell : public Holon
     /*! 
       \brief
         Get variables of a given name in attached bounds
+     
       \param std::string 
         The variable name to seek in attached bounds
+     
       \return 
-        An unordered map of bound variables with the given name
+        A map of pointers to bound variables with the given name
     */
     std::unordered_map<std::string, Variable*> getBoundVariables(std::string);
     

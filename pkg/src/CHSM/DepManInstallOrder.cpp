@@ -13,7 +13,6 @@ void DepManInstallOrder::createDependency(Value* depVal, Value* neededVal)
 
 std::vector<Dynamic*> DepManInstallOrder::sort(int phase)
 {
-  
   std::vector<Dynamic*> vec(dynamics_[phase].size());
   
   long index = 0;
@@ -23,5 +22,4 @@ std::vector<Dynamic*> DepManInstallOrder::sort(int phase)
   }
   
   return vec;
-  
 }

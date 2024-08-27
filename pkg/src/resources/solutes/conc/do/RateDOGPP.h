@@ -15,7 +15,7 @@ class RateDOGPP : public RateDouble
     
     RateDOGPP(int, double, std::string);
     
-    void setDependencies(DepManager*) override;
+    void setDependencies(DepManager&) override;
     
     void update() override;
     

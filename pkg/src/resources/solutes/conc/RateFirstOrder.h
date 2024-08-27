@@ -21,7 +21,7 @@ public:
   
   RateFirstOrder(int, double, std::string, std::string);
   
-  void setDependencies(DepManager*) override;
+  void setDependencies(DepManager&) override;
   
   void update() override;
   

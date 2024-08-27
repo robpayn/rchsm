@@ -5,9 +5,10 @@
 #ifndef RESOURCES_TIME_BASIC_BEHCELLTIME_H_
 #define RESOURCES_TIME_BASIC_BEHCELLTIME_H_
 
-#include "../../../CHSM/Behavior.h"
+class Matrix;
+class Holon;
 
-class BehCellTime : public Behavior
+class BehCellTime
 {
   public:
     // Constructors/Destructor
@@ -16,9 +17,7 @@ class BehCellTime : public Behavior
 
     // Methods
     
-    void createVariables(Machine*, Holon*) override;
-    
-    void createVariables(Machine*, Holon*, double, long, bool);
+    void createVariables(Matrix*, Holon&, double, long, bool);
 };
 
 #endif /* RESOURCES_TIME_BASIC_BEHCELLTIME_H_ */

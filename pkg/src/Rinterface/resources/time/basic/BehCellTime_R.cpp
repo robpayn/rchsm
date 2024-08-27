@@ -3,6 +3,7 @@
  */
 
 #include "BehCellTime_R.h"
+#include "../../../../resources/time/basic/BehCellTime.h"
 #include "../../../../CHSM/Cell.h"
 
 void BehCellTime_finalizer(SEXP externalPointer) 
@@ -38,7 +39,7 @@ SEXP BehCellTime_constructor(SEXP regFinalizer)
 
 SEXP BehCellTime_createVariables(
   SEXP rPointerBeh,
-  SEXP rPointerMachine,
+  SEXP rPointerMatrix,
   SEXP rPointerCell,
   SEXP initTime,
   SEXP initIteration,
@@ -47,14 +48,14 @@ SEXP BehCellTime_createVariables(
 {
   BehCellTime* pointerBeh = 
     static_cast <BehCellTime*> (R_ExternalPtrAddr(rPointerBeh));
-  Machine* pointerMachine =
-    static_cast <Machine*> (R_ExternalPtrAddr(rPointerMachine));
+  Matrix* pointerMatrix =
+    static_cast <Matrix*> (R_ExternalPtrAddr(rPointerMatrix));
   Cell* pointerCell =
     static_cast <Cell*> (R_ExternalPtrAddr(rPointerCell));
   
   pointerBeh->createVariables(
-    pointerMachine, 
-    pointerCell,
+    pointerMatrix, 
+    *pointerCell,
     asReal(initTime),
     asInteger(initIteration),
     asInteger(initTimeValid)

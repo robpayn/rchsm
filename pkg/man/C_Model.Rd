@@ -11,16 +11,20 @@ A Composite Hierarchy State Machine model.
 \section{Super classes}{
 \code{\link[rchsm:C_Object]{rchsm::C_Object}} -> \code{\link[rchsm:C_Variable]{rchsm::C_Variable}} -> \code{\link[rchsm:C_Holon]{rchsm::C_Holon}} -> \code{C_Model}
 }
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{matrix}}{The matrix evaluating the state machine}
+}
+\if{html}{\out{</div>}}
+}
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-C_Model-new}{\code{C_Model$new()}}
-\item \href{#method-C_Model-createBound}{\code{C_Model$createBound()}}
-\item \href{#method-C_Model-createCell}{\code{C_Model$createCell()}}
-\item \href{#method-C_Model-createVariable}{\code{C_Model$createVariable()}}
-\item \href{#method-C_Model-init}{\code{C_Model$init()}}
 \item \href{#method-C_Model-installReporter}{\code{C_Model$installReporter()}}
 \item \href{#method-C_Model-run}{\code{C_Model$run()}}
+\item \href{#method-C_Model-setTimeValidVariable}{\code{C_Model$setTimeValidVariable()}}
 \item \href{#method-C_Model-clone}{\code{C_Model$clone()}}
 }
 }
@@ -41,7 +45,7 @@ Constructs an object that is a new instance of the class
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{C_Model$new(
   depManager,
-  solver,
+  matrix = C_Matrix$new(depManager),
   name = "Model",
   className = "Machine",
   regFinalizer = TRUE
@@ -51,9 +55,10 @@ Constructs an object that is a new instance of the class
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{depManager}}{The dependency manager C object the machine should use}
+\item{\code{depManager}}{The dependency manager for the matrix}
 
-\item{\code{solver}}{The solver C object the machine should use}
+\item{\code{matrix}}{(Optional) The matrix value C object for the machine.
+Defaults to a new matrix object with the provided dependency manager}
 
 \item{\code{name}}{(Optional) Name of the model.
 Default value is "Model".}
@@ -68,94 +73,6 @@ See super class C_Object for more information.}
 }
 \if{html}{\out{</div>}}
 }
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-C_Model-createBound"></a>}}
-\if{latex}{\out{\hypertarget{method-C_Model-createBound}{}}}
-\subsection{Method \code{createBound()}}{
-Creates a new bound in the model
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_Model$createBound(name, cellFrom, cellTo, holon = NULL)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{name}}{The name of the bound to be created}
-
-\item{\code{cellFrom}}{R6 bound object for the from cell}
-
-\item{\code{cellTo}}{R6 bound object for the to cell}
-
-\item{\code{holon}}{(Optional) R6 holon object where the bound should be created.
-Default NULL value results in creation of the bound in the model holon}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-A new R6 bound object mapped to the C++ bound object that was created.
-  The function will cause a fatal error in R if the c object returns
-    an error message.
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-C_Model-createCell"></a>}}
-\if{latex}{\out{\hypertarget{method-C_Model-createCell}{}}}
-\subsection{Method \code{createCell()}}{
-Creates a new cell in the model
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_Model$createCell(name, holon = NULL)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{name}}{The name of the cell to be created}
-
-\item{\code{holon}}{(Optional) R6 holon object where the cell should be created.
-Default NULL value results in creation of the cell in the model holon}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-A new R6 cell object mapped to the C++ cell object that was created.
-  The function will cause a fatal error in R if the c object returns
-    an error message.
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-C_Model-createVariable"></a>}}
-\if{latex}{\out{\hypertarget{method-C_Model-createVariable}{}}}
-\subsection{Method \code{createVariable()}}{
-Creates a new variable in the model
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_Model$createVariable(name, value, holon)}\if{html}{\out{</div>}}
-}
-
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{name}}{Character string with the name of the variable}
-
-\item{\code{value}}{Value object of the new variable}
-
-\item{\code{holon}}{Holon object containing the new variable}
-}
-\if{html}{\out{</div>}}
-}
-\subsection{Returns}{
-External pointer to the variable that was created
-}
-}
-\if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-C_Model-init"></a>}}
-\if{latex}{\out{\hypertarget{method-C_Model-init}{}}}
-\subsection{Method \code{init()}}{
-Initialize the state machine
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_Model$init()}\if{html}{\out{</div>}}
-}
-
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-C_Model-installReporter"></a>}}
@@ -183,6 +100,23 @@ Run the state machine simulation
 \if{html}{\out{<div class="r">}}\preformatted{C_Model$run()}\if{html}{\out{</div>}}
 }
 
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-C_Model-setTimeValidVariable"></a>}}
+\if{latex}{\out{\hypertarget{method-C_Model-setTimeValidVariable}{}}}
+\subsection{Method \code{setTimeValidVariable()}}{
+Set the pointer to the value of the time valid variable
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{C_Model$setTimeValidVariable(variable)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{variable}}{The variable with the time valid value}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-C_Model-clone"></a>}}

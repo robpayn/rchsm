@@ -30,6 +30,7 @@ class Holon : public Variable
     /*! 
       \brief 
         Constructor based on a provided name
+     
       \param std::string 
         The name for the new holon object.
     */
@@ -38,6 +39,7 @@ class Holon : public Variable
     /*! 
       \brief
         Construct a new instance based on the name and value provided
+     
       \param std::string 
         The name for the new holon object.
       \param ValueVarmap* 
@@ -51,28 +53,45 @@ class Holon : public Variable
     /*! 
       \brief 
         Add a Variable to the holon
-      \param Variable* 
-        A pointer to a variable
-      \return 
-        No return value
       \details
         Note that the holon will assume ownership of the Variable referenced
         by the pointer.
         The Variable will be deleted if the holon's destructor is called.
+     
+      \param Variable* 
+        Pointer to the variable to be added
+     
+      \return 
+        No return value
     */
     void addVariable(Variable*);
     
     /*! 
       \brief
         Get a variable with the provided name
+     
       \param std::string 
         Name of the variable to retrieve.
+     
       \return 
         Pointer to the variable with the provided name. 
         Returns a null pointer if the variable name is not found.
     */
     Variable* getVariable(std::string);
     
+    /*!
+      \brief
+        Template for a method for getting the value of a variable in the
+        holon cast to the value type provided
+      \tparam T_VALUE
+        Class of the value for the requested variable
+     
+      \param std::string
+        The name of the variable for which the value is being requested
+     
+      \return
+        The value of the variable requested cast to the value type provided
+    */
     template<class T_VALUE>
     T_VALUE* getVarValue(std::string name)
     {

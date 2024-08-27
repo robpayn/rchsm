@@ -15,7 +15,7 @@ Time::Time(int phase, double init) :
   ValueDoubleMemory(phase, init)
 {}
 
-void Time::setDependencies(DepManager* dm) 
+void Time::setDependencies(DepManager& dm) 
 {
   
   std::unordered_map<std::string, Variable*> boundVars = 
@@ -32,7 +32,7 @@ void Time::setDependencies(DepManager* dm)
   }
 
   timeStep_ = &(
-    dm->setDependency<ValueDouble>(this, boundVars.begin()->second)->v_
+    dm.setDependency<ValueDouble>(this, boundVars.begin()->second)->v_
   );
   
 }

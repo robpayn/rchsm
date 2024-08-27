@@ -1,62 +1,71 @@
 library(rchsm, lib.loc = "./build")
 
-model <- C_Model$new(
-  depManager = C_DepManInstallOrder$new(numPhases = 3), 
-  solver = C_SolverForwardEuler$new()
-)
+model <- C_Model$new(depManager = C_DepManInstallOrder$new(numPhases = 3))
+matrix <- model$matrix;
 
-cell <- model$createCell("CellTime")
+cell <- matrix$createCell("CellTime")
 beh <- C_Behavior$new(className = "BehCellTime")
 beh$createVariables(
-  machine = model, 
+  matrix = matrix, 
   holon = cell,
   initTime = 0,
   initIteration = 0,
   initTimeValid = TRUE
 )
-model$createVariable(
+matrix$createVariable(
   name = "TimeMax",
   value = C_Value$new(type = "ValueDouble", initValue = 40),
   holon = cell
 )
 
-bound <-model$createBound("BoundTime", NULL, cell)
-model$createVariable(
+model$setTimeValidVariable(variable = cell$getVariablePointer("TimeValid"))
+
+reporter <- C_ReporterTable$new(
+  interval = 1, 
+  .iterationVariable = cell$getVariablePointer("Iteration")
+)
+reporter$trackVariable(variable = cell$getVariablePointer("Iteration"))
+reporter$trackVariable(variable = cell$getVariablePointer("Time"))
+
+bound <- matrix$createBound("BoundTime", NULL, cell)
+timeStep <- matrix$createVariable(
   name = "TimeStep",
   value = C_Value$new(type = "ValueDouble", initValue = 1),
   holon = bound
 )
 
-reporter <- C_ReporterTable$new(interval = 1)
-model$installReporter(reporter)
-reporter$trackVariable(variable = cell$getVariablePointer("Iteration"))
-reporter$trackVariable(variable = cell$getVariablePointer("Time"))
+matrix$installSolver(C_SolverForwardEuler$new(timeStep = timeStep))
 
 
-cell <-model$createCell("Cell01")
+cell <-matrix$createCell("Cell01")
 beh <- C_Behavior$new(className = "BehCellSolute", "Nitrate")
 beh$createVariables( 
-  machine = model, 
+  matrix = matrix, 
   holon = cell, 
   initNitrate = 10
 )
+
 reporter$trackVariable(variable = cell$getVariablePointer("NitrateConc"))
 
-bound <- model$createBound("Bound01", NULL, cell)
+bound <- matrix$createBound("Bound01", NULL, cell)
 beh <- C_Behavior$new(className = "BehBoundFirstOrder", "Nitrate")
 beh$createVariables(
-  machine = model,
+  matrix = matrix,
   holon = bound,
   initRate = 0
 )
-model$createVariable(
+matrix$createVariable(
   name = "NitrateRateCoeff",
-  value = C_Value$new(type = "ValueDouble", initValue = 0.2),
+  value = C_Value$new(type = "ValueDouble", initValue = 0.1),
   holon = bound
 )
-reporter$trackVariable(variable = bound$getVariablePointer("NitrateUptake"))
 
-model$init()
+reporter$trackRate(
+  variable = bound$getVariablePointer("NitrateRate"),
+  from = FALSE
+)
+
+model$installReporter(reporter)
 
 cat(model$getValueString())
 

@@ -15,6 +15,7 @@ An R reference to a table reporter object
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-C_ReporterTable-new}{\code{C_ReporterTable$new()}}
+\item \href{#method-C_ReporterTable-trackRate}{\code{C_ReporterTable$trackRate()}}
 \item \href{#method-C_ReporterTable-trackVariable}{\code{C_ReporterTable$trackVariable()}}
 \item \href{#method-C_ReporterTable-clone}{\code{C_ReporterTable$clone()}}
 }
@@ -34,6 +35,7 @@ Create an instance of the solver
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{C_ReporterTable$new(
   interval,
+  .iterationVariable,
   className = "ReporterTable",
   regFinalizer = FALSE
 )}\if{html}{\out{</div>}}
@@ -44,6 +46,8 @@ Create an instance of the solver
 \describe{
 \item{\code{interval}}{Integer defining the iteration interval for reporting}
 
+\item{\code{.iterationVariable}}{External pointer to the variable with the iteration counter value}
+
 \item{\code{className}}{(Optional) Character string with the name of the class.
 Defaults to "ReporterTable".}
 
@@ -51,6 +55,30 @@ Defaults to "ReporterTable".}
 or not (FALSE).
 Defaults to FALSE.
 See super class C_Object for more information.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-C_ReporterTable-trackRate"></a>}}
+\if{latex}{\out{\hypertarget{method-C_ReporterTable-trackRate}{}}}
+\subsection{Method \code{trackRate()}}{
+Designate a rate variable with value(s) to be tracked by the reporter
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{C_ReporterTable$trackRate(variable, from = TRUE, to = TRUE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{variable}}{Either an external pointer or an R6 object referring to the rate 
+variable to be tracked.}
+
+\item{\code{from}}{Logical TRUE if the rate value on the to side should be added, 
+FALSE if not.}
+
+\item{\code{to}}{Logical TRUE if the rate value on the from side should be added,
+FALSE if not.}
 }
 \if{html}{\out{</div>}}
 }

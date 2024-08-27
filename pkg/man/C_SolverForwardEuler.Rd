@@ -32,6 +32,7 @@ An R reference to a forward Euler solver object
 Create an instance of the solver
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{C_SolverForwardEuler$new(
+  timeStep,
   className = "SolverForwardEuler",
   regFinalizer = FALSE
 )}\if{html}{\out{</div>}}
@@ -40,6 +41,8 @@ Create an instance of the solver
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
+\item{\code{timeStep}}{Variable object for the time step}
+
 \item{\code{className}}{(Optional) Character string with the name of the class.
 Defaults to "SolverForwardEuler".}
 

@@ -11,6 +11,8 @@ class SolverForwardEuler : public Solver
 {
   public:
     
+    SolverForwardEuler(double&);
+    
     void solve() override;
     
 };

@@ -18,7 +18,7 @@ class Iteration : public ValueLongMemory
     
     // Methods
     
-    void setDependencies(DepManager*) override;
+    void setDependencies(DepManager&) override;
     
     void update() override;
 };

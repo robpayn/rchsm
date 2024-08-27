@@ -7,31 +7,19 @@
 #include "Cell.h"
 #include "values/ValueLong.h"
 
-ReporterInterval::ReporterInterval(int interval) :
+ReporterInterval::ReporterInterval(int interval, Variable& var) :
   interval_(interval)
-{}
-
-void ReporterInterval::init(Matrix* matrix)
 {
-  
-  Cell* cell = dynamic_cast<Cell*>(matrix->getVariable(cellTimeName_));
-  if(!cell) {
-    std::ostringstream error;
-    error << "Reporter could not find the " << cellTimeName_ 
-      << " cell in the matrix.";
-    throw std::runtime_error(error.str());
-  }
-
-  ValueLong* value = cell->getVarValue<ValueLong>(varNameIter_);
+  ValueLong* value = dynamic_cast<ValueLong*>(var.value_);
   if(!value) {
     std::ostringstream error;
-    error << "Reporter could not find the " << varNameIter_ 
-          << " variable in the time cell.";
+    error << "Reporter could not cast the value of " << var.name_ 
+      << " to a long integer type. Type of variable provided is invalid for an"
+      << " iteration counter.";
     throw std::runtime_error(error.str());
   }
   
   iteration_ = &(value->v_);
-  
 }
 
 bool ReporterInterval::isActive()

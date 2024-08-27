@@ -2,12 +2,13 @@
  * BehCellDOConc.h
  */
 
-#ifndef CHSM_RESOURCES_SOLUTES_DO_CONC_BEHCELLDOCONC_H_
-#define CHSM_RESOURCES_SOLUTES_DO_CONC_BEHCELLDOCONC_H_
+#ifndef CHSM_RESOURCES_SOLUTES_CONC_DO_BEHCELLDOCONC_H_
+#define CHSM_RESOURCES_SOLUTES_CONC_DO_BEHCELLDOCONC_H_
 
-#include "../../../../CHSM/Behavior.h"
+class Matrix;
+class Holon;
 
-class BehCellDOConc : public Behavior
+class BehCellDOConc
 {
   public:
     // Constructors/Destructor
@@ -17,10 +18,8 @@ class BehCellDOConc : public Behavior
     
     // Methods
     
-    void createVariables(Machine*, Holon*) override;
-    
-    void createVariables(Machine*, Holon*, double);
+    void createVariables(Matrix*, Holon&, double);
     
 };
 
-#endif /* CHSM_RESOURCES_SOLUTES_DO_CONC_BEHCELLDOCONC_H_ */
+#endif /* CHSM_RESOURCES_SOLUTES_CONC_DO_BEHCELLDOCONC_H_ */

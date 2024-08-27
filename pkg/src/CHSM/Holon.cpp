@@ -23,8 +23,7 @@ Holon::Holon(std::string name, ValueVarmap* value) :
 void Holon::addVariable(Variable* var)
 {
   try {
-    static_cast <ValueVarmap*> (value_)->addVariable(var);
-    var->setHolon(this);
+    static_cast<ValueVarmap*>(value_)->addVariable(var);
   }
   catch (std::runtime_error &thrown) {
     std::ostringstream error;

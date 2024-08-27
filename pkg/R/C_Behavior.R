@@ -39,20 +39,20 @@ C_Behavior <- R6Class(
     #' @description
     #'   Create the variables controlling the behavior in the provided holon.
     #'
-    #' @param machine
-    #'   The machine object where the variables should be registered.
+    #' @param matrix
+    #'   The matrix object where the variables should be installed
     #' @param holon
-    #'   The holon object where the variables should be created.
+    #'   The holon object where the variables should be installed
     #' @param ...
     #'   Further arguments to be passed on to the associated C function.
     #'   These are often initial values for the variable being created.
     #'   
-    createVariables = function(machine, holon, ...) 
+    createVariables = function(matrix, holon, ...) 
     {
       return(
         self$callFunction(
           fun = "createVariables",
-          machine$.external,
+          matrix$.external,
           holon$.external,
           ...
         )

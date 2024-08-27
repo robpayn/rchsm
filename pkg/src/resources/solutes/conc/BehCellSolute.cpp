@@ -3,7 +3,7 @@
  */
 
 #include "BehCellSolute.h"
-#include "../../../Machine.h"
+#include "../../../Matrix.h"
 #include "../../../CHSM/values/StateDouble.h"
 
 BehCellSolute::BehCellSolute(std::string soluteName) :
@@ -12,19 +12,14 @@ BehCellSolute::BehCellSolute(std::string soluteName) :
   setNames();
 }
 
-void BehCellSolute::createVariables(Machine* machine, Holon* holon) {
-  int phase = 2;
-  machine->createVariable(stateName_, new StateDouble(phase), holon);
-}
-
 void BehCellSolute::createVariables(
-  Machine* machine, 
-  Holon* holon, 
+  Matrix* matrix, 
+  Holon& holon, 
   double initValue
 ) 
 {
   int phase = 2;
-  machine->createVariable(
+  matrix->createVariable(
     stateName_, 
     new StateDouble(phase, initValue), 
     holon

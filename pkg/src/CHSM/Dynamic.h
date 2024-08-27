@@ -37,14 +37,19 @@ class Dynamic
     /*! 
       \brief
         Get the variables upon which the update method depends
+     
+      \param DepManager&
+        Reference to the dependency manager handling dependencies 
+     
       \return 
         No return value
     */
-    virtual void setDependencies(DepManager*) = 0;
+    virtual void setDependencies(DepManager&) = 0;
     
     /*! 
       \brief
         Update the value based on calculation from other variable values
+     
       \return 
         No return value
     */

@@ -12,7 +12,7 @@ void SolverForwardEuler_finalizer(SEXP);
 
 extern "C"
 {
-  SEXP SolverForwardEuler_constructor(SEXP);
+  SEXP SolverForwardEuler_constructor(SEXP, SEXP);
   SEXP SolverForwardEuler_destructor(SEXP);
 }
 

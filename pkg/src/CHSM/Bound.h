@@ -49,6 +49,7 @@ class Bound : public Holon
     /*! 
       \brief
         Construct a new instance by name
+     
       \param std::string 
         Name for the new bound.
     */
@@ -57,15 +58,16 @@ class Bound : public Holon
     /*! 
       \brief
         Construct a new instance attached to cells
-      \std::string
+      \details
+        Passing null pointers for cells is valid if the bound functions
+        as an external edge of the state machine.
+     
+      \param std::string
         Name for the new bound
       \param Cell* 
         Pointer to "from" cell
       \param Cell* 
         Pointer to "to" cell
-      \details
-        Passing null pointers for cells is valid if the bound functions
-        as an external edge of the state machine.
     */
     Bound(std::string, Cell*, Cell*);
     

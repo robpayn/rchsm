@@ -4,12 +4,11 @@
 
 #include "Bound_R.h"
 
-void Bound_finalizer(SEXP externalPointer) {
-  
+void Bound_finalizer(SEXP externalPointer) 
+{
   Bound* pointer = static_cast <Bound*> (R_ExternalPtrAddr(externalPointer));
   R_ClearExternalPtr(externalPointer);
   delete pointer;
-  
 }
 
 SEXP Bound_destructor(SEXP externalPointer)

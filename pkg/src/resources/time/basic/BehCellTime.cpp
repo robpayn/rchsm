@@ -3,37 +3,29 @@
  */
 
 #include "BehCellTime.h"
+#include "../../../Matrix.h"
 #include "Time.h"
 #include "Iteration.h"
 #include "TimeValid.h"
-#include "../../../Machine.h"
 
 BehCellTime::BehCellTime() {}
 
-void BehCellTime::createVariables(Machine* machine, Holon* holon) 
-{
-  int phase = -1;
-  machine->createVariable("Time", new Time(phase), holon);
-  machine->createVariable("Iteration", new Iteration(phase), holon);
-  machine->createVariable("TimeValid", new TimeValid(phase), holon);
-}
-
 void BehCellTime::createVariables(
-  Machine* machine, 
-  Holon* holon,
+  Matrix* matrix, 
+  Holon& holon,
   double initTime,
   long initIteration,
   bool initTimeValid
 ) 
 {
   int phase = 0;
-  machine->createVariable("Time", new Time(phase, initTime), holon);
-  machine->createVariable(
+  matrix->createVariable("Time", new Time(phase, initTime), holon);
+  matrix->createVariable(
     "Iteration", 
     new Iteration(phase, initIteration), 
     holon
   );
-  machine->createVariable(
+  matrix->createVariable(
     "TimeValid", 
     new TimeValid(phase, initTimeValid), 
     holon

@@ -12,7 +12,7 @@ Iteration::Iteration(int phase, long init) :
   ValueLongMemory(phase, init)
 {}
 
-void Iteration::setDependencies(DepManager* dm) {}
+void Iteration::setDependencies(DepManager& dm) {}
 
 void Iteration::update() {
   

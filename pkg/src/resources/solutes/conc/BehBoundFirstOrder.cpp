@@ -3,9 +3,8 @@
  */
 
 #include "BehBoundFirstOrder.h"
-#include "../../../Machine.h"
+#include "../../../Matrix.h"
 #include "RateFirstOrder.h"
-#include "../../../CHSM/values/ValueDoubleMemory.h"
 
 BehBoundFirstOrder::BehBoundFirstOrder(std::string soluteName) :
   soluteName_(soluteName)
@@ -13,27 +12,17 @@ BehBoundFirstOrder::BehBoundFirstOrder(std::string soluteName) :
   setNames();
 }
 
-void BehBoundFirstOrder::createVariables(Machine* machine, Holon* holon) {
-  int phase = 1;
-  machine->createVariable(
-    rateName_, 
-    new RateFirstOrder(phase, stateName_, coeffName_), 
-    holon
-  );
-  machine->createVariable(coeffName_, new ValueDouble(), holon);
-}
-
 void BehBoundFirstOrder::createVariables(
-    Machine* machine, 
-    Holon* holon, 
-    double initUptake
+  Matrix* matrix, 
+  Holon& holon, 
+  double initUptake
 ) 
 {
   int phase = 1;
-  machine->createVariable(
-      rateName_, 
-      new RateFirstOrder(phase, initUptake, stateName_, coeffName_), 
-      holon
+  matrix->createVariable(
+    rateName_, 
+    new RateFirstOrder(phase, initUptake, stateName_, coeffName_), 
+    holon
   );
 }
 

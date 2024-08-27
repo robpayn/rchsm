@@ -41,7 +41,7 @@ SEXP BehBoundFirstOrder_constructor(SEXP soluteName, SEXP regFinalizer)
 
 SEXP BehBoundFirstOrder_createVariables(
   SEXP rPointerBeh, 
-  SEXP rPointerMachine,
+  SEXP rPointerMatrix,
   SEXP rPointerBound,
   SEXP initRate
 )
@@ -49,14 +49,14 @@ SEXP BehBoundFirstOrder_createVariables(
   
   BehBoundFirstOrder* pointerBeh = 
     static_cast <BehBoundFirstOrder*> (R_ExternalPtrAddr(rPointerBeh));
-  Machine* pointerMachine =
-    static_cast <Machine*> (R_ExternalPtrAddr(rPointerMachine));
+  Matrix* pointerMatrix =
+    static_cast <Matrix*> (R_ExternalPtrAddr(rPointerMatrix));
   Bound* pointerBound =
     static_cast <Bound*> (R_ExternalPtrAddr(rPointerBound));
   
   pointerBeh->createVariables(
-    pointerMachine, 
-    pointerBound,
+    pointerMatrix, 
+    *pointerBound,
     asReal(initRate)
   );
   

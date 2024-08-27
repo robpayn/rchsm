@@ -12,7 +12,7 @@ RateDOGPP::RateDOGPP(int phase, double initValue, std::string stateName) :
   RateDouble(phase, initValue, stateName)
 {}
 
-void RateDOGPP::setDependencies(DepManager* dm)
+void RateDOGPP::setDependencies(DepManager& dm)
 {}
 
 void RateDOGPP::update()

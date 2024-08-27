@@ -59,6 +59,7 @@ class Value
     /*! 
       \brief
         Query if the value is currently defined
+     
       \return
         Boolean true if value is defined, false otherwise
     */
@@ -67,8 +68,10 @@ class Value
     /*! 
       \brief
         Set the pointer to the variable containing this value
+     
       \param Variable* 
         Pointer to the variable containing this value.
+     
       \return 
         No return value
     */

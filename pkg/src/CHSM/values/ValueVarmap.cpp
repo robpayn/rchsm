@@ -36,6 +36,7 @@ void ValueVarmap::addVariable(Variable* var)
 {
   if (map_.find(var->name_) == map_.end()) {
     map_[var->name_] = var;
+    var->setHolon(dynamic_cast<Holon*>(var_));
   } else {
     std::ostringstream error;
     error << "Variable name " << var->name_ << " has already been added.";

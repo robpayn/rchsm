@@ -4,18 +4,16 @@
 
 #include "Matrix.h"
 #include "CHSM/Bound.h"
+#include "CHSM/Cell.h"
+#include "CHSM/DepManager.h"
+#include "CHSM/Solver.h"
 #include "CHSM/values/ValueDouble.h"
-#include "CHSM/DepManInstallOrder.h"
-#include "CHSM/SolverForwardEuler.h"
+#include "CHSM/Rate.h"
 
-//DEBUG CODE
-// #include <iostream>
-
-Matrix::Matrix(DepManager* dm, Solver* solver) :
+Matrix::Matrix(DepManager* dm) :
   ValueVarmap(),
   Dynamic(-1),
-  dm_(dm),
-  solver_(solver)
+  dm_(dm)
 {}
 
 Matrix::~Matrix()
@@ -24,39 +22,83 @@ Matrix::~Matrix()
   delete solver_;
 }
 
-void Matrix::regDynamic(Dynamic* dynamic) {
-  if (dynamic->phase_ >= 0) {
-    dm_->addDynamic(dynamic);
-    // DEBUG CODE
-    // std::cerr << dynamic->phase_ << ":" << dm_->size(dynamic->phase_) << ",";
+Bound* Matrix::createBound (
+  std::string name, 
+  Cell* cellFrom, 
+  Cell* cellTo, 
+  Holon* holon
+) 
+{
+  try {
+    Bound* bound = new Bound(name, cellFrom, cellTo);
+    
+    if (holon) {
+      holon->addVariable(bound);
+    } else {
+      addVariable(bound);
+    }
+    
+    return bound;
+  }
+  catch (std::runtime_error &thrown) {
+    std::ostringstream error;
+    error << "Error in creating the bound:\n  " << thrown.what();
+    throw error;
   }
 }
 
-void Matrix::setDependencies(DepManager* dm) {
-
-  dm_->manageDependencies();
-  solver_->setDynamics(dm_);
+Cell* Matrix::createCell(std::string name, Holon* holon) 
+{
+  Cell* cell = new Cell(name);
   
-  Bound* bound = dynamic_cast<Bound*>(getVariable("BoundTime"));
-  if(!bound) {
-    std::ostringstream error;
-    error << "Matrix could not find the BoundTime bound.";
-    throw error.str();
-  }
-
-  ValueDouble* val = bound->getVarValue<ValueDouble>("TimeStep");
-  if(val) {
-    solver_->setTimeStep(&(val->v_));
+  if (holon) {
+    holon->addVariable(cell);
   } else {
-    std::ostringstream error;
-    error << "Matrix could not find the TimeStep variable.";
-    throw error.str();
-  };
+    addVariable(cell);
+  }
   
+  return cell;
 }
 
-void Matrix::update() {
+Variable* Matrix::createVariable(std::string name, Value* value, Holon& holon)
+{
+  Variable* variable = new Variable(name, value);
+  installVariable(variable, holon);
+  return variable;
+}
+
+void Matrix::installSolver(Solver* solver)
+{
+  solver_ = solver;
+}
+
+void Matrix::installVariable(Variable* variable, Holon& holon)
+{
+  holon.addVariable(variable);
   
+  Dynamic* dynamic = dynamic_cast<Dynamic*>(variable->value_);
+  if(dynamic && (dynamic->phase_ >= 0)) {
+    dm_->addDynamic(dynamic);
+  }
+  
+  Rate* rate = dynamic_cast<Rate*>(variable->value_);
+  if(rate) {
+    rate->attachStates();
+  }
+}
+
+void Matrix::setDependencies()
+{
+  setDependencies(*dm_);
+}
+
+void Matrix::setDependencies(DepManager& dm) 
+{
+  dm.manageDependencies();
+  solver_->setDynamics(dm);
+}
+
+void Matrix::update() 
+{
   solver_->solve();
-  
 }

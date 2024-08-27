@@ -16,13 +16,13 @@ class Solver
     
     std::vector<Dynamic*>* dynamics_ = nullptr;
     
-    double* timeStep_ = nullptr;
+    double& timeStep_ ;
+    
+    Solver(double&);
     
     virtual ~Solver();
     
-    void setDynamics(DepManager*);
-    
-    void setTimeStep(double*);
+    void setDynamics(DepManager&);
     
     virtual void solve() = 0;
     

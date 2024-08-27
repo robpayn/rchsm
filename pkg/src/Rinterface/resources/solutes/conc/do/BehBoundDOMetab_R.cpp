@@ -40,7 +40,7 @@ SEXP BehBoundDOMetab_constructor(SEXP regFinalizer)
 
 SEXP BehBoundDOMetab_createVariables(
   SEXP rPointerBeh, 
-  SEXP rPointerMachine,
+  SEXP rPointerMatrix,
   SEXP rPointerBound,
   SEXP initDOGPP,
   SEXP initDOER
@@ -49,14 +49,14 @@ SEXP BehBoundDOMetab_createVariables(
   
   BehBoundDOMetab* pointerBeh = 
     static_cast <BehBoundDOMetab*> (R_ExternalPtrAddr(rPointerBeh));
-  Machine* pointerMachine =
-    static_cast <Machine*> (R_ExternalPtrAddr(rPointerMachine));
+  Matrix* pointerMatrix =
+    static_cast <Matrix*> (R_ExternalPtrAddr(rPointerMatrix));
   Bound* pointerBound =
     static_cast <Bound*> (R_ExternalPtrAddr(rPointerBound));
   
   pointerBeh->createVariables(
-    pointerMachine, 
-    pointerBound,
+    pointerMatrix, 
+    *pointerBound,
     asReal(initDOGPP),
     asReal(initDOER)
   );

@@ -18,16 +18,22 @@ C_Model <- R6Class(
   inherit = C_Holon,
   public = list(
     
+    #' @field matrix
+    #'   The matrix evaluating the state machine
+    #'   
+    matrix = NULL,
+    
     #' @description
     #'   Constructs an object that is a new instance of the class
     #'
     #' @param depManager
-    #'   The dependency manager C object the machine should use
-    #' @param solver
-    #'   The solver C object the machine should use
+    #'   The dependency manager for the matrix
+    #' @param matrix
+    #'   (Optional) The matrix value C object for the machine.
+    #'   Defaults to a new matrix object with the provided dependency manager
     #' @param name
     #'   (Optional) Name of the model.
-    #'     Default value is "Model".
+    #'   Default value is "Model".
     #' @param className
     #'   (Optional) Name of the class used in accessing c++ functions.
     #'   Default value is "Machine"
@@ -38,8 +44,8 @@ C_Model <- R6Class(
     #'   See super class C_Object for more information.
     #' 
     initialize = function(
-      depManager, 
-      solver,
+      depManager,
+      matrix = C_Matrix$new(depManager),
       name = "Model", 
       className = "Machine", 
       regFinalizer = TRUE
@@ -47,101 +53,11 @@ C_Model <- R6Class(
     {
       super$initialize(
         className = className, 
-        name = name, 
-        .depManager = depManager$.external,
-        .solver = solver$.external,
+        name, 
+        matrix$.external,
         regFinalizer = regFinalizer
       )
-    },
-    
-    #' @description
-    #'   Creates a new bound in the model
-    #'   
-    #' @param name 
-    #'   The name of the bound to be created
-    #' @param cellFrom
-    #'   R6 bound object for the from cell
-    #' @param cellTo
-    #'   R6 bound object for the to cell
-    #' @param holon
-    #'   (Optional) R6 holon object where the bound should be created.
-    #'   Default NULL value results in creation of the bound in the model holon
-    #' 
-    #' @return 
-    #'   A new R6 bound object mapped to the C++ bound object that was created.
-    #'   The function will cause a fatal error in R if the c object returns
-    #'     an error message.
-    #'   
-    createBound = function(name, cellFrom, cellTo, holon = NULL) 
-    {
-      return(
-        C_Bound$new(
-          self$callFunction(
-            fun = "createBound",
-            name,
-            cellFrom$.external,
-            cellTo$.external,
-            holon$.external
-          )
-        )
-      )
-    },
-    
-    #' @description
-    #'   Creates a new cell in the model
-    #'   
-    #' @param name 
-    #'   The name of the cell to be created
-    #' @param holon
-    #'   (Optional) R6 holon object where the cell should be created.
-    #'   Default NULL value results in creation of the cell in the model holon
-    #' 
-    #' @return 
-    #'   A new R6 cell object mapped to the C++ cell object that was created.
-    #'   The function will cause a fatal error in R if the c object returns
-    #'     an error message.
-    #'   
-    createCell = function(name, holon = NULL) 
-    {
-      return(
-        C_Cell$new(
-          self$callFunction(fun = "createCell", name, holon$.external)
-        )
-      )
-    },
-    
-    #' @description
-    #'   Creates a new variable in the model
-    #'
-    #' @param name
-    #'   Character string with the name of the variable
-    #' @param value
-    #'   Value object of the new variable 
-    #' @param holon
-    #'   Holon object containing the new variable
-    #'   
-    #' @return
-    #'   External pointer to the variable that was created
-    #'   
-    createVariable = function(name, value, holon) 
-    {
-      return(
-        self$callFunction(
-          fun = "createVariable",
-          name,
-          value$.external,
-          holon$.external
-        )
-      )
-    },
-    
-    #' @description
-    #'   Initialize the state machine
-    #'   
-    init = function()
-    {
-      self$callFunction(fun = "init")
-      invisible(NULL)
+      self$matrix = matrix;
     },
     
     #' @description
@@ -162,6 +78,26 @@ C_Model <- R6Class(
     run = function()
     {
       self$callFunction(fun = "run")
+      invisible(NULL)
+    },
+    
+    #' @description
+    #'   Set the pointer to the value of the time valid variable
+    #'   
+    #' @param variable
+    #'   The variable with the time valid value
+    #'   
+    setTimeValidVariable = function(variable)
+    {
+      if(typeof(variable) == "externalptr") {
+        self$callFunction(fun = "setTimeValidVariable", variable)
+      } else if (is.R6(variable)) {
+        self$callFunction(fun = "setTimeValidVariable", variable$.external)
+      } else {
+        stop(
+          "The time valid variable provided to the model is an invalid type."
+        )
+      }
       invisible(NULL)
     }
     

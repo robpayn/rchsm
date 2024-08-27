@@ -40,21 +40,21 @@ SEXP BehCellDOConc_constructor(SEXP regFinalizer)
 
 SEXP BehCellDOConc_createVariables(
   SEXP rPointerBeh, 
-  SEXP rPointerMachine,
+  SEXP rPointerMatrix,
   SEXP rPointerCell,
   SEXP initDOConc
 )
 {
   BehCellDOConc* pointerBeh = 
     static_cast <BehCellDOConc*> (R_ExternalPtrAddr(rPointerBeh));
-  Machine* pointerMachine =
-    static_cast <Machine*> (R_ExternalPtrAddr(rPointerMachine));
+  Matrix* pointerMatrix =
+    static_cast <Matrix*> (R_ExternalPtrAddr(rPointerMatrix));
   Cell* pointerCell =
     static_cast <Cell*> (R_ExternalPtrAddr(rPointerCell));
   
   pointerBeh->createVariables(
-    pointerMachine, 
-    pointerCell,
+    pointerMatrix, 
+    *pointerCell,
     asReal(initDOConc)
   );
   

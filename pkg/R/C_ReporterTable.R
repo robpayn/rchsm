@@ -21,6 +21,8 @@ C_ReporterTable <- R6Class(
     #'   
     #' @param interval
     #'   Integer defining the iteration interval for reporting
+    #' @param .iterationVariable
+    #'   External pointer to the variable with the iteration counter value
     #' @param className
     #'   (Optional) Character string with the name of the class.
     #'     Defaults to "ReporterTable".
@@ -32,6 +34,7 @@ C_ReporterTable <- R6Class(
     #'   
     initialize = function(
       interval,
+      .iterationVariable,
       className = "ReporterTable",
       regFinalizer = FALSE
     ) 
@@ -39,8 +42,34 @@ C_ReporterTable <- R6Class(
       super$initialize(
         className = className,
         interval,
+        .iterationVariable,
         regFinalizer = regFinalizer
       )
+    },
+    
+    #' @description 
+    #'   Designate a rate variable with value(s) to be tracked by the reporter
+    #'   
+    #' @param variable
+    #'   Either an external pointer or an R6 object referring to the rate 
+    #'   variable to be tracked.
+    #' @param from
+    #'   Logical TRUE if the rate value on the to side should be added, 
+    #'   FALSE if not.
+    #' @param to
+    #'   Logical TRUE if the rate value on the from side should be added,
+    #'   FALSE if not.
+    #'   
+    trackRate = function(variable, from = TRUE, to = TRUE)
+    {
+      if(typeof(variable) == "externalptr") {
+        self$callFunction(fun = "trackRate", variable, from, to)
+      } else if (is.R6(variable)) {
+        self$callFunction(fun = "trackRate", variable$.external, from, to)
+      } else {
+        stop("Provided variable is an invalid type.")
+      }
+      invisible(NULL)
     },
     
     #' @description 

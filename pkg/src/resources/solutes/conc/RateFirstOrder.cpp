@@ -25,17 +25,26 @@ RateFirstOrder::RateFirstOrder(
 ) :
   RateDouble(phase, initValue, stateName),
   coeffName_(coeffName)
-{}
+{
+  vf_ = 0;
+}
 
-void RateFirstOrder::setDependencies(DepManager* dm)
+void RateFirstOrder::setDependencies(DepManager& dm)
 {
   rateCoeff_ = &(
-    dm->setDependency<ValueDouble>(this, var_->holon_, coeffName_)->v_
+    dm.setDependency<ValueDouble>(this, var_->holon_, coeffName_)->v_
   );
   
   Cell* cell = static_cast<Bound*>(var_->holon_)->cellTo_;
-  ValueDouble* state = dm->setDependency<ValueDouble>(this, cell, stateName_);
-  conc_ = &(state->v_);
+  if(!cell) {
+    std::ostringstream error;
+    error << "Cell must be attached on the to side of bound "
+      << var_->holon_->name_ << " containing dynamic value RateFirstOrder.";
+    throw std::runtime_error(error.str());
+  }
+  conc_ = &(
+    dm.setDependency<ValueDouble>(this, cell, stateName_)->v_
+  );
 }
 
 void RateFirstOrder::update()

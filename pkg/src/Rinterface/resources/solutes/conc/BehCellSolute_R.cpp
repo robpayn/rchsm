@@ -40,21 +40,21 @@ SEXP BehCellSolute_constructor(SEXP soluteName, SEXP regFinalizer)
 
 SEXP BehCellSolute_createVariables(
   SEXP rPointerBeh, 
-  SEXP rPointerMachine,
+  SEXP rPointerMatrix,
   SEXP rPointerCell,
   SEXP initValue
 )
 {
   BehCellSolute* pointerBeh = 
     static_cast <BehCellSolute*> (R_ExternalPtrAddr(rPointerBeh));
-  Machine* pointerMachine =
-    static_cast <Machine*> (R_ExternalPtrAddr(rPointerMachine));
+  Matrix* pointerMatrix =
+    static_cast <Matrix*> (R_ExternalPtrAddr(rPointerMatrix));
   Cell* pointerCell =
     static_cast <Cell*> (R_ExternalPtrAddr(rPointerCell));
   
   pointerBeh->createVariables(
-    pointerMachine, 
-    pointerCell,
+    pointerMatrix, 
+    *pointerCell,
     asReal(initValue)
   );
   

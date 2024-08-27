@@ -7,7 +7,6 @@
 
 #include <R.h>
 #include <Rinternals.h>
-#include "../../../../resources/time/basic/BehCellTime.h"
 
 extern "C"
 {

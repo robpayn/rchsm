@@ -23,13 +23,11 @@ void DepManager::addDynamic(Dynamic* dynamic)
 
 void DepManager::manageDependencies()
 {
-  
   for(int phase = 0; phase < numPhases_; phase++) {
     for(Dynamic* dynamic : dynamics_[phase]) {
-      dynamic->setDependencies(this);
+      dynamic->setDependencies(*this);
     }
   }
-  
 }
 
 unsigned int DepManager::size(int phase)

@@ -15,7 +15,7 @@ class RateDOER : public RateDouble
     
     RateDOER(int, double, std::string);
     
-    void setDependencies(DepManager*) override;
+    void setDependencies(DepManager&) override;
     
     void update() override;
     

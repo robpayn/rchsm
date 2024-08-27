@@ -35,7 +35,12 @@ C_Variable <- R6Class(
     #'   NULL value, then the new R6 object will be associated with the 
     #'   existing C++ Object referenced by the pointer.
     #' 
-    initialize = function(className = "Variable", ..., regFinalizer, .external = NULL) 
+    initialize = function(
+      className = "Variable", 
+      ..., 
+      regFinalizer, 
+      .external = NULL
+    ) 
     {
       super$initialize(
         className = className, 

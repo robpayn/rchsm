@@ -56,15 +56,15 @@ See super class C_Object for more information.}
 \subsection{Method \code{createVariables()}}{
 Create the variables controlling the behavior in the provided holon.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_Behavior$createVariables(machine, holon, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{C_Behavior$createVariables(matrix, holon, ...)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{machine}}{The machine object where the variables should be registered.}
+\item{\code{matrix}}{The matrix object where the variables should be installed}
 
-\item{\code{holon}}{The holon object where the variables should be created.}
+\item{\code{holon}}{The holon object where the variables should be installed}
 
 \item{\code{...}}{Further arguments to be passed on to the associated C function.
 These are often initial values for the variable being created.}

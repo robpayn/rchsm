@@ -2,21 +2,20 @@
  * BehBoundDOMetab.h
  */
 
-#ifndef RESOURCES_SOLUTES_DO_CONC_BEHBOUNDDOMETAB_H_
-#define RESOURCES_SOLUTES_DO_CONC_BEHBOUNDDOMETAB_H_
+#ifndef RESOURCES_SOLUTES_CONC_DO_BEHBOUNDDOMETAB_H_
+#define RESOURCES_SOLUTES_CONC_DO_BEHBOUNDDOMETAB_H_
 
-#include "../../../../CHSM/Behavior.h"
+class Matrix;
+class Holon;
 
-class BehBoundDOMetab : public Behavior
+class BehBoundDOMetab
 {
-public:
-  
-  // Methods
-  
-  void createVariables(Machine*, Holon*) override;
-  
-  void createVariables(Machine*, Holon*, double, double);
+  public:
+    
+    // Methods
+    
+    void createVariables(Matrix*, Holon&, double, double);
   
 };
 
-#endif /* RESOURCES_SOLUTES_DO_CONC_BEHBOUNDDOMETAB_H_ */
+#endif /* RESOURCES_SOLUTES_CONC_DO_BEHBOUNDDOMETAB_H_ */
