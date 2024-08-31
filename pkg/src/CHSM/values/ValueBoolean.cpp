@@ -4,8 +4,6 @@
 
 #include "ValueBoolean.h"
 
-ValueBoolean::ValueBoolean() {}
-
 ValueBoolean::ValueBoolean(bool value)
 {
   setValue(value);
@@ -25,11 +23,6 @@ void ValueBoolean::fromString(std::string valueString)
   }
 }
 
-bool ValueBoolean::isDefined()
-{
-  return isDefined_;
-}
-
 void ValueBoolean::setValue(bool value)
 {
   v_ = value;
@@ -38,13 +31,9 @@ void ValueBoolean::setValue(bool value)
 
 std::string ValueBoolean::toString()
 {
-  if (isDefined()) {
-    if (v_) {
-      return std::string("true");
-    } else{
-      return std::string("false");
-    }
-  } else {
-    return std::string("Undefined");
+  if (v_) {
+    return std::string("true");
+  } else{
+    return std::string("false");
   }
 }

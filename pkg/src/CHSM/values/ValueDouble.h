@@ -27,12 +27,6 @@ class ValueDouble : public Value
     
     /*!
       \brief
-        Create a new instance of the real number Value
-    */
-    ValueDouble();
-    
-    /*!
-      \brief
         Create a new instance of a real number Value with the provided value
      
       \param double
@@ -68,15 +62,6 @@ class ValueDouble : public Value
     */
     void fromString(std::string) override;
     
-    /*! 
-     \brief
-       Query if the value is currently defined (not an NaN)
-     
-     \return
-       Boolean true if value is defined, false otherwise
-    */
-    bool isDefined() override;
-  
     /*! 
       \brief
         Convert the real number value to a string

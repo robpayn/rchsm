@@ -1,7 +1,7 @@
 /*!
   \file Machine_R.h
   \brief
-    R interface functions for access to Machine objects
+    R interface functions for access to CHSM Machine objects
   \details
     See the "related symbols" documentation of the Machine class for a
     description of the R interface functions.
@@ -31,7 +31,11 @@ extern "C"
       Value of TRUE registers a finalizer, FALSE does not.
    
     \return SEXP
-      R external pointer to the new machine object
+      R external pointer to the new machine object, if construction is 
+        successful. 
+      If a fatal error occurs in executing the C function, the return value will
+        be a character string with an explanation of the error starting with
+        <CERROR>.
   */
   SEXP Machine_constructor(SEXP, SEXP, SEXP);
   
@@ -51,7 +55,7 @@ extern "C"
   /*!
     \relatesalso Machine
     \brief
-      Install a reporter in the state machine.
+      R interface function to install a reporter in the state machine.
    
     \param SEXP
       R external pointer to the state machine.
@@ -59,26 +63,45 @@ extern "C"
       R external pointer to the reporter to be installed.
    
     \return
-      Returns an R NULL value
+      If an error occurs in executing the C function, the return value will
+        be a character string with an explanation of the error starting with
+        <CERROR>.
   */
   SEXP Machine_installReporter(SEXP, SEXP);
 
   /*!
     \relatesalso Machine
     \brief
-      Run the state machine
+      R interface function to run the state machine simulation
    
     \param SEXP
-      R external pointer to the state machine.
+      R external pointer to the state machine to run
    
     \return
       Returns a null value if successful.
-      If an error occurs in running the machine, the return value will
-      be a character string with a explanation of the error starting with
-      <CERROR>.
+      If an error occurs in executing the C function, the return value will
+        be a character string with an explanation of the error starting with
+        <CERROR>.
   */
   SEXP Machine_run(SEXP);
   
+  /*!
+    \relatesalso Machine
+    \brief
+      R interface function to set the time valid variable that determines
+        when to terminate a state machine simulation
+   
+    \param SEXP
+      R external pointer to the state machine object
+    \param SEXP
+      R external pointer to the variable with the time valid value
+   
+    \return
+      Returns a null value if successful.
+      If an error occurs in executing the C function, the return value will
+        be a character string with an explanation of the error starting with
+        <CERROR>.
+  */
   SEXP Machine_setTimeValidVariable(SEXP, SEXP);
   
 }

@@ -4,12 +4,8 @@
 
 #include "Iteration.h"
 
-Iteration::Iteration(int phase) :
-  ValueLongMemory(phase)
-{}
-
-Iteration::Iteration(int phase, long init) :
-  ValueLongMemory(phase, init)
+Iteration::Iteration(long init, int phase, std::shared_ptr<MemoryFactory> mf) :
+  ValueLongMemory(init, phase, mf)
 {}
 
 void Iteration::setDependencies(DepManager& dm) {}

@@ -7,12 +7,12 @@
 #include "../../../CHSM/DepManager.h"
 #include "../../../CHSM/values/ValueDouble.h"
 
-TimeValid::TimeValid(int phase) :
-  ValueBooleanMemory(phase)
-{}
-
-TimeValid::TimeValid(int phase, bool init) :
-  ValueBooleanMemory(phase, init)
+TimeValid::TimeValid(
+  bool init, 
+  int phase, 
+  std::shared_ptr<MemoryFactory> mf
+) :
+  ValueBooleanMemory(init, phase, mf)
 {}
 
 void TimeValid::setDependencies(DepManager& dm) 

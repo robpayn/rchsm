@@ -4,12 +4,13 @@
 
 #include "RateDOGPP.h"
 
-RateDOGPP::RateDOGPP(int phase, std::string stateName) :
-  RateDouble(phase, stateName)
-{}
-
-RateDOGPP::RateDOGPP(int phase, double initValue, std::string stateName) :
-  RateDouble(phase, initValue, stateName)
+RateDOGPP::RateDOGPP(
+  double initValue, 
+  std::string stateName,
+  int phase, 
+  std::shared_ptr<MemoryFactory> mf
+) :
+  RateDouble(initValue, stateName, phase, mf)
 {}
 
 void RateDOGPP::setDependencies(DepManager& dm)

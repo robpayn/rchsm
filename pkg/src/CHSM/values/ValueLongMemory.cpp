@@ -5,19 +5,11 @@
 #include "ValueLongMemory.h"
 #include "MemoryLong.h"
 
-ValueLongMemory::ValueLongMemory(int phase) :
-  ValueLong(),
-  DynamicMemory(phase)
-{}
-
-ValueLongMemory::ValueLongMemory(int phase, long init) :
+ValueLongMemory::ValueLongMemory(
+  long init, 
+  int phase, 
+  std::shared_ptr<MemoryFactory> mf
+) :
   ValueLong(init),
-  DynamicMemory(phase)
+  DynamicMemory(phase, mf)
 {}
-
-Memory* ValueLongMemory::createMemory(int size)
-{
-  
-  return new MemoryLong(this, size);
-  
-}

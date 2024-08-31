@@ -30,28 +30,24 @@ class RateDouble : public ValueDoubleMemory, public Rate
     
     /*!
       \brief
-        Create a new instance in the provided phase and attached the 
-        given state name.
-     
-      \param int
-        Phase in which the rate should be updated
-      \param std::string
-        Name of states to which the rate should be attached
-    */
-    RateDouble(int, std::string);
-    
-    /*!
-      \brief
         Create a new instance with the provided initial value.
      
-      \param int
-        Phase in which the rate should be updated
       \param double
         Initial value of the state
       \param std::string
         Name of states to which the rate should be attached
+      \param int
+        Phase in which the rate should be updated
+      \param std::shared_ptr<MemoryFactory>
+        (Optional) A smart pointer to the factory to use for creating memory.
+        Default value is a null pointer.
      */
-    RateDouble(int, double, std::string);
+    RateDouble(
+      double, 
+      std::string, 
+      int, 
+      std::shared_ptr<MemoryFactory> = nullptr
+    );
     
     /*!
       \brief

@@ -5,19 +5,11 @@
 #include "ValueDoubleMemory.h"
 #include "MemoryDouble.h"
 
-ValueDoubleMemory::ValueDoubleMemory(int phase) :
-  ValueDouble(),
-  DynamicMemory(phase)
-{}
-
-ValueDoubleMemory::ValueDoubleMemory(int phase, double init) :
+ValueDoubleMemory::ValueDoubleMemory(
+  double init,
+  int phase, 
+  std::shared_ptr<MemoryFactory> mf
+) :
   ValueDouble(init),
-  DynamicMemory(phase)
+  DynamicMemory(phase, mf)
 {}
-
-Memory* ValueDoubleMemory::createMemory(int size)
-{
-  
-  return new MemoryDouble(this, size);
-
-}

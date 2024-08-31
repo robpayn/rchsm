@@ -87,17 +87,6 @@ class ValueVarmap : public Value
     
     /*! 
       \brief
-        Query if the value is defined
-      \return 
-        A boolean true if the value is defined, false otherwise.
-      \details
-        A variable map value is considered defined if it contains
-        at least one variable.
-    */
-    bool isDefined() override;
-    
-    /*! 
-      \brief
         Provide a string representation of the variable map
       \return 
         A string representing the variable map

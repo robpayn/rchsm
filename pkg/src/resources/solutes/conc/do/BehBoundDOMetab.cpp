@@ -17,12 +17,12 @@ void BehBoundDOMetab::createVariables(
   int phase = 1;
   matrix->createVariable(
       "DOGPP", 
-      new RateDOGPP(phase, initDOGPP, "DOConc"), 
+      new RateDOGPP(initDOGPP, "DOConc", phase), 
       holon
   );
   matrix->createVariable(
       "DOER", 
-      new RateDOER(phase, initDOER, "DOConc"), 
+      new RateDOER(initDOER, "DOConc", phase), 
       holon
   );
 }

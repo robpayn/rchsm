@@ -9,21 +9,13 @@
 #include "../../../CHSM/DepManager.h"
 
 RateFirstOrder::RateFirstOrder(
-  int phase, 
-  std::string stateName, 
-  std::string coeffName
-) :
-  RateDouble(phase, stateName),
-  coeffName_(coeffName)
-{}
-
-RateFirstOrder::RateFirstOrder(
-  int phase, 
   double initValue, 
   std::string stateName, 
-  std::string coeffName
+  std::string coeffName,
+  int phase,
+  std::shared_ptr<MemoryFactory> mf
 ) :
-  RateDouble(phase, initValue, stateName),
+  RateDouble(initValue, stateName, phase, mf),
   coeffName_(coeffName)
 {
   vf_ = 0;

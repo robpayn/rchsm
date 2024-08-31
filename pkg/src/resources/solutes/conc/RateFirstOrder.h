@@ -17,9 +17,13 @@ public:
   
   std::string coeffName_ = "";
   
-  RateFirstOrder(int, std::string, std::string);
-  
-  RateFirstOrder(int, double, std::string, std::string);
+  RateFirstOrder(
+    double, 
+    std::string, 
+    std::string,
+    int, 
+    std::shared_ptr<MemoryFactory> = nullptr
+  );
   
   void setDependencies(DepManager&) override;
   

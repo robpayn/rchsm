@@ -4,12 +4,13 @@
 
 #include "RateDOER.h"
 
-RateDOER::RateDOER(int phase, std::string stateName) :
-  RateDouble(phase, stateName)
-{}
-
-RateDOER::RateDOER(int phase, double initValue, std::string stateName) :
-  RateDouble(phase, initValue, stateName)
+RateDOER::RateDOER(
+  double initValue, 
+  std::string stateName,
+  int phase, 
+  std::shared_ptr<MemoryFactory> mf
+) :
+  RateDouble(initValue, stateName, phase, mf)
 {}
 
 void RateDOER::setDependencies(DepManager& dm)

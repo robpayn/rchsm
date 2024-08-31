@@ -7,13 +7,13 @@
 #include "../Cell.h"
 #include "../Bound.h"
 
-RateDouble::RateDouble(int phase, std::string stateName) :
-  ValueDoubleMemory(phase),
-  stateName_(stateName)
-{}
-
-RateDouble::RateDouble(int phase, double initValue, std::string stateName) :
-  ValueDoubleMemory(phase, initValue),
+RateDouble::RateDouble(
+  double initValue, 
+  std::string stateName,
+  int phase, 
+  std::shared_ptr<MemoryFactory> mf
+) :
+  ValueDoubleMemory(initValue, phase, mf),
   vf_(-initValue),
   stateName_(stateName)
 {}

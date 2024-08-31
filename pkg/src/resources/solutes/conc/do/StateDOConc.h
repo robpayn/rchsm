@@ -14,9 +14,7 @@ public:
   
   // Constructors/Destructor
   
-  StateDOConc(int);
-  
-  StateDOConc(int, double);
+  StateDOConc(double, int, std::shared_ptr<MemoryFactory> = nullptr);
   
 };
 

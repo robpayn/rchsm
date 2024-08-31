@@ -28,12 +28,6 @@ class ValueLong : public Value
     
     /*!
       \brief
-        Create a new instance of the integer Value
-    */
-    ValueLong();
-    
-    /*!
-      \brief
         Create a new instance of an integer Value with the provided value
      
       \param long
@@ -65,15 +59,6 @@ class ValueLong : public Value
     */
     void fromString(std::string valueString) override;
     
-    /*! 
-      \brief
-        Query if the integer value is currently defined (maximum negative value)
-     
-      \return
-        Boolean true if value is defined, false otherwise
-    */
-    bool isDefined() override;
-  
     /*! 
       \brief
         Convert the integer value to a string

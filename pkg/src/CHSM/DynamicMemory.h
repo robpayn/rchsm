@@ -6,8 +6,9 @@
 #define CHSM_DYNAMICMEMORY_H_
 
 #include "Dynamic.h"
+#include <memory>
 
-class Memory;
+class MemoryFactory;
 
 /*!
   \brief
@@ -19,21 +20,20 @@ class DynamicMemory : public Dynamic
     
     /*!
       \brief
+        The factory for creating a memory object if needed for the solver
+    */
+    std::shared_ptr<MemoryFactory> memoryFactory_;
+    
+    /*!
+      \brief
         Initialize a dynamic memory object
      
       \param int
         The phase in which the dynamic object should be updated
+      \param std::shared_ptr<MemoryFactory>
+        A smart pointer to the factory to use for creating memory
     */
-    DynamicMemory(int);
-    
-    /*!
-      \brief
-        Create memory to be attached to the object
-     
-      \param int
-        The number of slots of memory required
-    */
-    virtual Memory* createMemory(int) = 0;
+    DynamicMemory(int, std::shared_ptr<MemoryFactory>);
     
 };
 

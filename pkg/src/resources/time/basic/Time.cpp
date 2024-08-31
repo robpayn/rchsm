@@ -7,12 +7,12 @@
 #include "../../../CHSM/DepManager.h"
 #include <unordered_map>
 
-Time::Time(int phase) :
-  ValueDoubleMemory(phase)
-{}
-
-Time::Time(int phase, double init) :
-  ValueDoubleMemory(phase, init)
+Time::Time(
+  double init, 
+  int phase, 
+  std::shared_ptr<MemoryFactory> mf
+) :
+  ValueDoubleMemory(init, phase, mf)
 {}
 
 void Time::setDependencies(DepManager& dm) 

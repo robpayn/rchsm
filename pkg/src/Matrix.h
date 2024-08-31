@@ -17,6 +17,28 @@ class Solver;
 /*!
   \brief
     A dynamic variable map value for storing a matrix of cells and bounds
+  \details
+    A matrix is a variable map for a state machine (e.g., Machine) designed 
+      to track the state of a system based on variables quantifying the 
+      behavior of Cell and Bound holons.
+    A Cell Holon generally contains variables that maintain the state of the
+      system, and a Bound Holon contains variables that determine the rate at
+      which the state of the system is changing.
+    Bound holons either connect to two adjacent cells to allow constituent 
+      variables to simulate cell interactions, or Bound holons connect to a 
+      single cell to allow constituent variables to simulate the interaction
+      of that cell with external entities.
+    The resulting network of bounds and cells are the matrix within which
+      constituent variables are installed for tracking the state of a system.
+    The matrix requires definition of a dependency manager (derivative of 
+      DepManager) that is used to determine the order in which constituent
+      variables with dynamic values are updated.
+    Before the matrix can be used to update the state of the system, a Solver 
+      must be installed to determine the solution strategy 
+      used to update the values of constituent variables.
+    Also, the dependencies must be set, which will propagate to setting and
+      managing the dependencies of constituent variables to determine the
+      order in which values are updated by the Solver.
 */
 class Matrix : public ValueVarmap, public Dynamic
 {
@@ -30,7 +52,8 @@ class Matrix : public ValueVarmap, public Dynamic
     
     /*!
       \brief
-        The solver to use for managing the solution algorithm for each time step
+        The solver to use for managing the solution algorithm for each
+          time step.
     */
     Solver* solver_ = nullptr;
     
@@ -105,7 +128,7 @@ class Matrix : public ValueVarmap, public Dynamic
       \param Solver*
         Pointer to a solver.
         The matrix will take ownership of the solver and its deconstructor
-        will delete the associated memory.
+          will delete the associated memory.
      
       \return
         No return value
@@ -128,8 +151,8 @@ class Matrix : public ValueVarmap, public Dynamic
     
     /*!
       \brief
-        Set the dependencies of the matrix using the internal dependency
-        manager member
+        Set the dependencies of dynamic values in the matrix using the 
+          member dependency manager.
      
       \return
         No return value
@@ -139,10 +162,11 @@ class Matrix : public ValueVarmap, public Dynamic
     /*!
       \brief
         Set the dependencies of the matrix using the provided dependency
-        manager
+        manager.
      
       \param DepManager&
-        Reference for the dependency manager to notify of dependencies
+        Reference to the dependency manager that should be notified of
+          critical dependencies.
      
       \return
         No return value
@@ -151,7 +175,7 @@ class Matrix : public ValueVarmap, public Dynamic
     
     /*!
       \brief
-        Update the values of the matrix
+        Update the dynamic values of the variables in the matrix
      
       \return
         No return value

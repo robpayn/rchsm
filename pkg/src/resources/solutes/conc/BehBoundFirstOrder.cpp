@@ -21,7 +21,7 @@ void BehBoundFirstOrder::createVariables(
   int phase = 1;
   matrix->createVariable(
     rateName_, 
-    new RateFirstOrder(phase, initUptake, stateName_, coeffName_), 
+    new RateFirstOrder(initUptake, stateName_, coeffName_, phase), 
     holon
   );
 }

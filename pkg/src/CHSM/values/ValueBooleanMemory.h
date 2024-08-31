@@ -19,36 +19,16 @@ public:
   /*!
     \brief
       Create a new instance of the boolean Value with memory
-      in the provided dynamic phase
-   
-    \param int
-      Phase of the dynamic value
-  */
-  ValueBooleanMemory(int);
-  
-  /*!
-    \brief
-      Create a new instance of the boolean Value with memory
       with an initial value
    
+    \param bool
+      Initial boolean value
     \param int
       Phase of the dynamic value
-    \param double
-      Initial boolean value
-  */
-  ValueBooleanMemory(int, bool);
-  
-  /*!
-    \brief
-      Create boolean memory for the value
-   
-    \param int
-      The size of the memory to be created
-   
-    \return
-      The MemoryBoolean that was created
-  */
-  Memory* createMemory(int) override;
+    \param std::shared_ptr<MemoryFactory>
+      A smart pointer to the factory to use for creating memory
+   */
+  ValueBooleanMemory(bool, int, std::shared_ptr<MemoryFactory>);
   
 };
 

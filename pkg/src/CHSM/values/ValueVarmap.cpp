@@ -60,18 +60,9 @@ Variable* ValueVarmap::getVariable(std::string name)
   }
 }
 
-bool ValueVarmap::isDefined()
-{
-  return !map_.empty();
-}
-
 std::string ValueVarmap::toString()
 {
-  if (isDefined()) {
-    return formatter_->format();
-  } else {
-    return std::string("Undefined");
-  }
+  return formatter_->format();
 }
 
 VarmapFormatter::VarmapFormatter(ValueVarmap* varmap) :

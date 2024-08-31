@@ -58,15 +58,6 @@ class Value
     
     /*! 
       \brief
-        Query if the value is currently defined
-     
-      \return
-        Boolean true if value is defined, false otherwise
-    */
-    virtual bool isDefined() = 0;
-    
-    /*! 
-      \brief
         Set the pointer to the variable containing this value
      
       \param Variable* 

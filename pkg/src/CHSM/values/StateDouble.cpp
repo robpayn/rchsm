@@ -8,12 +8,12 @@
 #include "../DepManager.h"
 #include <sstream>
 
-StateDouble::StateDouble(int phase) :
-  ValueDoubleMemory(phase)
-{}
-
-StateDouble::StateDouble(int phase, double initValue) :
-  ValueDoubleMemory(phase, initValue)
+StateDouble::StateDouble(
+  double initValue,
+  int phase, 
+  std::shared_ptr<MemoryFactory> mf
+) :
+  ValueDoubleMemory(initValue, phase, mf)
 {}
 
 void StateDouble::attachRate(double* rate)

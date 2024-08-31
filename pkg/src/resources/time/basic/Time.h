@@ -16,9 +16,7 @@ class Time : public ValueDoubleMemory
     
     // Constructors/Destructor
     
-    Time(int);
-    
-    Time(int, double);
+    Time(double, int, std::shared_ptr<MemoryFactory> = nullptr);
     
     // Methods
     

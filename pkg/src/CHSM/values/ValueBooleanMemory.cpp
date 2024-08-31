@@ -5,19 +5,11 @@
 #include "ValueBooleanMemory.h"
 #include "MemoryBoolean.h"
 
-ValueBooleanMemory::ValueBooleanMemory(int phase) :
-  ValueBoolean(),
-  DynamicMemory(phase)
-{}
-
-ValueBooleanMemory::ValueBooleanMemory(int phase, bool init) :
+ValueBooleanMemory::ValueBooleanMemory(
+  bool init,
+  int phase, 
+  std::shared_ptr<MemoryFactory> mf
+) :
   ValueBoolean(init),
-  DynamicMemory(phase)
+  DynamicMemory(phase, mf)
 {}
-
-Memory* ValueBooleanMemory::createMemory(int size)
-{
-  
-  return new MemoryBoolean(this, size);
-  
-}

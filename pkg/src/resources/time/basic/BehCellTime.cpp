@@ -19,15 +19,15 @@ void BehCellTime::createVariables(
 ) 
 {
   int phase = 0;
-  matrix->createVariable("Time", new Time(phase, initTime), holon);
+  matrix->createVariable("Time", new Time(initTime, phase), holon);
   matrix->createVariable(
     "Iteration", 
-    new Iteration(phase, initIteration), 
+    new Iteration(initIteration, phase), 
     holon
   );
   matrix->createVariable(
     "TimeValid", 
-    new TimeValid(phase, initTimeValid), 
+    new TimeValid(initTimeValid, phase), 
     holon
   );
 }

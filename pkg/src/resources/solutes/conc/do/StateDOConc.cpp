@@ -4,10 +4,10 @@
 
 #include "StateDOConc.h"
 
-StateDOConc::StateDOConc(int phase) :
-  StateDouble(phase)
-{}
-
-StateDOConc::StateDOConc(int phase, double initValue) :
-  StateDouble(phase, initValue)
+StateDOConc::StateDOConc(
+  double initValue,
+  int phase, 
+  std::shared_ptr<MemoryFactory> mf
+) :
+  StateDouble(initValue, phase, mf)
 {}

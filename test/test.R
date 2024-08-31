@@ -24,6 +24,7 @@ reporter <- C_ReporterTable$new(
   interval = 1, 
   .iterationVariable = cell$getVariablePointer("Iteration")
 )
+model$installReporter(reporter)
 reporter$trackVariable(variable = cell$getVariablePointer("Iteration"))
 reporter$trackVariable(variable = cell$getVariablePointer("Time"))
 
@@ -64,8 +65,6 @@ reporter$trackRate(
   variable = bound$getVariablePointer("NitrateRate"),
   from = FALSE
 )
-
-model$installReporter(reporter)
 
 cat(model$getValueString())
 

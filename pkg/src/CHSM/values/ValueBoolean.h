@@ -33,12 +33,6 @@ public:
   
   /*!
     \brief
-      Create a new instance of the boolean Value
-  */
-  ValueBoolean();
-  
-  /*!
-    \brief
       Create a new instance of a boolean Value with the provided value
    
     \param bool
@@ -69,15 +63,6 @@ public:
       No return value
   */
   void fromString(std::string valueString) override;
-  
-  /*! 
-    \brief
-      Query if the value is currently defined (as indicated by the flag)
-   
-    \return
-      Boolean true if value is defined, false otherwise
-  */
-  bool isDefined() override;
   
   /*!
     \brief

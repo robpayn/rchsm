@@ -19,36 +19,16 @@ class ValueDoubleMemory : public ValueDouble, public DynamicMemory
     /*!
       \brief
         Create a new instance of the real number Value with memory
-        in the provided dynamic phase
-     
-      \param int
-        Phase of the dynamic value
-    */
-    ValueDoubleMemory(int);
-    
-    /*!
-      \brief
-        Create a new instance of the real number Value with memory
         with an initial value
 
-      \param int
-        Phase of the dynamic value
       \param double
         Initial double precision floating point value
-    */
-    ValueDoubleMemory(int, double);
-    
-    /*!
-      \brief
-        Create real number memory for the value
-     
       \param int
-        The size of the memory to be created
-     
-      \return
-        The MemoryDouble that was created
-    */
-    Memory* createMemory(int) override;
+        Phase of the dynamic value
+      \param std::shared_ptr<MemoryFactory>
+        A smart pointer to the factory to use for creating memory
+     */
+    ValueDoubleMemory(double, int, std::shared_ptr<MemoryFactory>);
     
 };
 

@@ -32,23 +32,17 @@ class StateDouble : public ValueDoubleMemory
     
     /*!
       \brief
-        Create a new instance of the state in the give dynamic phase
-      
-      \param int
-        The phase in which the state should be updated
-    */
-    StateDouble(int);
-    
-    /*!
-      \brief
         Create a new instance of the state with the given initial value
      
-      \param int
-        The phase in which the state should be updated
       \param double
         The initial value of the state
-    */
-    StateDouble(int, double);
+      \param int
+        The phase in which the state should be updated
+      \param std::shared_ptr<MemoryFactory>
+        (Optional) A smart pointer to the factory to use for creating memory.
+        Default value is a null pointer.
+     */
+    StateDouble(double, int, std::shared_ptr<MemoryFactory> = nullptr);
     
     /*!
       \brief

@@ -17,7 +17,7 @@ void BehCellDOConc::createVariables(
   int phase = 2;
   matrix->createVariable(
     "DOConc", 
-    new StateDOConc(phase, initDOConc), 
+    new StateDOConc(initDOConc, phase), 
     holon
   );
 }

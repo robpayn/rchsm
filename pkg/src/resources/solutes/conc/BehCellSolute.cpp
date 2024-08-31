@@ -21,7 +21,7 @@ void BehCellSolute::createVariables(
   int phase = 2;
   matrix->createVariable(
     stateName_, 
-    new StateDouble(phase, initValue), 
+    new StateDouble(initValue, phase), 
     holon
   );
 }
