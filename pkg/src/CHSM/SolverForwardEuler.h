@@ -11,6 +11,8 @@ class SolverForwardEuler : public Solver
 {
   public:
     
+    static const std::vector<int> order_;
+    
     SolverForwardEuler(double&);
     
     void solve() override;

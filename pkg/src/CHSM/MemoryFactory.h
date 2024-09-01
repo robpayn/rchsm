@@ -16,6 +16,8 @@ class MemoryFactory
 {
   public:
     
+    int size_;
+    
     /*!
       \brief
         Create a new instance of a factory for creating memory objects with

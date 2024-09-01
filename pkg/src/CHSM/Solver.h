@@ -14,7 +14,7 @@ class Solver
 {
   public:
     
-    std::vector<Dynamic*>* dynamics_ = nullptr;
+    std::vector<std::vector<Dynamic*>> dynamics_;
     
     double& timeStep_ ;
     
@@ -22,7 +22,7 @@ class Solver
     
     virtual ~Solver();
     
-    void setDynamics(DepManager&);
+    virtual void setDynamics(DepManager&);
     
     virtual void solve() = 0;
     

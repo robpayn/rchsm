@@ -9,14 +9,12 @@ Solver::Solver(double& timeStep) :
 {}
 
 Solver::~Solver()
-{
-  delete []dynamics_;
-}
+{}
 
 void Solver::setDynamics(DepManager& dm)
 {
-  dynamics_ = new std::vector<Dynamic*>[dm.numPhases_];
-  for(int phase = 0; phase < dm.numPhases_; phase++) {
-    dynamics_[phase] = dm.sort(phase);
+  dynamics_.resize(dm.numPhases_);
+  for(int phaseCount = 0; phaseCount < dm.numPhases_; phaseCount++) {
+    dynamics_[phaseCount] = dm.sort(phaseCount);
   }
 }

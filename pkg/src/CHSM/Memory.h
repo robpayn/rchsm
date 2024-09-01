@@ -32,6 +32,8 @@ class Memory
     */
     Memory(int);
     
+    virtual ~Memory() {};
+    
     /*!
       \brief
         Get the value to which the memory is attached

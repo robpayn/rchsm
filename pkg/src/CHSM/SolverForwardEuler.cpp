@@ -5,21 +5,17 @@
 #include "SolverForwardEuler.h"
 #include "Dynamic.h"
 
+const std::vector<int> SolverForwardEuler::order_ = {1, 2, 0};
+
 SolverForwardEuler::SolverForwardEuler(double& timeStep) :
   Solver(timeStep)
 {}
 
 void SolverForwardEuler::solve()
 {
-  for(Dynamic* dyn : dynamics_[1]) {
-    dyn->update();
-  }
-  
-  for(Dynamic* dyn : dynamics_[2]) {
-    dyn->update();
-  }
-  
-  for(Dynamic* dyn : dynamics_[0]) {
-    dyn->update();
+  for(int index : order_) {
+    for(Dynamic* dyn : dynamics_[index]) {
+      dyn->update();
+    }
   }
 }

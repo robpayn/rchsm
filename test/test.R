@@ -1,5 +1,10 @@
 library(rchsm, lib.loc = "./build")
 
+initConc = 10
+rateCoeff = 0.1
+timeStep = 2
+maxTime = 40
+
 model <- C_Model$new(depManager = C_DepManInstallOrder$new(numPhases = 3))
 matrix <- model$matrix;
 
@@ -14,7 +19,7 @@ beh$createVariables(
 )
 matrix$createVariable(
   name = "TimeMax",
-  value = C_Value$new(type = "ValueDouble", initValue = 40),
+  value = C_Value$new(type = "ValueDouble", initValue = maxTime),
   holon = cell
 )
 
@@ -29,13 +34,13 @@ reporter$trackVariable(variable = cell$getVariablePointer("Iteration"))
 reporter$trackVariable(variable = cell$getVariablePointer("Time"))
 
 bound <- matrix$createBound("BoundTime", NULL, cell)
-timeStep <- matrix$createVariable(
+timeStepVar <- matrix$createVariable(
   name = "TimeStep",
-  value = C_Value$new(type = "ValueDouble", initValue = 1),
+  value = C_Value$new(type = "ValueDouble", initValue = timeStep),
   holon = bound
 )
 
-matrix$installSolver(C_SolverForwardEuler$new(timeStep = timeStep))
+matrix$installSolver(C_SolverForwardEuler$new(timeStep = timeStepVar))
 
 
 cell <-matrix$createCell("Cell01")
@@ -43,7 +48,7 @@ beh <- C_Behavior$new(className = "BehCellSolute", "Nitrate")
 beh$createVariables( 
   matrix = matrix, 
   holon = cell, 
-  initNitrate = 10
+  initNitrate = initConc
 )
 
 reporter$trackVariable(variable = cell$getVariablePointer("NitrateConc"))
@@ -57,7 +62,7 @@ beh$createVariables(
 )
 matrix$createVariable(
   name = "NitrateRateCoeff",
-  value = C_Value$new(type = "ValueDouble", initValue = 0.1),
+  value = C_Value$new(type = "ValueDouble", initValue = rateCoeff),
   holon = bound
 )
 
@@ -75,3 +80,6 @@ cat(model$getValueString())
 output <- reporter$callFunction("getDataFrame")
 
 plot(output$CellTime.Time, output$Cell01.NitrateConc)
+
+t = seq.default(from = 0, to = maxTime, by = 0.5)
+lines(x = t, y = initConc * exp(-rateCoeff * t))
