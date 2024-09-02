@@ -5,7 +5,8 @@
 #include "Value_R.h"
 #include "../../CHSM/values/ValueDouble.h"
 
-void ValueDouble_finalizer(SEXP externalPointer) {
+void ValueDouble_finalizer(SEXP externalPointer) 
+{
   ValueDouble* pointer = 
     static_cast<ValueDouble*>(R_ExternalPtrAddr(externalPointer));
   R_ClearExternalPtr(externalPointer);

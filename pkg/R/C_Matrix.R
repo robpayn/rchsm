@@ -15,7 +15,7 @@
 #'
 C_Matrix <- R6Class(
   classname = "C_Matrix",
-  inherit = C_Object,
+  inherit = C_Value,
   public = list(
     
     #' @description

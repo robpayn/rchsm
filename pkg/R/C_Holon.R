@@ -35,7 +35,7 @@ C_Holon <- R6Class(
     #'   NULL value, then the new R6 object will be associated with the 
     #'   existing C++ Object referenced by the pointer.
     #' 
-    initialize = function(className = "Holon", ..., regFinalizer, .external = NULL) 
+    initialize = function(className, ..., regFinalizer, .external = NULL) 
     {
       super$initialize(
         className = className, 

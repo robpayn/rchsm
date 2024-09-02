@@ -26,14 +26,16 @@ void SolverRKTwo::setDynamics(DepManager& dm)
   for(Dynamic* dyn : dynamics_[2]) {
     DynamicMemory* dm = dynamic_cast<DynamicMemory*>(dyn);
     Value* val = dynamic_cast<Value*>(dyn);
-    if(dm && val) {
+    if(dm && val && dm->memoryFactory_) {
       memories_[memCount] = dm->memoryFactory_->createMemory(val);
-      memCount++;
     } else {
       std::ostringstream error;
-      error << "Cannot create a memory.";
+      error << "Cannot create a memory. The second order Runge Kutta "
+        << "solver must be able to install memory on values in the "
+        << "state phase.";
       throw std::runtime_error(error.str());
     }
+    memCount++;
   }
 }
 

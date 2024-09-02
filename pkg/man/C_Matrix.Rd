@@ -8,8 +8,8 @@ A Composite Hierarchy State Machine matrix value.
 
   Implementation is provided by C++ objects.
 }
-\section{Super class}{
-\code{\link[rchsm:C_Object]{rchsm::C_Object}} -> \code{C_Matrix}
+\section{Super classes}{
+\code{\link[rchsm:C_Object]{rchsm::C_Object}} -> \code{\link[rchsm:C_Value]{rchsm::C_Value}} -> \code{C_Matrix}
 }
 \section{Methods}{
 \subsection{Public methods}{

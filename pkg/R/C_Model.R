@@ -89,15 +89,20 @@ C_Model <- R6Class(
     #'   
     setTimeValidVariable = function(variable)
     {
-      if(typeof(variable) == "externalptr") {
-        self$callFunction(fun = "setTimeValidVariable", variable)
-      } else if (is.R6(variable)) {
-        self$callFunction(fun = "setTimeValidVariable", variable$.external)
-      } else {
-        stop(
-          "The time valid variable provided to the model is an invalid type."
+      self$callFunction(
+        fun = "setTimeValidVariable", 
+        ifelse(
+          test = typeof(variable) == "externalptr",
+          yes = variable,
+          no = ifelse(
+            test = any(class(variable) == "C_Variable"),
+            yes = variable$.external,
+            no = stop(
+              "The valid time variable provided to the model is invalid."
+            )
+          )
         )
-      }
+      )
       invisible(NULL)
     }
     

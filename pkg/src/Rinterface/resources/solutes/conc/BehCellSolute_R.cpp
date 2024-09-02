@@ -5,6 +5,7 @@
 #include "BehCellSolute_R.h"
 #include "../../../../resources/solutes/conc/BehCellSolute.h"
 #include "../../../../CHSM/Cell.h"
+#include "../../../../CHSM/values/MemoryDoubleFactory.h"
 
 void BehCellSolute_finalizer(SEXP externalPointer) {
   
@@ -21,9 +22,23 @@ SEXP BehCellSolute_destructor(SEXP externalPointer)
   return R_NilValue;
 }
 
-SEXP BehCellSolute_constructor(SEXP soluteName, SEXP regFinalizer)
+SEXP BehCellSolute_constructor(
+  SEXP soluteName,
+  SEXP rPointerMFDouble,
+  SEXP regFinalizer
+)
 {
-  BehCellSolute* pointer = new BehCellSolute(CHAR(asChar(soluteName)));
+  MemoryDoubleFactory* pointerMFDouble;
+  if (rPointerMFDouble == R_NilValue) {
+    pointerMFDouble = nullptr;
+  } else {
+    pointerMFDouble = 
+      static_cast<MemoryDoubleFactory*>(R_ExternalPtrAddr(rPointerMFDouble));
+  }
+  BehCellSolute* pointer = new BehCellSolute(
+    CHAR(asChar(soluteName)),
+    std::shared_ptr<MemoryDoubleFactory>(pointerMFDouble)
+  );
   
   SEXP externalPointer = PROTECT(
     R_MakeExternalPtr(pointer, R_NilValue, R_NilValue)

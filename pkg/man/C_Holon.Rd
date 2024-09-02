@@ -33,7 +33,7 @@ A holon in a composite Hierarchy State Machine
 \subsection{Method \code{new()}}{
 Constructs an object that is a new instance of the class
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_Holon$new(className = "Holon", ..., regFinalizer, .external = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{C_Holon$new(className, ..., regFinalizer, .external = NULL)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{

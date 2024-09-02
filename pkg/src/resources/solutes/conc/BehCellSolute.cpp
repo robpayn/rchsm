@@ -7,8 +7,12 @@
 #include "../../../CHSM/values/StateDouble.h"
 #include "../../../CHSM/values/MemoryDoubleFactory.h"
 
-BehCellSolute::BehCellSolute(std::string soluteName) :
-  soluteName_(soluteName)
+BehCellSolute::BehCellSolute(
+  std::string soluteName, 
+  std::shared_ptr<MemoryDoubleFactory> mfDouble
+) :
+  soluteName_(soluteName),
+  mfDouble_(mfDouble)
 {
   setNames();
 }
@@ -25,7 +29,7 @@ void BehCellSolute::createVariables(
     new StateDouble(
       initValue, 
       phase, 
-      std::make_shared<MemoryDoubleFactory>(1)
+      mfDouble_
     ), 
     holon
   );
