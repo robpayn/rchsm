@@ -22,13 +22,18 @@ class BehCellSolute
     
     std::string stateName_ = "";
     
-    std::shared_ptr<MemoryDoubleFactory> mfDouble_ = nullptr;
-    
-    BehCellSolute(std::string, std::shared_ptr<MemoryDoubleFactory> = nullptr);
+    BehCellSolute(std::string);
     
     // Methods
     
-    void createVariables(Matrix*, Holon&, double);
+    void createVariables(
+      Matrix*, 
+      Holon&,
+      Holon&,
+      std::string,
+      double, 
+      MemoryDoubleFactory* = nullptr
+    );
     
     void setNames();
     

@@ -101,6 +101,12 @@ C_ReporterTable <- R6Class(
       )
     },
     
+    #' @description
+    #'   Get the table as an R data frame
+    #'   
+    #' @return
+    #'   The reporter table as an R data frame
+    #'    
     getDataFrame = function()
     {
       self$callFunction(fun = "getDataFrame")

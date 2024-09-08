@@ -14,8 +14,7 @@ class RateDOGPP : public RateDouble
     RateDOGPP(
       double, 
       std::string, 
-      int, 
-      std::shared_ptr<MemoryFactory> = nullptr
+      int
     );
     
     void setDependencies(DepManager&) override;

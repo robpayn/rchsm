@@ -6,8 +6,7 @@
 
 StateDOConc::StateDOConc(
   double initValue,
-  int phase, 
-  std::shared_ptr<MemoryFactory> mf
+  int phase
 ) :
-  StateDouble(initValue, phase, mf)
+  StateDouble(initValue, phase)
 {}

@@ -11,11 +11,7 @@ SolverRKTwo::SolverRKTwo(double& timeStep) :
 {}
 
 SolverRKTwo::~SolverRKTwo()
-{
-  for(Memory* memory : memories_) {
-    delete memory;
-  }
-}
+{}
 
 void SolverRKTwo::setDynamics(DepManager& dm)
 {
@@ -26,8 +22,8 @@ void SolverRKTwo::setDynamics(DepManager& dm)
   for(Dynamic* dyn : dynamics_[2]) {
     DynamicMemory* dm = dynamic_cast<DynamicMemory*>(dyn);
     Value* val = dynamic_cast<Value*>(dyn);
-    if(dm && val && dm->memoryFactory_) {
-      memories_[memCount] = dm->memoryFactory_->createMemory(val);
+    if(dm && val && dm->memory_) {
+      memories_[memCount] = dm->memory_;
     } else {
       std::ostringstream error;
       error << "Cannot create a memory. The second order Runge Kutta "

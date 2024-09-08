@@ -4,7 +4,7 @@
 
 #include "MemoryDoubleFactory.h"
 #include "MemoryDouble.h"
-#include "ValueDouble.h"
+#include "ValueDoubleMemory.h"
 
 #include "iostream"
 
@@ -14,5 +14,5 @@ MemoryDoubleFactory::MemoryDoubleFactory(int size) :
 
 Memory* MemoryDoubleFactory::createMemory(Value* val)
 {
-  return new MemoryDouble(static_cast<ValueDouble*>(val), size_);
+  return new MemoryDouble(static_cast<ValueDoubleMemory*>(val), size_);
 }

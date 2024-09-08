@@ -64,10 +64,14 @@ See super class C_Object for more information.}
 \if{html}{\out{<a id="method-C_ReporterTable-getDataFrame"></a>}}
 \if{latex}{\out{\hypertarget{method-C_ReporterTable-getDataFrame}{}}}
 \subsection{Method \code{getDataFrame()}}{
+Get the table as an R data frame
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{C_ReporterTable$getDataFrame()}\if{html}{\out{</div>}}
 }
 
+\subsection{Returns}{
+The reporter table as an R data frame
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-C_ReporterTable-trackRate"></a>}}

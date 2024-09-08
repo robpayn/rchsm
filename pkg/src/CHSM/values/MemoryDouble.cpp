@@ -3,7 +3,7 @@
  */
 
 #include "MemoryDouble.h"
-#include "ValueDouble.h"
+#include "ValueDoubleMemory.h"
 #include "../Holon.h"
 
 MemoryDouble::MemoryDouble(int memSize) :
@@ -12,11 +12,12 @@ MemoryDouble::MemoryDouble(int memSize) :
   allocateMemory();
 }
 
-MemoryDouble::MemoryDouble(ValueDouble* value, int memSize) :
+MemoryDouble::MemoryDouble(ValueDoubleMemory* value, int memSize) :
   Memory(memSize),
   val_(value)
 {
   allocateMemory();
+  val_->attachMemory(this);
 }
 
 MemoryDouble::~MemoryDouble()
@@ -52,7 +53,7 @@ void MemoryDouble::recall(int index)
 
 void MemoryDouble::setValue(Value* value)
 {
-  val_ = dynamic_cast <ValueDouble*> (value);
+  val_ = dynamic_cast <ValueDoubleMemory*> (value);
 }
 
 void MemoryDouble::store(int index) 

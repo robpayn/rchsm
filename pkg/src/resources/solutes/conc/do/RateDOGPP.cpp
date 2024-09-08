@@ -7,10 +7,9 @@
 RateDOGPP::RateDOGPP(
   double initValue, 
   std::string stateName,
-  int phase, 
-  std::shared_ptr<MemoryFactory> mf
+  int phase
 ) :
-  RateDouble(initValue, stateName, phase, mf)
+  RateDouble(initValue, 0, stateName, phase)
 {}
 
 void RateDOGPP::setDependencies(DepManager& dm)

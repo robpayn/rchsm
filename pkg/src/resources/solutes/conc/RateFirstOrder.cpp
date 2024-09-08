@@ -12,14 +12,11 @@ RateFirstOrder::RateFirstOrder(
   double initValue, 
   std::string stateName, 
   std::string coeffName,
-  int phase,
-  std::shared_ptr<MemoryFactory> mf
+  int phase
 ) :
-  RateDouble(initValue, stateName, phase, mf),
+  RateDouble(initValue, 0, stateName, phase),
   coeffName_(coeffName)
-{
-  vf_ = 0;
-}
+{}
 
 void RateFirstOrder::setDependencies(DepManager& dm)
 {

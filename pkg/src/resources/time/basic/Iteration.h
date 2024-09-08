@@ -12,7 +12,7 @@ class Iteration : public ValueLongMemory
   public:
     // Constructors/Destructor
     
-    Iteration(long, int, std::shared_ptr<MemoryFactory> = nullptr);
+    Iteration(long, int);
     
     // Methods
     

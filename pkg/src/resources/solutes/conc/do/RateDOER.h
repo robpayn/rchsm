@@ -14,8 +14,7 @@ class RateDOER : public RateDouble
     RateDOER(
       double, 
       std::string, 
-      int, 
-      std::shared_ptr<MemoryFactory> = nullptr
+      int
     );
     
     void setDependencies(DepManager&) override;

@@ -31,7 +31,7 @@ An R6 class mapping to a C++ Value object
 \subsection{Method \code{new()}}{
 Create a new instance of a memory factory
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_MemoryFactory$new(className, size, ..., regFinalizer = FALSE)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{C_MemoryFactory$new(className, size, ..., regFinalizer = TRUE)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{

@@ -9,11 +9,13 @@
 #include <sstream>
 
 StateDouble::StateDouble(
+  Holon& timeHolon,
+  std::string timeStepName,
   double initValue,
-  int phase, 
-  std::shared_ptr<MemoryFactory> mf
+  int phase
 ) :
-  ValueDoubleMemory(initValue, phase, mf)
+  ValueDoubleMemory(initValue, phase),
+  dt_(&(timeHolon.getVarValue<ValueDouble>(timeStepName)->v_))
 {}
 
 void StateDouble::attachRate(double* rate)
@@ -22,14 +24,7 @@ void StateDouble::attachRate(double* rate)
 }
 
 void StateDouble::setDependencies(DepManager& dm)
-{
-  Holon* timeBound = static_cast <Holon*> (
-    var_->holon_->holon_->getVariable("BoundTime")
-  );
-  dt_ = &(
-    dm.setDependency<ValueDouble>(this, timeBound, "TimeStep")->v_
-  );
-}
+{}
 
 void StateDouble::update()
 {

@@ -8,6 +8,8 @@
 #include <R.h>
 #include <Rinternals.h>
 
+void BehBoundFirstOrder_finalizer(SEXP);
+  
 extern "C"
 {
   SEXP BehBoundFirstOrder_constructor(SEXP, SEXP);

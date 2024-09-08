@@ -8,13 +8,13 @@
 #include "../Bound.h"
 
 RateDouble::RateDouble(
-  double initValue, 
+  double initValue,
+  double initValueFrom,
   std::string stateName,
-  int phase, 
-  std::shared_ptr<MemoryFactory> mf
+  int phase
 ) :
-  ValueDoubleMemory(initValue, phase, mf),
-  vf_(-initValue),
+  ValueDoubleMemory(initValue, phase),
+  vf_(initValueFrom),
   stateName_(stateName)
 {}
 

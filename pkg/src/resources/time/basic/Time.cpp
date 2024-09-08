@@ -9,10 +9,9 @@
 
 Time::Time(
   double init, 
-  int phase, 
-  std::shared_ptr<MemoryFactory> mf
+  int phase
 ) :
-  ValueDoubleMemory(init, phase, mf)
+  ValueDoubleMemory(init, phase)
 {}
 
 void Time::setDependencies(DepManager& dm) 

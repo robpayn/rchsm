@@ -10,11 +10,11 @@ maxTime = 40
 model <- C_Model$new(depManager = C_DepManInstallOrder$new(numPhases = 3))
 matrix <- model$matrix;
 
-cell <- matrix$createCell(name = "CellTime")
+timeCell <- matrix$createCell(name = "CellTime")
 beh <- C_BehCellTime$new()
 beh$createVariables(
   matrix = matrix, 
-  holon = cell,
+  holon = timeCell,
   initTime = 0,
   initIteration = 0,
   initTimeValid = TRUE
@@ -22,26 +22,34 @@ beh$createVariables(
 matrix$createVariable(
   name = "TimeMax",
   value = C_ValueDouble$new(initValue = maxTime),
-  holon = cell
+  holon = timeCell
 )
 
 model$setTimeValidVariable(
-  variable = cell$getVariablePointer(name = "TimeValid")
+  variable = timeCell$getVariablePointer(name = "TimeValid")
 )
-
 reporter <- C_ReporterTable$new(
   interval = 1, 
-  iterationVariable = cell$getVariablePointer(name = "Iteration")
+  iterationVariable = timeCell$getVariablePointer(name = "Iteration")
 )
 model$installReporter(reporter = reporter)
-reporter$trackVariable(variable = cell$getVariablePointer(name = "Iteration"))
-reporter$trackVariable(variable = cell$getVariablePointer(name = "Time"))
 
-bound <- matrix$createBound(name = "BoundTime", cellFrom = NULL, cellTo = cell)
+reporter$trackVariable(
+  variable = timeCell$getVariablePointer(name = "Iteration")
+)
+reporter$trackVariable(
+  variable = timeCell$getVariablePointer(name = "Time")
+)
+
+timeBound <- matrix$createBound(
+  name = "BoundTime", 
+  cellFrom = NULL, 
+  cellTo = timeCell
+)
 timeStepVar <- matrix$createVariable(
   name = "TimeStep",
   value = C_ValueDouble$new(initValue = timeStep),
-  holon = bound
+  holon = timeBound
 )
 
 matrix$installSolver(
@@ -53,7 +61,9 @@ cell <- matrix$createCell(name = "Cell01")
 beh <- C_BehCellSolute$new(soluteName = "Nitrate")
 beh$createVariables( 
   matrix = matrix,
-  holon = cell, 
+  holon = cell,
+  timeHolon = timeBound,
+  timeStepName = "TimeStep",
   initConc = initConc
 )
 

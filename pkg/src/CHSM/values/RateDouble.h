@@ -33,20 +33,19 @@ class RateDouble : public ValueDoubleMemory, public Rate
         Create a new instance with the provided initial value.
      
       \param double
-        Initial value of the state
+        Initial value of the rate on the to side
+      \param double
+        Initial value of the rate on the from side
       \param std::string
         Name of states to which the rate should be attached
       \param int
         Phase in which the rate should be updated
-      \param std::shared_ptr<MemoryFactory>
-        (Optional) A smart pointer to the factory to use for creating memory.
-        Default value is a null pointer.
-     */
+    */
     RateDouble(
-      double, 
+      double,
+      double,
       std::string, 
-      int, 
-      std::shared_ptr<MemoryFactory> = nullptr
+      int
     );
     
     /*!

@@ -1,32 +1,32 @@
 /*
- * BehBoundFirstOrder.cpp
+ * BehBoundDispersion.cpp
  */
 
-#include "BehBoundFirstOrder.h"
+#include "BehBoundDispersion.h"
 #include "../../../Matrix.h"
-#include "RateFirstOrder.h"
+#include "RateDispersion.h"
 
-BehBoundFirstOrder::BehBoundFirstOrder(std::string soluteName) :
+BehBoundDispersion::BehBoundDispersion(std::string soluteName) :
   soluteName_(soluteName)
 {
   setNames();
 }
 
-void BehBoundFirstOrder::createVariables(
+void BehBoundDispersion::createVariables(
   Matrix* matrix, 
   Holon& holon, 
-  double initRate
+  double initDisp
 ) 
 {
   int phase = 1;
   matrix->createVariable(
     rateName_, 
-    new RateFirstOrder(initRate, stateName_, coeffName_, phase), 
+    new RateDispersion(initDisp, stateName_, coeffName_, phase), 
     holon
   );
 }
 
-void BehBoundFirstOrder::setNames()
+void BehBoundDispersion::setNames()
 {
   stateName_ = soluteName_ + stateSuffix_;
   rateName_ = soluteName_ + rateSuffix_;

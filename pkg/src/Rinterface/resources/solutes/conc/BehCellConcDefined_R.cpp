@@ -1,41 +1,43 @@
 /*
- * BehCellSolute_R.cpp
+ * BehCellConcDefined_R.cpp
  */
 
-#include "BehCellSolute_R.h"
-#include "../../../../resources/solutes/conc/BehCellSolute.h"
+#include "BehCellConcDefined_R.h"
+#include "../../../../resources/solutes/conc/BehCellConcDefined.h"
 #include "../../../../CHSM/Cell.h"
 #include "../../../../CHSM/values/MemoryDoubleFactory.h"
+#include <iterator>
 
-void BehCellSolute_finalizer(SEXP externalPointer) 
+void BehCellConcDefined_finalizer(SEXP externalPointer) 
 {
-  BehCellSolute* pointer = (BehCellSolute*)R_ExternalPtrAddr(externalPointer);
+  BehCellConcDefined* pointer = 
+    (BehCellConcDefined*)R_ExternalPtrAddr(externalPointer);
   R_ClearExternalPtr(externalPointer);
   delete pointer;
 }
 
-SEXP BehCellSolute_destructor(SEXP externalPointer)
+SEXP BehCellConcDefined_destructor(SEXP externalPointer)
 {
-  BehCellSolute_finalizer(externalPointer);
+  BehCellConcDefined_finalizer(externalPointer);
   
   return R_NilValue;
 }
 
-SEXP BehCellSolute_constructor(
+SEXP BehCellConcDefined_constructor(
   SEXP soluteName,
   SEXP regFinalizer
 )
 {
-  BehCellSolute* pointer = new BehCellSolute(
+  BehCellConcDefined* pointer = new BehCellConcDefined(
     CHAR(asChar(soluteName))
   );
-
+  
   SEXP externalPointer = PROTECT(
     R_MakeExternalPtr(pointer, R_NilValue, R_NilValue)
   );
   
   if(asLogical(regFinalizer)) {
-    R_RegisterCFinalizer(externalPointer, BehCellSolute_finalizer);
+    R_RegisterCFinalizer(externalPointer, BehCellConcDefined_finalizer);
   }
   
   UNPROTECT(1);
@@ -43,18 +45,19 @@ SEXP BehCellSolute_constructor(
   return externalPointer;
 }
 
-SEXP BehCellSolute_createVariables(
+SEXP BehCellConcDefined_createVariables(
   SEXP rPointerBeh, 
   SEXP rPointerMatrix,
   SEXP rPointerCell,
   SEXP rPointerTimeHolon,
   SEXP timeStepName,
-  SEXP initValue,
+  SEXP iterationName,
+  SEXP rvalues,
   SEXP rPointerMFDouble
 )
 {
-  BehCellSolute* pointerBeh = 
-    static_cast <BehCellSolute*> (R_ExternalPtrAddr(rPointerBeh));
+  BehCellConcDefined* pointerBeh = 
+    static_cast <BehCellConcDefined*> (R_ExternalPtrAddr(rPointerBeh));
   Matrix* pointerMatrix =
     static_cast <Matrix*> (R_ExternalPtrAddr(rPointerMatrix));
   Cell* pointerCell =
@@ -65,16 +68,22 @@ SEXP BehCellSolute_createVariables(
   if (rPointerMFDouble == R_NilValue) {
     pointerMFDouble = nullptr;
   } else {
-    pointerMFDouble =
+    pointerMFDouble = 
       static_cast<MemoryDoubleFactory*>(R_ExternalPtrAddr(rPointerMFDouble));
   }
+  
+  std::vector<double> values(
+    REAL(rvalues), 
+    REAL(rvalues) + length(rvalues)
+  );
   
   pointerBeh->createVariables(
     pointerMatrix, 
     *pointerCell,
     *pointerTimeHolon,
     CHAR(asChar(timeStepName)),
-    asReal(initValue),
+    CHAR(asChar(iterationName)),
+    values,
     pointerMFDouble
   );
   

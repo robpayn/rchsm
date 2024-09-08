@@ -8,7 +8,7 @@
 #include "ValueDoubleMemory.h"
 #include <list>
 
-class Bound;
+class Holon;
 class RateDouble;
 
 /*!
@@ -20,7 +20,7 @@ class StateDouble : public ValueDoubleMemory
   public:
     /*!
       \brief
-        A list of attached rates for caculating the net change in state
+        A list of attached rates for calculating the net change in state
     */
     std::list<double*> rates_;
     
@@ -34,15 +34,16 @@ class StateDouble : public ValueDoubleMemory
       \brief
         Create a new instance of the state with the given initial value
      
+      \param Holon*
+        Holon containing the time step variable
+      \param std::string
+        String with the name of the time step variable
       \param double
         The initial value of the state
       \param int
         The phase in which the state should be updated
-      \param std::shared_ptr<MemoryFactory>
-        (Optional) A smart pointer to the factory to use for creating memory.
-        Default value is a null pointer.
-     */
-    StateDouble(double, int, std::shared_ptr<MemoryFactory> = nullptr);
+    */
+    StateDouble(Holon&, std::string, double, int);
     
     /*!
       \brief
@@ -54,19 +55,19 @@ class StateDouble : public ValueDoubleMemory
       \return
         No return value
     */
-    void attachRate(double*);
+    virtual void attachRate(double*);
     
     /*! 
       \brief
         Get the variables upon which the update method depends
      
-      \param DepManager*
-        A pointer to the dependency manager handling dependencies 
+      \param DepManager&
+        Reference to the dependency manager handling dependencies 
      
       \return 
         No return value
     */
-    void setDependencies(DepManager&) override;
+    virtual void setDependencies(DepManager&) override;
     
     /*! 
       \brief
@@ -75,7 +76,7 @@ class StateDouble : public ValueDoubleMemory
       \return 
         No return value
     */
-    void update() override;
+    virtual void update() override;
     
 };
 

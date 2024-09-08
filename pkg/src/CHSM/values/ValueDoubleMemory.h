@@ -8,6 +8,8 @@
 #include "ValueDouble.h"
 #include "../DynamicMemory.h"
 
+class MemoryDoubleFactory;
+
 /*!
   \brief
     A real number CHSM value that can add memory
@@ -25,10 +27,8 @@ class ValueDoubleMemory : public ValueDouble, public DynamicMemory
         Initial double precision floating point value
       \param int
         Phase of the dynamic value
-      \param std::shared_ptr<MemoryFactory>
-        A smart pointer to the factory to use for creating memory
      */
-    ValueDoubleMemory(double, int, std::shared_ptr<MemoryFactory>);
+    ValueDoubleMemory(double, int);
     
 };
 

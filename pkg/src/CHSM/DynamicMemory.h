@@ -6,9 +6,8 @@
 #define CHSM_DYNAMICMEMORY_H_
 
 #include "Dynamic.h"
-#include <memory>
 
-class MemoryFactory;
+class Memory;
 
 /*!
   \brief
@@ -20,9 +19,9 @@ class DynamicMemory : public Dynamic
     
     /*!
       \brief
-        The factory for creating a memory object if needed for the solver
+        Pointer to the memory object if needed for the solver
     */
-    std::shared_ptr<MemoryFactory> memoryFactory_;
+    Memory* memory_ = nullptr;
     
     /*!
       \brief
@@ -30,10 +29,22 @@ class DynamicMemory : public Dynamic
      
       \param int
         The phase in which the dynamic object should be updated
-      \param std::shared_ptr<MemoryFactory>
-        A smart pointer to the factory to use for creating memory
     */
-    DynamicMemory(int, std::shared_ptr<MemoryFactory>);
+    DynamicMemory(int);
+    
+    virtual ~DynamicMemory();
+    
+    /*!
+      \brief
+        Attach a memory object to the dynamic value.
+     
+      \param Memory*
+        Pointer to the memory to be attached.
+     
+      \return 
+        No return value.
+    */
+    virtual void attachMemory(Memory*);
     
 };
 

@@ -42,7 +42,8 @@ Constructs an object that is a new instance of the class
 
 \item{\code{...}}{Generic arguments that will be passed on to the C constructor}
 
-\item{\code{regFinalizer}}{(Optional) Logical to indicate if a finalizer should be registered (TRUE)
+\item{\code{regFinalizer}}{(Optional) Logical to indicate if a finalizer should 
+be registered (TRUE)
 or not (FALSE).
 Defaults to TRUE.
 See super class C_Object for more information.}

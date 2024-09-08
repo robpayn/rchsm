@@ -52,7 +52,7 @@ BatchReactor <- R6Class(
         variable = cell$getVariablePointer(name = "Time")
       )
       
-      bound <- self$matrix$createBound(
+      timeBound <- self$matrix$createBound(
         name = "BoundTime", 
         cellFrom = NULL, 
         cellTo = cell
@@ -60,7 +60,7 @@ BatchReactor <- R6Class(
       timeStepVar <- self$matrix$createVariable(
         name = "TimeStep",
         value = C_ValueDouble$new(initValue = timeStep),
-        holon = bound
+        holon = timeBound
       )
       
       if (solver == "ForwardEuler") {
@@ -82,11 +82,14 @@ BatchReactor <- R6Class(
       }
       
       cell <-self$matrix$createCell(name = "Cell01")
-      beh <- C_BehCellSolute$new(soluteName = "Nitrate", mfDouble = mfDouble)
+      beh <- C_BehCellSolute$new(soluteName = "Nitrate")
       beh$createVariables(
         matrix = self$matrix, 
         holon = cell,
-        initConc = initConc
+        timeHolon = timeBound,
+        timeStepName = "TimeStep",
+        initConc = initConc,
+        mfDouble = mfDouble
       )
       
       self$reporter$trackVariable(

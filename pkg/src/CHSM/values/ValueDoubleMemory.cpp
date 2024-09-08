@@ -4,12 +4,12 @@
 
 #include "ValueDoubleMemory.h"
 #include "MemoryDouble.h"
+#include "MemoryDoubleFactory.h"
 
 ValueDoubleMemory::ValueDoubleMemory(
   double init,
-  int phase, 
-  std::shared_ptr<MemoryFactory> mf
+  int phase
 ) :
   ValueDouble(init),
-  DynamicMemory(phase, mf)
+  DynamicMemory(phase)
 {}

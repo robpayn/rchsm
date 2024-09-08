@@ -7,9 +7,8 @@
 
 ValueBooleanMemory::ValueBooleanMemory(
   bool init,
-  int phase, 
-  std::shared_ptr<MemoryFactory> mf
+  int phase
 ) :
   ValueBoolean(init),
-  DynamicMemory(phase, mf)
+  DynamicMemory(phase)
 {}

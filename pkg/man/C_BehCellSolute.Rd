@@ -34,7 +34,6 @@ Constructs an object that is a new instance of the class
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{C_BehCellSolute$new(
   soluteName,
-  mfDouble = NULL,
   className = "BehCellSolute",
   regFinalizer = TRUE
 )}\if{html}{\out{</div>}}
@@ -45,16 +44,16 @@ Constructs an object that is a new instance of the class
 \describe{
 \item{\code{soluteName}}{Character string with the name of the solute}
 
-\item{\code{mfDouble}}{(Optional) Memory factory used for the state phase values.
-Default value is NULL, which may not be compatible with solvers
-that require memory.}
-
 \item{\code{className}}{The name of the associated C class}
 
 \item{\code{regFinalizer}}{(Optional) Logical to indicate if a finalizer should be registered (TRUE)
 or not (FALSE).
 Defaults to TRUE.
 See super class C_Object for more information.}
+
+\item{\code{mfDouble}}{(Optional) Memory factory used for the state phase values.
+Default value is NULL, which may not be compatible with solvers
+that require memory.}
 }
 \if{html}{\out{</div>}}
 }
@@ -65,17 +64,31 @@ See super class C_Object for more information.}
 \subsection{Method \code{createVariables()}}{
 Create the variables controlling the behavior in the provided holon.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{C_BehCellSolute$createVariables(matrix, holon, initConc)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{C_BehCellSolute$createVariables(
+  matrix,
+  holon,
+  timeHolon,
+  timeStepName,
+  initConc,
+  mfDouble = NULL
+)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{matrix}}{The matrix object where the variables should be installed}
+\item{\code{matrix}}{The matrix object where the variables should be installed.}
 
-\item{\code{holon}}{The holon object where the variables should be installed}
+\item{\code{holon}}{The holon object where the variables should be installed.}
 
-\item{\code{initConc}}{Numeric for initial concentration of solute}
+\item{\code{timeHolon}}{The holon containing the time step variable.}
+
+\item{\code{timeStepName}}{The name of the time step variable.}
+
+\item{\code{initConc}}{Numeric for initial concentration of solute.}
+
+\item{\code{mfDouble}}{(Optional) The memory factory for constructing the appropriate
+memory for the concentration value.}
 }
 \if{html}{\out{</div>}}
 }

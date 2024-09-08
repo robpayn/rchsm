@@ -9,10 +9,9 @@
 
 TimeValid::TimeValid(
   bool init, 
-  int phase, 
-  std::shared_ptr<MemoryFactory> mf
+  int phase
 ) :
-  ValueBooleanMemory(init, phase, mf)
+  ValueBooleanMemory(init, phase)
 {}
 
 void TimeValid::setDependencies(DepManager& dm) 

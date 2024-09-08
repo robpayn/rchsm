@@ -7,9 +7,8 @@
 
 ValueLongMemory::ValueLongMemory(
   long init, 
-  int phase, 
-  std::shared_ptr<MemoryFactory> mf
+  int phase
 ) :
   ValueLong(init),
-  DynamicMemory(phase, mf)
+  DynamicMemory(phase)
 {}

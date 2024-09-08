@@ -17,7 +17,7 @@ public:
   
   // Constructors/Destructor
   
-  TimeValid(bool, int, std::shared_ptr<MemoryFactory> = nullptr);
+  TimeValid(bool, int);
   
   // Methods
   

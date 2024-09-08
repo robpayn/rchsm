@@ -25,7 +25,8 @@ C_Behavior <- R6Class(
     #' @param ...
     #'   Generic arguments that will be passed on to the C constructor
     #' @param regFinalizer
-    #'   (Optional) Logical to indicate if a finalizer should be registered (TRUE)
+    #'   (Optional) Logical to indicate if a finalizer should 
+    #'   be registered (TRUE)
     #'   or not (FALSE).
     #'   Defaults to TRUE.
     #'   See super class C_Object for more information.
@@ -48,12 +49,24 @@ C_Behavior <- R6Class(
     #'   
     createVariables = function(matrix, holon, ...) 
     {
+      vargs = list(...)
+      if(any(names(vargs) == "mfDouble")) {
+        if (is.null(vargs$mfDouble) || (typeof(vargs$mfDouble) == "externalptr")) {
+        } else if (any(class(vargs$mfDouble) == "C_MemoryDoubleFactory")) {
+          vargs$mfDouble <- vargs$mfDouble$.external
+        } else {
+          stop("Invalid memory factory provided.")
+        }
+      }
       return(
-        self$callFunction(
-          fun = "createVariables",
-          matrix$.external,
-          holon$.external,
-          ...
+        do.call(
+          what = self$callFunction,
+          args = c(
+            fun = "createVariables",
+            matrix$.external,
+            holon$.external,
+            vargs
+          )
         )
       )
     }
@@ -169,23 +182,13 @@ C_BehCellSolute <- R6Class(
     #'
     initialize = function(
       soluteName, 
-      mfDouble = NULL, 
       className = "BehCellSolute", 
       regFinalizer = TRUE
     )
     {
       super$initialize(
         className = className, 
-        soluteName, 
-        if (is.null(mfDouble) || (typeof(mfDouble) == "externalptr"))
-          mfDouble
-        else 
-          if (any(class(mfDouble) == "C_MemoryDoubleFactory"))
-            mfDouble$.external
-          else 
-            stop(
-              "Invalid memory factory provided to cell solute behavior."
-            ),
+        soluteName,
         regFinalizer = regFinalizer
       )
     },
@@ -194,23 +197,41 @@ C_BehCellSolute <- R6Class(
     #'   Create the variables controlling the behavior in the provided holon.
     #'
     #' @param matrix
-    #'   The matrix object where the variables should be installed
+    #'   The matrix object where the variables should be installed.
     #' @param holon
-    #'   The holon object where the variables should be installed
+    #'   The holon object where the variables should be installed.
+    #' @param timeHolon
+    #'   The holon containing the time step variable.
+    #' @param timeStepName
+    #'   The name of the time step variable.
     #' @param initConc
-    #'   Numeric for initial concentration of solute
+    #'   Numeric for initial concentration of solute.
+    #' @param mfDouble
+    #'   (Optional) The memory factory for constructing the appropriate
+    #'   memory for the concentration value.
     #'   
     createVariables = function(
-    matrix, 
-    holon,       
-    initConc
+      matrix, 
+      holon,
+      timeHolon,
+      timeStepName,
+      initConc,
+      mfDouble = NULL
     ) 
     {
       return(
         super$createVariables(
           matrix,
           holon,
-          initConc
+          if (is.null(timeHolon) || (typeof(timeHolon) == "externalptr"))
+            timeHolon
+          else if (any(class(timeHolon) == "C_Bound"))
+            timeHolon$.external
+          else
+            stop("Invalid time holon provided."),
+          timeStepName,
+          initConc,
+          mfDouble = mfDouble
         )
       )
     }

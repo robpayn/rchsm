@@ -1,13 +1,13 @@
 /*
- * BehCellSolute.cpp
+ * BehCellConcDefined.cpp
  */
 
-#include "BehCellSolute.h"
+#include "BehCellConcDefined.h"
 #include "../../../Matrix.h"
-#include "../../../CHSM/values/StateDouble.h"
+#include "../../../CHSM/values/StateDoubleDefined.h"
 #include "../../../CHSM/values/MemoryDoubleFactory.h"
 
-BehCellSolute::BehCellSolute(
+BehCellConcDefined::BehCellConcDefined(
   std::string soluteName
 ) :
   soluteName_(soluteName)
@@ -15,24 +15,31 @@ BehCellSolute::BehCellSolute(
   setNames();
 }
 
-void BehCellSolute::createVariables(
+void BehCellConcDefined::createVariables(
   Matrix* matrix, 
   Holon& holon,
   Holon& timeHolon,
   std::string timeStepName,
-  double initValue,
+  std::string iterationName,
+  std::vector<double> values,
   MemoryDoubleFactory* mf
 ) 
 {
   int phase = 2;
-  Value* val = new StateDouble(timeHolon, timeStepName, initValue, phase);
+  Value* val = new StateDoubleDefined(
+    timeHolon, 
+    timeStepName, 
+    iterationName, 
+    values, 
+    phase
+  );
   if(mf) {
     mf->createMemory(val);
   }
   matrix->createVariable(stateName_, val, holon);
 }
 
-void BehCellSolute::setNames()
+void BehCellConcDefined::setNames()
 {
   stateName_ = soluteName_ + stateSuffix_;
 }

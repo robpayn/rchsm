@@ -33,7 +33,7 @@ C_MemoryFactory <- R6Class(
     #'   Defaults to FALSE
     #'   See super class C_Object for more information.
     #' 
-    initialize = function(className, size, ..., regFinalizer = FALSE)
+    initialize = function(className, size, ..., regFinalizer = TRUE)
     {
       super$initialize(
         className = className, 
@@ -78,7 +78,7 @@ C_MemoryDoubleFactory <- R6Class(
     initialize = function(
       size, 
       className = "MemoryDoubleFactory", 
-      regFinalizer = FALSE
+      regFinalizer = TRUE
     )
     {
       super$initialize(

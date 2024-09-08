@@ -34,7 +34,7 @@ Create a new instance of a memory factory
 \if{html}{\out{<div class="r">}}\preformatted{C_MemoryDoubleFactory$new(
   size,
   className = "MemoryDoubleFactory",
-  regFinalizer = FALSE
+  regFinalizer = TRUE
 )}\if{html}{\out{</div>}}
 }
 
