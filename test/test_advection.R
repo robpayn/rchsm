@@ -97,7 +97,7 @@ beh$createVariables(
   initRate = 0
 )
 matrix$createVariable(
-  name = "SaltVelocity",
+  name = "WaterVelocity",
   value = C_ValueDouble$new(initValue = 1),
   holon = bound
 )
@@ -120,6 +120,7 @@ cat(model$getValueString())
 
 output <- reporter$getDataFrame()
 
+windows(width = 8, height = 10)
 par(mfrow = c(2, 1), mai = c(1, 0.8, 0.1, 0.1))
 plot(
   x = output$CellTime.Time, 

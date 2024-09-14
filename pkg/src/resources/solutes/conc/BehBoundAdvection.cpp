@@ -30,5 +30,4 @@ void BehBoundAdvection::setNames()
 {
   stateName_ = soluteName_ + stateSuffix_;
   rateName_ = soluteName_ + rateSuffix_;
-  velocityName_ = soluteName_ + velocitySuffix_;
 }

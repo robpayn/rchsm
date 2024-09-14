@@ -52,6 +52,6 @@ void RateAdvection::setDependencies(DepManager& dm)
 
 void RateAdvection::update()
 {
-  v_ = *velocity_ * ((*concFrom_ - *concTo_) / *length_);
-  vf_ = -v_;
+  v_ = *velocity_ * ((*concFrom_ - *concTo_) / (2 * *length_));
+  vf_ = v_;
 }

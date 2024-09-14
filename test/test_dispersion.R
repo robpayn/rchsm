@@ -115,6 +115,7 @@ cat(model$getValueString())
 
 output <- reporter$getDataFrame()
 
+windows(width = 8, height = 6)
 ymin <- min(output$Cell01.SaltConc, output$Cell02.SaltConc)
 ymax <- max(output$Cell01.SaltConc, output$Cell02.SaltConc)
 plot(

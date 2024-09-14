@@ -24,9 +24,7 @@ public:
   
   std::string rateName_ = "";
   
-  std::string velocitySuffix_ = "Velocity";
-  
-  std::string velocityName_ = "";
+  std::string velocityName_ = "WaterVelocity";
   
   BehBoundAdvection(std::string);
   
