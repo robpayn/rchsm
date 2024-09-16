@@ -11,7 +11,8 @@ Time::Time(
   double init, 
   int phase
 ) :
-  ValueDoubleMemory(init, phase)
+  ValueDouble(init),
+  DynamicMemory(phase)
 {}
 
 void Time::setDependencies(DepManager& dm) 

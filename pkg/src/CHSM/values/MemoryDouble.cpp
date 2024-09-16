@@ -3,7 +3,8 @@
  */
 
 #include "MemoryDouble.h"
-#include "ValueDoubleMemory.h"
+#include "ValueDouble.h"
+#include "../DynamicMemory.h"
 #include "../Holon.h"
 
 MemoryDouble::MemoryDouble(int memSize) :
@@ -12,12 +13,20 @@ MemoryDouble::MemoryDouble(int memSize) :
   allocateMemory();
 }
 
-MemoryDouble::MemoryDouble(ValueDoubleMemory* value, int memSize) :
+MemoryDouble::MemoryDouble(ValueDouble* value, int memSize) :
   Memory(memSize),
   val_(value)
 {
   allocateMemory();
-  val_->attachMemory(this);
+  DynamicMemory* dm = dynamic_cast<DynamicMemory*>(val_);
+  if(dm) {
+    dm->attachMemory(this);
+  } else {
+    std::ostringstream error;
+    error << "Memory cannot be attached to value of " << val_->var_->name_
+      << " because it does not implement dynamic memory.";
+    throw std::runtime_error(error.str());
+  }
 }
 
 MemoryDouble::~MemoryDouble()
@@ -53,7 +62,7 @@ void MemoryDouble::recall(int index)
 
 void MemoryDouble::setValue(Value* value)
 {
-  val_ = dynamic_cast <ValueDoubleMemory*> (value);
+  val_ = dynamic_cast<ValueDouble*>(value);
 }
 
 void MemoryDouble::store(int index) 

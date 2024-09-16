@@ -5,14 +5,15 @@
 #ifndef CHSM_VALUES_RATEDOUBLE_H_
 #define CHSM_VALUES_RATEDOUBLE_H_
 
-#include "ValueDoubleMemory.h"
+#include "ValueDouble.h"
+#include "../DynamicMemory.h"
 #include "../Rate.h"
 
 /*!
   \brief
     A rate quantified by a real number
 */
-class RateDouble : public ValueDoubleMemory, public Rate
+class RateDouble : public ValueDouble, public DynamicMemory, public Rate
 {
   public:
     

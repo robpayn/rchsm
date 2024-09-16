@@ -6,7 +6,6 @@
 #include "RateDouble.h"
 #include "../Holon.h"
 #include "../DepManager.h"
-#include <sstream>
 
 StateDouble::StateDouble(
   Holon& timeHolon,
@@ -14,7 +13,8 @@ StateDouble::StateDouble(
   double initValue,
   int phase
 ) :
-  ValueDoubleMemory(initValue, phase),
+  ValueDouble(initValue),
+  DynamicMemory(phase),
   dt_(&(timeHolon.getVarValue<ValueDouble>(timeStepName)->v_))
 {}
 

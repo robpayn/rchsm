@@ -3,8 +3,8 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound49">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -16,8 +16,8 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound42">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -29,22 +29,22 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound40">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
 </Holon>
 <Holon name="Bound41">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
 </Holon>
 <Holon name="Bound39">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -74,8 +74,8 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound31">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -87,15 +87,15 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound30">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
 </Holon>
 <Holon name="Bound38">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -104,8 +104,8 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound29">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -114,8 +114,8 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound23">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -127,15 +127,15 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound43">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
 </Holon>
 <Holon name="Bound12">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -153,22 +153,22 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound08">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
 </Holon>
 <Holon name="Bound14">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
 </Holon>
 <Holon name="Bound04">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -177,8 +177,8 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound10">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -187,8 +187,8 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound05">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -200,8 +200,8 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound35">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -216,15 +216,15 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound02">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
 </Holon>
 <Holon name="Bound47">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -236,8 +236,8 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound06">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -249,36 +249,36 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound48">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
 </Holon>
 <Holon name="Bound46">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
 </Holon>
 <Holon name="Bound11">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
 </Holon>
 <Holon name="Bound16">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
 </Holon>
 <Holon name="Bound01">
+  <Variable name="SpaceLength">2.531646</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">2.500000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -287,15 +287,15 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound34">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
 </Holon>
 <Holon name="Bound32">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -316,8 +316,8 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound27">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -326,36 +326,36 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound17">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
 </Holon>
 <Holon name="Bound44">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
 </Holon>
 <Holon name="Bound18">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
 </Holon>
 <Holon name="Bound03">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
 </Holon>
 <Holon name="Bound19">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -370,8 +370,8 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound25">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -380,22 +380,22 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound20">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
 </Holon>
 <Holon name="Bound50">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
 </Holon>
 <Holon name="Bound33">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -407,15 +407,15 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound22">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
 </Holon>
 <Holon name="Bound13">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -424,15 +424,15 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound21">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
 </Holon>
 <Holon name="Bound09">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -444,8 +444,8 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound15">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -454,8 +454,8 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound45">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -464,22 +464,22 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound07">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
 </Holon>
 <Holon name="Bound24">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
 </Holon>
 <Holon name="Bound36">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -488,15 +488,15 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound37">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
 </Holon>
 <Holon name="Bound26">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>
@@ -505,8 +505,8 @@
   <Variable name="SaltConc">0.000000</Variable>
 </Holon>
 <Holon name="Bound28">
+  <Variable name="SpaceLength">5.063291</Variable>
   <Variable name="SaltDispCoeff">2.000000</Variable>
-  <Variable name="length">5.000000</Variable>
   <Variable name="SaltDispersion">0.000000</Variable>
   <Variable name="WaterVelocity">0.400000</Variable>
   <Variable name="SaltAdvection">0.000000</Variable>

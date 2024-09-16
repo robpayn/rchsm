@@ -24,7 +24,7 @@ void RateAdvection::setDependencies(DepManager& dm)
   );
   
   length_ = &(
-    dm.setDependency<ValueDouble>(this, var_->holon_, "length")->v_
+    dm.setDependency<ValueDouble>(this, var_->holon_, "SpaceLength")->v_
   );
   
   Cell* cell = static_cast<Bound*>(var_->holon_)->cellTo_;

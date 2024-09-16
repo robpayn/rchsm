@@ -13,7 +13,8 @@ RateDouble::RateDouble(
   std::string stateName,
   int phase
 ) :
-  ValueDoubleMemory(initValue, phase),
+  ValueDouble(initValue),
+  DynamicMemory(phase),
   vf_(initValueFrom),
   stateName_(stateName)
 {}

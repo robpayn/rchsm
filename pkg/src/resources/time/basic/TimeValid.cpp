@@ -11,7 +11,8 @@ TimeValid::TimeValid(
   bool init, 
   int phase
 ) :
-  ValueBooleanMemory(init, phase)
+  ValueBoolean(init),
+  DynamicMemory(phase)
 {}
 
 void TimeValid::setDependencies(DepManager& dm) 

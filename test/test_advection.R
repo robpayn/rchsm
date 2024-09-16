@@ -102,7 +102,7 @@ matrix$createVariable(
   holon = bound
 )
 matrix$createVariable(
-  name = "length",
+  name = "SpaceLength",
   value = C_ValueDouble$new(initValue = 10),
   holon = bound
 )

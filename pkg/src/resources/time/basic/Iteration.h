@@ -5,9 +5,10 @@
 #ifndef RESOURCES_TIME_BASIC_ITERATION_H_
 #define RESOURCES_TIME_BASIC_ITERATION_H_
 
-#include "../../../CHSM/values/ValueLongMemory.h"
+#include "../../../CHSM/values/ValueLong.h"
+#include "../../../CHSM/DynamicMemory.h"
 
-class Iteration : public ValueLongMemory
+class Iteration : public ValueLong, public DynamicMemory
 {
   public:
     // Constructors/Destructor

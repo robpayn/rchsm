@@ -154,7 +154,7 @@ AdvDisp <- R6Class(
         )
         
         self$matrix$createVariable(
-          name = "length",
+          name = "SpaceLength",
           value = C_ValueDouble$new(
             initValue = ifelse(
               test = cellCount == 1,

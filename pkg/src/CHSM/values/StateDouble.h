@@ -5,7 +5,8 @@
 #ifndef CHSM_VALUES_STATEDOUBLE_H_
 #define CHSM_VALUES_STATEDOUBLE_H_
 
-#include "ValueDoubleMemory.h"
+#include "ValueDouble.h"
+#include "../DynamicMemory.h"
 #include <list>
 
 class Holon;
@@ -15,7 +16,7 @@ class RateDouble;
   \brief
     A CHSM state with a double precision floating point value
 */
-class StateDouble : public ValueDoubleMemory
+class StateDouble : public ValueDouble, public DynamicMemory
 {
   public:
     /*!

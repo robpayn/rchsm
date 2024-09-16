@@ -8,18 +8,18 @@
 #include "../Memory.h"
 #include <string>
 
-class ValueDoubleMemory;
+class ValueDouble;
 
 class MemoryDouble : public Memory
 {
   public:
-    ValueDoubleMemory* val_ = nullptr;
+    ValueDouble* val_ = nullptr;
     
     double* m_ = nullptr;
     
     MemoryDouble(int);
     
-    MemoryDouble(ValueDoubleMemory*, int);
+    MemoryDouble(ValueDouble*, int);
     
     virtual ~MemoryDouble();
     

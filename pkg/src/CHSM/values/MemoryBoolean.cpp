@@ -4,6 +4,9 @@
 
 #include "MemoryBoolean.h"
 #include "ValueBoolean.h"
+#include "../DynamicMemory.h"
+#include "../Holon.h"
+#include <sstream>
 
 MemoryBoolean::MemoryBoolean(int memSize) :
   Memory(memSize)
@@ -16,6 +19,15 @@ MemoryBoolean::MemoryBoolean(ValueBoolean* value, int memSize) :
   val_(value)
 {
   allocateMemory();
+  DynamicMemory* dm = dynamic_cast<DynamicMemory*>(val_);
+  if(dm) {
+    dm->attachMemory(this);
+  } else {
+    std::ostringstream error;
+    error << "Memory cannot be attached to value of " << val_->var_->name_
+          << " because it does not implement dynamic memory.";
+    throw std::runtime_error(error.str());
+  }
 }
 
 MemoryBoolean::~MemoryBoolean()

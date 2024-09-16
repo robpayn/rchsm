@@ -5,9 +5,10 @@
 #ifndef RESOURCES_TIME_BASIC_TIME_H_
 #define RESOURCES_TIME_BASIC_TIME_H_
 
-#include "../../../CHSM/values/ValueDoubleMemory.h"
+#include "../../../CHSM/values/ValueDouble.h"
+#include "../../../CHSM/DynamicMemory.h"
 
-class Time : public ValueDoubleMemory
+class Time : public ValueDouble, public DynamicMemory
 {
   public:
     // Attributes
