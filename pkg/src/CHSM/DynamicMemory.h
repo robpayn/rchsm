@@ -12,6 +12,12 @@ class Memory;
 /*!
   \brief
     An object that can be updated and can have memory attached
+  \details
+    Some solvers (e.g., Runge Kutta solvers) require memory of previous 
+      states of the machine with the calculations of a single time step.
+    Different types of memory may be installed to provide that feature and
+      the appropriate type and size of memory must be compatible with the
+      solver being used.
 */
 class DynamicMemory : public Dynamic
 {
@@ -19,18 +25,15 @@ class DynamicMemory : public Dynamic
     
     /*!
       \brief
-        Pointer to the memory object if needed for the solver
+        Pointer to the attached memory object
     */
     Memory* memory_ = nullptr;
     
     /*!
       \brief
         Initialize a dynamic memory object
-     
-      \param int
-        The phase in which the dynamic object should be updated
     */
-    DynamicMemory(int);
+    DynamicMemory();
     
     virtual ~DynamicMemory();
     
@@ -39,7 +42,7 @@ class DynamicMemory : public Dynamic
         Attach a memory object to the dynamic value.
      
       \param Memory*
-        Pointer to the memory to be attached.
+        Pointer to the memory object to be attached.
      
       \return 
         No return value.

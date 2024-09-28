@@ -15,16 +15,14 @@
 */
 class ValueLong : public Value
 {
+  
   public:
-    // Attributes
-    
+
     /*!
       \brief
         The long integer value
     */
     long v_ = LONG_MIN;
-    
-    // Constructors
     
     /*!
       \brief
@@ -44,8 +42,6 @@ class ValueLong : public Value
         A string representation of the value
     */
     ValueLong(std::string);
-    
-    // Methods
     
     /*! 
       \brief

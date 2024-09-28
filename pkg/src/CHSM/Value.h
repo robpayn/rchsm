@@ -13,15 +13,13 @@ class Variable;
   \brief
     An abstract value of a CHSM variable
   \details
-    This describes the methods that must be implemented for full
+    This abstraction describes the methods that must be implemented for full
     functionality of a value of a composite hierarchy state machine variable.
 */
 
 class Value
 {
   public:
-    
-    // Attributes ///////////////////////
     
     /*! 
       \brief
@@ -30,27 +28,21 @@ class Value
     Variable* var_ = nullptr;
     
     
-    // Constructors /////////////////////
-    
     /*! 
       \brief
         Constructs a new instance of the Value.
     */
     Value();
     
-
-    // Destructor ///////////////////////
-    
-    virtual ~Value();
-    
-    
-    // Methods //////////////////////////
+    virtual ~Value() {};
     
     /*! 
       \brief
         Set the value from a string representation
+     
       \param std::string 
         The string representation of the value.
+     
       \return 
         No return value
     */
@@ -71,6 +63,7 @@ class Value
     /*! 
       \brief
         Convert the value to a string
+     
       \return 
         A string representing the value
     */

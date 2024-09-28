@@ -12,14 +12,12 @@
 
 Matrix::Matrix(DepManager* dm) :
   ValueVarmap(),
-  Dynamic(-1),
   dm_(dm)
 {}
 
 Matrix::~Matrix()
 {
   delete dm_;
-  delete solver_;
 }
 
 Bound* Matrix::createBound (
@@ -67,18 +65,13 @@ Variable* Matrix::createVariable(std::string name, Value* value, Holon& holon)
   return variable;
 }
 
-void Matrix::installSolver(Solver* solver)
-{
-  solver_ = solver;
-}
-
 void Matrix::installVariable(Variable* variable, Holon& holon)
 {
   holon.addVariable(variable);
   
   Dynamic* dynamic = dynamic_cast<Dynamic*>(variable->value_);
-  if(dynamic && (dynamic->phase_ >= 0)) {
-    dm_->addDynamic(dynamic);
+  if(dynamic && (dynamic->updater_->phase_ >= 0)) {
+    dm_->addUpdater(dynamic->updater_);
   }
   
   Rate* rate = dynamic_cast<Rate*>(variable->value_);
@@ -89,16 +82,5 @@ void Matrix::installVariable(Variable* variable, Holon& holon)
 
 void Matrix::setDependencies()
 {
-  setDependencies(*dm_);
-}
-
-void Matrix::setDependencies(DepManager& dm) 
-{
-  dm.manageDependencies();
-  solver_->setDynamics(dm);
-}
-
-void Matrix::update() 
-{
-  solver_->solve();
+  updater_->setDependencies(*dm_);
 }

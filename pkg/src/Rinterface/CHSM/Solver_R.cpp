@@ -28,6 +28,7 @@ SEXP SolverForwardEuler_constructor(SEXP extTimeStepPtr, SEXP regFinalizer)
   
   Variable* timeStepPtr = 
     static_cast <Variable*> (R_ExternalPtrAddr(extTimeStepPtr));
+  
   SolverForwardEuler* pointer = new SolverForwardEuler(
     timeStepPtr->getValue<ValueDouble>()->v_
   );
@@ -67,6 +68,7 @@ SEXP SolverRKTwo_constructor(SEXP extTimeStepPtr, SEXP regFinalizer)
   
   Variable* timeStepPtr = 
     static_cast <Variable*> (R_ExternalPtrAddr(extTimeStepPtr));
+  
   SolverRKTwo* pointer = new SolverRKTwo(
     timeStepPtr->getValue<ValueDouble>()->v_
   );

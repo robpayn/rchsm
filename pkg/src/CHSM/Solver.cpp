@@ -3,18 +3,23 @@
  */
 
 #include "Solver.h"
+#include "../Matrix.h"
+
+#include <exception>
 
 Solver::Solver(double& timeStep) :
+  Updater(-1),
   timeStep_(timeStep)
 {}
 
 Solver::~Solver()
 {}
 
-void Solver::setDynamics(DepManager& dm)
+void Solver::setDependencies(DepManager& dm) 
 {
-  dynamics_.resize(dm.numPhases_);
+  dm.manageDependencies();
+  updaters_.resize(dm.numPhases_);
   for(int phaseCount = 0; phaseCount < dm.numPhases_; phaseCount++) {
-    dynamics_[phaseCount] = dm.sort(phaseCount);
+    updaters_[phaseCount] = dm.sort(phaseCount);
   }
 }

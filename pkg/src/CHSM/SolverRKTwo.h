@@ -18,9 +18,9 @@ class SolverRKTwo : public Solver
     
     virtual ~SolverRKTwo();
     
-    void solve() override;
+    void setDependencies(DepManager&) override;
     
-    void setDynamics(DepManager&) override;
+    void update() override;
   
 };
 

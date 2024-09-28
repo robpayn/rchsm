@@ -4,10 +4,9 @@
 
 #include "ValueBoolean.h"
 
-ValueBoolean::ValueBoolean(bool value)
-{
-  setValue(value);
-}
+ValueBoolean::ValueBoolean(bool value) :
+  v_(value)
+{}
 
 ValueBoolean::ValueBoolean(std::string valueString)
 {
@@ -17,16 +16,10 @@ ValueBoolean::ValueBoolean(std::string valueString)
 void ValueBoolean::fromString(std::string valueString)
 {
   if (valueString.compare("true") == 0) {
-    setValue(true);
+    v_ = true;
   } else{
-    setValue(false);
+    v_ = false;
   }
-}
-
-void ValueBoolean::setValue(bool value)
-{
-  v_ = value;
-  isDefined_ = true;
 }
 
 std::string ValueBoolean::toString()

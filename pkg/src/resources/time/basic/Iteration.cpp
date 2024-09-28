@@ -4,15 +4,22 @@
 
 #include "Iteration.h"
 
-Iteration::Iteration(long init, int phase) :
-  ValueLong(init),
-  DynamicMemory(phase)
+Iteration::Iteration(long initValue, int phase) :
+  ValueLong(initValue)
+{
+  attachUpdater(new IterationUpdater(phase));
+}
+
+IterationUpdater::IterationUpdater(int phase) :
+  Updater(phase)
 {}
 
-void Iteration::setDependencies(DepManager& dm) {}
+void IterationUpdater::setDependencies(DepManager& dm) 
+{
+  v_ = &(static_cast<ValueLong*>(val_)->v_);  
+}
 
-void Iteration::update() {
-  
-  v_++;
-  
+void IterationUpdater::update() 
+{
+  (*v_)++;
 }

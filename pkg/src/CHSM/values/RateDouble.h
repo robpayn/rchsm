@@ -39,15 +39,8 @@ class RateDouble : public ValueDouble, public DynamicMemory, public Rate
         Initial value of the rate on the from side
       \param std::string
         Name of states to which the rate should be attached
-      \param int
-        Phase in which the rate should be updated
     */
-    RateDouble(
-      double,
-      double,
-      std::string, 
-      int
-    );
+    RateDouble(double, double, std::string);
     
     /*!
       \brief

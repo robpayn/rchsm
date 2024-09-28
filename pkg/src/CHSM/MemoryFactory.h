@@ -6,7 +6,7 @@
 #define CHSM_MEMORYFACTORY_H_
 
 class Memory;
-class Value;
+class DynamicMemory;
 
 /*!
   \brief
@@ -28,7 +28,7 @@ class MemoryFactory
     */
     MemoryFactory(int);
     
-    virtual ~MemoryFactory(); 
+    virtual ~MemoryFactory() {}; 
     
     /*!
       \brief
@@ -40,7 +40,7 @@ class MemoryFactory
       \return
         Pointer to the new memory object
     */
-    virtual Memory* createMemory(Value*) = 0;
+    virtual Memory* createMemory(DynamicMemory*) = 0;
     
 };
 

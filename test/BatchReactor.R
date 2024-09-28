@@ -22,13 +22,35 @@ BatchReactor <- R6Class(
       )
       
       cell <- self$matrix$createCell(name = "CellTime")
-      beh <- C_BehCellTime$new()
-      beh$createVariables(
-        matrix = self$matrix,
-        holon = cell,
-        initTime = 0,
-        initIteration = 0,
-        initTimeValid = TRUE
+      self$matrix$createVariable(
+        name = "Time",
+        value = C_Object$new(
+          className = "Time",
+          initValue = 0,
+          phase = 0,
+          regFinalizer = FALSE
+        ),
+        holon = cell
+      )
+      self$matrix$createVariable(
+        name = "Iteration",
+        value = C_Object$new(
+          className = "Iteration",
+          initValue = 0,
+          phase = 0,
+          regFinalizer = FALSE
+        ),
+        holon = cell
+      )
+      self$matrix$createVariable(
+        name = "TimeValid",
+        value = C_Object$new(
+          className = "TimeValid",
+          initValue = TRUE,
+          phase = 0,
+          regFinalizer = FALSE
+        ),
+        holon = cell
       )
       self$matrix$createVariable(
         name = "TimeMax",
@@ -82,16 +104,19 @@ BatchReactor <- R6Class(
       }
       
       cell <-self$matrix$createCell(name = "Cell01")
-      beh <- C_BehCellSolute$new(soluteName = "Nitrate")
-      beh$createVariables(
-        matrix = self$matrix, 
-        holon = cell,
-        timeHolon = timeBound,
-        timeStepName = "TimeStep",
-        initConc = initConc,
-        mfDouble = mfDouble
+      self$matrix$createVariable(
+        name = "NitrateConc",
+        value = C_Object$new(
+          className = "StateDouble",
+          timeHolon = timeBound$.external,
+          timeStepName = "TimeStep",
+          initConc = initConc,
+          phase = 2,
+          mfDouble = mfDouble$.external,
+          regFinalizer = FALSE
+        ),
+        holon = cell
       )
-      
       self$reporter$trackVariable(
         variable = cell$getVariablePointer(name = "NitrateConc")
       )
@@ -101,11 +126,17 @@ BatchReactor <- R6Class(
         cellFrom = NULL, 
         cellTo = cell
       )
-      beh <- C_BehBoundFirstOrder$new(soluteName = "Nitrate")
-      beh$createVariables(
-        matrix = self$matrix,
-        holon = bound,
-        initRate = 0
+      self$matrix$createVariable(
+        name = "NitrateRate",
+        value = C_Object$new(
+          className = "RateFirstOrder",
+          initValue = 0,
+          stateName = "NitrateConc",
+          coeffName = "NitrateRateCoeff",
+          phase = 1,
+          regFinalizer = FALSE
+        ),
+        holon = bound
       )
       self$matrix$createVariable(
         name = "NitrateRateCoeff",

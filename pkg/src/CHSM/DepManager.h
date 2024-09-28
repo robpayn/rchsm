@@ -12,7 +12,7 @@
 #include <list>
 #include <vector>
 
-class Dynamic;
+class Updater;
 
 /*!
   \brief
@@ -32,7 +32,7 @@ class DepManager
       \brief
         List of dynamic values for which dependencies should be managed
     */
-    std::list<Dynamic*>* dynamics_;
+    std::list<Updater*>* updaters_;
     
     /*!
       \brief
@@ -56,7 +56,7 @@ class DepManager
       \return
         No return value
     */
-    virtual void addDynamic(Dynamic*);
+    virtual void addUpdater(Updater*);
     
     /*!
       \brief
@@ -174,7 +174,7 @@ class DepManager
       \return
         Vector of sorted dynamic values for the given phase
     */
-    virtual std::vector<Dynamic*> sort(int) = 0;
+    virtual std::vector<Updater*> sort(int) = 0;
     
 };
 

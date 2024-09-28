@@ -5,55 +5,41 @@
 #ifndef CHSM_DYNAMIC_H_
 #define CHSM_DYNAMIC_H_
 
-class DepManager;
+class Updater;
 
 /*! 
   \brief
-    CHSM abstraction for defining an object that can be updated
+    CHSM abstraction for defining a value that can be updated
   \details
-    The composite hierarchy state machine objects may be updated during
+    The composite hierarchy state machine values may be updated during
     a state machine simulation execution.
-    Objects that need to updated will need to inherit from dynamic, allowing
-    their dependencies to be tracked and their update method to be called
-    in the proper order.
+    Values that need to updated will need to extend the dynamic class,
+    which provides the feature of allowing an updater to be attached
+    to the value.
 */
 class Dynamic
 {
   public:
     
-    // Attributes ///////////////////////
-    
-    /*! 
+    /*!
       \brief
-        The calculation phase of the variable
+        Pointer to the attached updater that changes the dynamic value.
     */
-    int phase_ = -1;
+    Updater* updater_ = nullptr;
 
+    Dynamic();
     
-    // Methods //////////////////////////
+    virtual ~Dynamic();
     
-    Dynamic(int);
-    
-    /*! 
+    /*!
       \brief
-        Get the variables upon which the update method depends
+        Attach an updater to the dynamic value.
      
-      \param DepManager&
-        Reference to the dependency manager handling dependencies 
-     
-      \return 
-        No return value
+      \param Updater*
+        Pointer to the updater to be attached.
     */
-    virtual void setDependencies(DepManager&) = 0;
+    virtual void attachUpdater(Updater* updater);
     
-    /*! 
-      \brief
-        Update the value based on calculation from other variable values
-     
-      \return 
-        No return value
-    */
-    virtual void update() = 0;
 };
 
 #endif /* CHSM_DYNAMIC_H_ */

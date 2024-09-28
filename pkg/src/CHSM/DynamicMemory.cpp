@@ -5,8 +5,8 @@
 #include "DynamicMemory.h"
 #include "Memory.h"
 
-DynamicMemory::DynamicMemory(int phase) :
-  Dynamic(phase)
+DynamicMemory::DynamicMemory() :
+  Dynamic()
 {}
 
 DynamicMemory::~DynamicMemory()
@@ -17,4 +17,5 @@ DynamicMemory::~DynamicMemory()
 void DynamicMemory::attachMemory(Memory* memory)
 {
   memory_ = memory;
+  memory_->attachDynamicValue(this);
 }

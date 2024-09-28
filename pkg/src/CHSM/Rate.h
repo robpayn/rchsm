@@ -11,6 +11,7 @@
 */
 class Rate
 {
+  
   public:
     /*!
       \brief

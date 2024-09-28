@@ -13,9 +13,6 @@ ValueDouble::ValueDouble(std::string valueString)
   fromString(valueString);
 }
 
-ValueDouble::~ValueDouble()
-{}
-
 void ValueDouble::fromString(std::string valueString)
 {
   v_ = stod(valueString);

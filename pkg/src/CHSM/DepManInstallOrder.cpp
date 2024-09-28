@@ -11,13 +11,13 @@ DepManInstallOrder::DepManInstallOrder(int numPhases) :
 void DepManInstallOrder::createDependency(Value* depVal, Value* neededVal)
 {}
 
-std::vector<Dynamic*> DepManInstallOrder::sort(int phase)
+std::vector<Updater*> DepManInstallOrder::sort(int phase)
 {
-  std::vector<Dynamic*> vec(dynamics_[phase].size());
+  std::vector<Updater*> vec(updaters_[phase].size());
   
   long index = 0;
-  for(Dynamic* dyn : dynamics_[phase]) {
-    vec[index] = dyn;
+  for(Updater* updater : updaters_[phase]) {
+    vec[index] = updater;
     index++;
   }
   

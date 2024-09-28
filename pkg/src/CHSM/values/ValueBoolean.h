@@ -15,21 +15,12 @@
 class ValueBoolean : public Value
 {
 public:
-  // Attributes
-  
+
   /*!
     \brief
       The boolean (true/false) value
   */
   bool v_ = false;
-  
-  /*!
-    \brief
-      A boolean flag indicating if the value has been defined
-  */
-  bool isDefined_ = false;
-  
-  // Constructors
   
   /*!
     \brief
@@ -50,8 +41,6 @@ public:
   */
   ValueBoolean(std::string);
   
-  // Methods
-  
   /*! 
     \brief
       Set the boolean value from a string representation
@@ -64,18 +53,6 @@ public:
   */
   void fromString(std::string valueString) override;
   
-  /*!
-    \brief
-      Set the value
-   
-    \param bool
-      The new value for the ValueBoolean
-   
-    \return
-      No return value
-  */
-  void setValue(bool);
-  
   /*! 
     \brief
       Convert the boolean value to a string
@@ -84,6 +61,7 @@ public:
       A string representing the boolean value
   */
   std::string toString() override;
+  
 };
 
 #endif /* CHSM_VALUES_VALUEBOOLEAN_H_ */

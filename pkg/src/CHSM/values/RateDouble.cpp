@@ -6,15 +6,14 @@
 #include "StateDouble.h"
 #include "../Cell.h"
 #include "../Bound.h"
+#include "../Updater.h"
 
 RateDouble::RateDouble(
   double initValue,
   double initValueFrom,
-  std::string stateName,
-  int phase
+  std::string stateName
 ) :
   ValueDouble(initValue),
-  DynamicMemory(phase),
   vf_(initValueFrom),
   stateName_(stateName)
 {}

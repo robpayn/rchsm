@@ -54,7 +54,7 @@ class DepManInstallOrder : public DepManager
       \return
         Vector of sorted dynamic values for the given phase
      */
-    std::vector<Dynamic*> sort(int phase) override;
+    std::vector<Updater*> sort(int phase) override;
     
 };
 

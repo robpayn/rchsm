@@ -6,10 +6,25 @@
 #define RESOURCES_SOLUTES_CONC_RATEADVECTION_H_
 
 #include "../../../CHSM/values/RateDouble.h"
+#include "../../../CHSM/Updater.h"
 
 class RateAdvection : public RateDouble
 {
   public:
+    
+    RateAdvection(double, std::string, std::string, int);
+    
+};
+
+class RateAdvectionUpdater : public Updater
+{
+  public:
+    
+    double* v_ = nullptr;
+    
+    double* vf_ = nullptr;
+    
+    std::string velocityName_ = "";
     
     double* velocity_ = nullptr;
     
@@ -19,18 +34,12 @@ class RateAdvection : public RateDouble
     
     double* concTo_ = nullptr;
     
-    std::string velocityName_ = "";
+    RateAdvectionUpdater(std::string, int);
     
-    RateAdvection(
-      double, 
-      std::string, 
-      std::string,
-      int
-    );
-
     void setDependencies(DepManager&) override;
     
     void update() override;
+    
 };
 
 #endif /* RESOURCES_SOLUTES_CONC_RATEADVECTION_H_ */

@@ -7,6 +7,3 @@
 MemoryFactory::MemoryFactory(int size) :
   size_(size)
 {}
-
-MemoryFactory::~MemoryFactory()
-{}

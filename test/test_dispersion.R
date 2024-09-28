@@ -6,13 +6,35 @@ model <- C_Model$new(depManager = C_DepManInstallOrder$new(numPhases = 3))
 matrix <- model$matrix;
 
 cell <- matrix$createCell(name = "CellTime")
-beh <- C_BehCellTime$new()
-beh$createVariables(
-  matrix = matrix, 
-  holon = cell,
-  initTime = 0,
-  initIteration = 0,
-  initTimeValid = TRUE
+matrix$createVariable(
+  name = "Time",
+  value = C_Object$new(
+    className = "Time",
+    initValue = 0,
+    phase = 0,
+    regFinalizer = FALSE
+  ),
+  holon = cell
+)
+matrix$createVariable(
+  name = "Iteration",
+  value = C_Object$new(
+    className = "Iteration",
+    initValue = 0,
+    phase = 0,
+    regFinalizer = FALSE
+  ),
+  holon = cell
+)
+matrix$createVariable(
+  name = "TimeValid",
+  value = C_Object$new(
+    className = "TimeValid",
+    initValue = TRUE,
+    phase = 0,
+    regFinalizer = FALSE
+  ),
+  holon = cell
 )
 matrix$createVariable(
   name = "TimeMax",
@@ -53,43 +75,54 @@ matrix$installSolver(
 )
 mfDouble = C_MemoryDoubleFactory$new(size = 1)
 
-beh <- C_BehCellSolute$new(soluteName = "Salt")
 cell1 <- matrix$createCell(name = "Cell01")
-beh$createVariables( 
-  matrix = matrix,
-  holon = cell1,
-  timeHolon = timeBound,
-  timeStepName = "TimeStep",
-  initConc = 0,
-  mfDouble = mfDouble
+matrix$createVariable(
+  name = "SaltConc",
+  value = C_Object$new(
+    className = "StateDouble",
+    timeHolon = timeBound$.external,
+    timeStepName = "TimeStep",
+    initConc = 0,
+    phase = 2,
+    mfDouble = mfDouble$.external,
+    regFinalizer = FALSE
+  ),
+  holon = cell1
 )
 reporter$trackVariable(
   variable = cell1$getVariablePointer(name = "SaltConc")
 )
 
 cell2 <- matrix$createCell(name = "Cell02")
-beh$createVariables( 
-  matrix = matrix,
-  holon = cell2, 
-  timeHolon = timeBound,
-  timeStepName = "TimeStep",
-  initConc = 10,
-  mfDouble = mfDouble
+matrix$createVariable(
+  name = "SaltConc",
+  value = C_Object$new(
+    className = "StateDouble",
+    timeHolon = timeBound$.external,
+    timeStepName = "TimeStep",
+    initConc = 10,
+    phase = 2,
+    mfDouble = mfDouble$.external,
+    regFinalizer = FALSE
+  ),
+  holon = cell2
 )
 reporter$trackVariable(
   variable = cell2$getVariablePointer(name = "SaltConc")
 )
 
 bound <- matrix$createBound(name = "Bound01", cellFrom = cell1, cellTo = cell2)
-beh <- C_Behavior$new(
-  className = "BehBoundDispersion", 
-  soluteName = "Salt",
-  regFinalizer = TRUE
-)
-beh$createVariables(
-  matrix = matrix,
-  holon = bound,
-  initRate = 0
+matrix$createVariable(
+  name = "SaltDispersion",
+  value = C_Object$new(
+    className = "RateDispersion",
+    initValue = 0,
+    stateName = "SaltConc",
+    coeffName = "SaltDispCoeff",
+    phase = 1,
+    regFinalizer = FALSE
+  ),
+  holon = bound
 )
 matrix$createVariable(
   name = "SaltDispCoeff",

@@ -17,11 +17,7 @@ class MemoryBoolean : public Memory
 {
   public:
     
-    /*!
-      \brief
-        Pointer to the dynamic value associated with the memory
-    */
-    ValueBoolean* val_ = nullptr;
+    bool* v_ = nullptr;
     
     /*!
       \brief
@@ -38,27 +34,9 @@ class MemoryBoolean : public Memory
     */
     MemoryBoolean(int);
     
-    /*!
-      \brief
-        Create a new instance of the memory
-     
-      \param ValueBoolean*
-        Pointer to the value for which the memory is provided
-      \param int
-        Size of the memory
-    */
-    MemoryBoolean(ValueBoolean*, int);
-    
     virtual ~MemoryBoolean();
     
-    /*!
-      \brief
-        Get a pointer to the value for which the memory is provided
-     
-      \return
-        Pointer to the associated value
-    */
-    Value* getValue() override;
+    virtual void attachDynamicValue(DynamicMemory*) override;
     
     /*!
       \brief
@@ -71,18 +49,6 @@ class MemoryBoolean : public Memory
         No return value.
     */
     void recall(int) override; 
-    
-    /*!
-      \brief
-        Set the pointer to the value associated with the memory.
-     
-      \param Value*
-        Pointer to the Value to be associated with the memory.
-     
-      \return
-        No return value.
-    */
-    void setValue(Value*) override;
     
     /*!
       \brief

@@ -13,25 +13,15 @@ MemoryDouble::MemoryDouble(int memSize) :
   allocateMemory();
 }
 
-MemoryDouble::MemoryDouble(ValueDouble* value, int memSize) :
-  Memory(memSize),
-  val_(value)
-{
-  allocateMemory();
-  DynamicMemory* dm = dynamic_cast<DynamicMemory*>(val_);
-  if(dm) {
-    dm->attachMemory(this);
-  } else {
-    std::ostringstream error;
-    error << "Memory cannot be attached to value of " << val_->var_->name_
-      << " because it does not implement dynamic memory.";
-    throw std::runtime_error(error.str());
-  }
-}
-
 MemoryDouble::~MemoryDouble()
 {
   delete []m_;
+}
+
+void MemoryDouble::attachDynamicValue(DynamicMemory* dm)
+{
+  Memory::attachDynamicValue(dm);
+  v_ = &(dynamic_cast<ValueDouble*>(val_)->v_);
 }
 
 void MemoryDouble::allocateMemory()
@@ -46,29 +36,19 @@ void MemoryDouble::allocateMemory()
   }
 }
 
-Value* MemoryDouble::getValue()
-{
-  return val_;
-}
-
 void MemoryDouble::recall(int index)
 {
   if (index >= 0 && index < memSize_) {
-    val_->v_ = m_[index];
+    *v_ = m_[index];
   } else {
     throwIndexError(index, "recall");
   }
 }
 
-void MemoryDouble::setValue(Value* value)
-{
-  val_ = dynamic_cast<ValueDouble*>(value);
-}
-
 void MemoryDouble::store(int index) 
 {
   if (index >= 0 && index < memSize_) {
-    m_[index] = val_->v_;
+    m_[index] = *v_;
   } else {
     throwIndexError(index, "store");
   }

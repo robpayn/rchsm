@@ -47,7 +47,7 @@ void Machine::run()
   }
   
   while(*timeValid_) {
-    matrix->update();
+    matrix->updater_->update();
     for(Reporter* reporter : reporters_) {
       if(reporter->isActive()) {
         reporter->collectData();
@@ -73,5 +73,4 @@ void Machine::setTimeValidVariable(Variable* var)
       << "Variable " << var->name_ << " does not have a boolean value.";
     throw std::runtime_error(error.str());
   }
-    
 }

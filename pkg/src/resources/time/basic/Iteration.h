@@ -6,20 +6,29 @@
 #define RESOURCES_TIME_BASIC_ITERATION_H_
 
 #include "../../../CHSM/values/ValueLong.h"
+#include "../../../CHSM/Updater.h"
 #include "../../../CHSM/DynamicMemory.h"
 
 class Iteration : public ValueLong, public DynamicMemory
 {
   public:
-    // Constructors/Destructor
-    
+
     Iteration(long, int);
+  
+};
+
+class IterationUpdater : public Updater
+{
+  public:
     
-    // Methods
+    long* v_ = nullptr;
+    
+    IterationUpdater(int);
     
     void setDependencies(DepManager&) override;
     
     void update() override;
+    
 };
 
 #endif /* RESOURCES_TIME_BASIC_ITERATION_H_ */

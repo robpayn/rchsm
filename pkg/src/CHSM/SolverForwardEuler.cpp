@@ -11,11 +11,11 @@ SolverForwardEuler::SolverForwardEuler(double& timeStep) :
   Solver(timeStep)
 {}
 
-void SolverForwardEuler::solve()
+void SolverForwardEuler::update()
 {
   for(int index : order_) {
-    for(Dynamic* dyn : dynamics_[index]) {
-      dyn->update();
+    for(Updater* updater : updaters_[index]) {
+      updater->update();
     }
   }
 }

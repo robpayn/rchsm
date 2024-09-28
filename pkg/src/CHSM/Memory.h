@@ -8,6 +8,7 @@
 #include <string>
 
 class Value;
+class DynamicMemory;
 
 /*!
   \brief
@@ -16,6 +17,8 @@ class Value;
 class Memory
 {
   public:
+    
+    Value* val_ = nullptr;
     
     /*!
       \brief
@@ -36,13 +39,16 @@ class Memory
     
     /*!
       \brief
-        Get the value to which the memory is attached
+        Set the value to which the memory is attached
+     
+      \param Value*
+        Pointer to the value to which the memory should be attached
      
       \return
-        Pointer to the value to which the memory is attached
+        No return value
     */
-    virtual Value* getValue() = 0;
-    
+    virtual void attachDynamicValue(DynamicMemory*);
+
     /*!
       \brief
         Recall the provided element of the memory to the value
@@ -54,18 +60,6 @@ class Memory
         No return value
     */
     virtual void recall(int) = 0;
-    
-    /*!
-      \brief
-        Set the value to which the memory is attached
-     
-      \param Value*
-        Pointer to the value to which the memory should be attached
-     
-      \return
-        No return value
-    */
-    virtual void setValue(Value*) = 0;
     
     /*!
       \brief

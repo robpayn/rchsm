@@ -3,34 +3,34 @@
  */
 
 #include "DepManager.h"
-#include "Dynamic.h"
+#include "Updater.h"
 
 DepManager::DepManager(int numPhases) :
   numPhases_(numPhases)
 {
-  dynamics_ = new std::list<Dynamic*>[numPhases_];
+  updaters_ = new std::list<Updater*>[numPhases_];
 }
 
 DepManager::~DepManager()
 {
-  delete []dynamics_;
+  delete []updaters_;
 }
 
-void DepManager::addDynamic(Dynamic* dynamic)
+void DepManager::addUpdater(Updater* updater)
 {
-  dynamics_[dynamic->phase_].push_back(dynamic);
+  updaters_[updater->phase_].push_back(updater);
 }
 
 void DepManager::manageDependencies()
 {
   for(int phase = 0; phase < numPhases_; phase++) {
-    for(Dynamic* dynamic : dynamics_[phase]) {
-      dynamic->setDependencies(*this);
+    for(Updater* updater : updaters_[phase]) {
+      updater->setDependencies(*this);
     }
   }
 }
 
 unsigned int DepManager::size(int phase)
 {
-  return dynamics_[phase].size();
+  return updaters_[phase].size();
 }

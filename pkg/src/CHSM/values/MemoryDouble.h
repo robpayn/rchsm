@@ -13,21 +13,18 @@ class ValueDouble;
 class MemoryDouble : public Memory
 {
   public:
-    ValueDouble* val_ = nullptr;
+    
+    double* v_ = nullptr;
     
     double* m_ = nullptr;
     
     MemoryDouble(int);
     
-    MemoryDouble(ValueDouble*, int);
-    
     virtual ~MemoryDouble();
     
-    Value* getValue() override;
+    virtual void attachDynamicValue(DynamicMemory*) override;
     
     void recall(int) override; 
-    
-    void setValue(Value*) override;
     
     void store(int) override;
     

@@ -14,6 +14,7 @@ AdvDisp <- R6Class(
       numCells,
       boundLength,
       repInterval,
+      initConc,
       upstreamConc,
       velocity,
       dispCoeff,
@@ -24,13 +25,35 @@ AdvDisp <- R6Class(
       super$initialize(depManager = C_DepManInstallOrder$new(numPhases = 3))
 
       cell <- self$matrix$createCell(name = "CellTime")
-      beh <- C_BehCellTime$new()
-      beh$createVariables(
-        matrix = self$matrix, 
-        holon = cell,
-        initTime = 0,
-        initIteration = 0,
-        initTimeValid = TRUE
+      self$matrix$createVariable(
+        name = "Time",
+        value = C_Object$new(
+          className = "Time",
+          initValue = 0,
+          phase = 0,
+          regFinalizer = FALSE
+        ),
+        holon = cell
+      )
+      self$matrix$createVariable(
+        name = "Iteration",
+        value = C_Object$new(
+          className = "Iteration",
+          initValue = 0,
+          phase = 0,
+          regFinalizer = FALSE
+        ),
+        holon = cell
+      )
+      self$matrix$createVariable(
+        name = "TimeValid",
+        value = C_Object$new(
+          className = "TimeValid",
+          initValue = TRUE,
+          phase = 0,
+          regFinalizer = FALSE
+        ),
+        holon = cell
       )
       self$matrix$createVariable(
         name = "TimeMax",
@@ -76,18 +99,19 @@ AdvDisp <- R6Class(
       mfDouble <- C_MemoryDoubleFactory$new(size = 1)
       
       lastcell <- self$matrix$createCell(name = "CellUp")
-      beh <- C_Behavior$new(
-        className = "BehCellConcDefined", 
-        soluteName = soluteName
-      )
-      beh$createVariables( 
-        matrix = self$matrix,
-        holon = lastcell, 
-        timeHolon = timeBound$.external,
-        timeStepName = "TimeStep",
-        iterationName = "Iteration",
-        conc = upstreamConc,
-        mfDouble = mfDouble
+      self$matrix$createVariable(
+        name = paste0(soluteName, "Conc"),
+        value = C_Object$new(
+          className = "StateDoubleDefined",
+          timeHolon = timeBound$.external,
+          timeStepName = "TimeStep",
+          iterationName = "Iteration",
+          values = upstreamConc,
+          phase = 2,
+          mfDouble = mfDouble$.external,
+          regFinalizer = FALSE
+        ),
+        holon = lastcell
       )
       self$reporter$trackVariable(
         variable = lastcell$getVariablePointer(
@@ -95,32 +119,29 @@ AdvDisp <- R6Class(
         )
       )
       
-      behCell <- C_BehCellSolute$new(soluteName = soluteName)
-      behAdv <- C_Behavior$new(
-        className = "BehBoundAdvection", 
-        soluteName = soluteName
-      )
-      behDisp <- C_Behavior$new(
-        className = "BehBoundDispersion", 
-        soluteName = soluteName,
-        regFinalizer = TRUE
-      )
-
+      stateName <- paste0(soluteName, "Conc")
+      velocityName <- "WaterVelocity"
+      dispCoeffName <- paste0(soluteName, "DispCoeff")
       for(cellCount in 1:numCells) {
       
         cell <- self$matrix$createCell(name = sprintf("Cell%02d", cellCount))
-        behCell$createVariables( 
-          matrix = self$matrix,
-          holon = cell, 
-          timeHolon = timeBound,
-          timeStepName = "TimeStep",
-          initConc = 0,
-          mfDouble = mfDouble
+        self$matrix$createVariable(
+          name = paste0(soluteName, "Conc"),
+          value = C_Object$new(
+            className = "StateDouble",
+            timeHolon = timeBound$.external,
+            timeStepName = "TimeStep",
+            initConc = initConc,
+            phase = 2,
+            mfDouble = mfDouble$.external,
+            regFinalizer = FALSE
+          ),
+          holon = cell
         )
         if(cellCount == trackCell) {
           self$reporter$trackVariable(
             variable = cell$getVariablePointer(
-              name = paste0(soluteName, "Conc")
+              name = stateName
             )
           )
         }
@@ -130,25 +151,38 @@ AdvDisp <- R6Class(
           cellFrom = lastcell, 
           cellTo = cell
         )
-        
-        behAdv$createVariables(
-          matrix = self$matrix,
-          holon = bound,
-          initRate = 0
+        self$matrix$createVariable(
+          name = paste0(soluteName, "Advection"),
+          value = C_Object$new(
+            className = "RateAdvection", 
+            initValue = 0, 
+            stateName = stateName, 
+            velocityName = velocityName,
+            phase = 1,
+            regFinalizer = FALSE
+          ),
+          holon = bound
         )
         self$matrix$createVariable(
-          name = "WaterVelocity",
+          name = velocityName,
           value = C_ValueDouble$new(initValue = velocity),
           holon = bound
         )
         
-        behDisp$createVariables(
-          matrix = self$matrix,
-          holon = bound,
-          initRate = 0
+        self$matrix$createVariable(
+          name = paste0(soluteName, "Dispersion"),
+          value = C_Object$new(
+            className = "RateDispersion",
+            initValue = 0,
+            stateName = stateName,
+            coeffName = dispCoeffName,
+            phase = 1,
+            regFinalizer = FALSE
+          ),
+          holon = bound
         )
         self$matrix$createVariable(
-          name = paste0(soluteName, "DispCoeff"),
+          name = dispCoeffName,
           value = C_ValueDouble$new(initValue = dispCoeff),
           holon = bound
         )

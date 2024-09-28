@@ -13,15 +13,15 @@ SolverRKTwo::SolverRKTwo(double& timeStep) :
 SolverRKTwo::~SolverRKTwo()
 {}
 
-void SolverRKTwo::setDynamics(DepManager& dm)
+void SolverRKTwo::setDependencies(DepManager& dm)
 {
-  Solver::setDynamics(dm);
+  Solver::setDependencies(dm);
   
-  memories_.resize(dynamics_[2].size());
+  memories_.resize(updaters_[2].size());
   long memCount = 0;
-  for(Dynamic* dyn : dynamics_[2]) {
-    DynamicMemory* dm = dynamic_cast<DynamicMemory*>(dyn);
-    Value* val = dynamic_cast<Value*>(dyn);
+  for(Updater* updater : updaters_[2]) {
+    DynamicMemory* dm = dynamic_cast<DynamicMemory*>(updater->val_);
+    Value* val = dynamic_cast<Value*>(updater->val_);
     if(dm && val && dm->memory_) {
       memories_[memCount] = dm->memory_;
     } else {
@@ -35,11 +35,11 @@ void SolverRKTwo::setDynamics(DepManager& dm)
   }
 }
 
-void SolverRKTwo::solve()
+void SolverRKTwo::update()
 {
   // Calculate the rates at the beginning of the time step
-  for(Dynamic* dyn : dynamics_[1]) {
-    dyn->update();
+  for(Updater* updater : updaters_[1]) {
+    updater->update();
   }
   
   // Remember the state phase at the beginning of the time step
@@ -50,11 +50,11 @@ void SolverRKTwo::solve()
   // estimate the rates at halfway through the time step
   double origTimeStep = timeStep_;
   timeStep_ = timeStep_ / 2;
-  for(Dynamic* dyn : dynamics_[2]) {
-    dyn->update();
+  for(Updater* updater : updaters_[2]) {
+    updater->update();
   }
-  for(Dynamic* dyn : dynamics_[1]) {
-    dyn->update();
+  for(Updater* updater : updaters_[1]) {
+    updater->update();
   }
 
   // Recall the state phase at the beginning of the time step,
@@ -64,12 +64,12 @@ void SolverRKTwo::solve()
     mem->recall(0);
   }
   timeStep_ = origTimeStep;
-  for(Dynamic* dyn : dynamics_[2]) {
-    dyn->update();
+  for(Updater* updater : updaters_[2]) {
+    updater->update();
   }
   
   // Calculate the time values
-  for(Dynamic* dyn : dynamics_[0]) {
-    dyn->update();
+  for(Updater* updater : updaters_[0]) {
+    updater->update();
   }
 }

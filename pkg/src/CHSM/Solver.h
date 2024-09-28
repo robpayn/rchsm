@@ -5,16 +5,17 @@
 #ifndef CHSM_SOLVER_H_
 #define CHSM_SOLVER_H_
 
+#include "Updater.h"
 #include "DepManager.h"
 #include <vector>
 
-class Dynamic;
+class Matrix;
 
-class Solver
+class Solver : public Updater
 {
   public:
     
-    std::vector<std::vector<Dynamic*>> dynamics_;
+    std::vector<std::vector<Updater*>> updaters_;
     
     double& timeStep_ ;
     
@@ -22,9 +23,19 @@ class Solver
     
     virtual ~Solver();
     
-    virtual void setDynamics(DepManager&);
-    
-    virtual void solve() = 0;
+    /*!
+     \brief
+     Set the dependencies of the matrix using the provided dependency
+     manager.
+     
+     \param DepManager&
+     Reference to the dependency manager that should be notified of
+     critical dependencies.
+     
+     \return
+     No return value
+     */
+    virtual void setDependencies(DepManager&) override;
     
 };
 

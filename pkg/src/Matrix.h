@@ -5,6 +5,7 @@
 #ifndef CHSM_MATRIX_H_
 #define CHSM_MATRIX_H_
 
+#include "CHSM/Updater.h"
 #include "CHSM/values/ValueVarmap.h"
 #include "CHSM/Dynamic.h"
 
@@ -45,17 +46,10 @@ class Matrix : public ValueVarmap, public Dynamic
   public:
     
     /*!
-      \brief
-        The dependency manager to determine order of dynamic value updates
-    */
+     \brief
+     The dependency manager to determine order of dynamic value updates
+     */
     DepManager* dm_ = nullptr;
-    
-    /*!
-      \brief
-        The solver to use for managing the solution algorithm for each
-          time step.
-    */
-    Solver* solver_ = nullptr;
     
     /*!
       \brief
@@ -123,20 +117,6 @@ class Matrix : public ValueVarmap, public Dynamic
     
     /*!
       \brief
-        Install a solver for updating values during a time step
-      
-      \param Solver*
-        Pointer to a solver.
-        The matrix will take ownership of the solver and its deconstructor
-          will delete the associated memory.
-     
-      \return
-        No return value
-    */
-    void installSolver(Solver*);
-    
-    /*!
-      \brief
         Install a variable in the matrix
      
       \param Variable*
@@ -149,38 +129,7 @@ class Matrix : public ValueVarmap, public Dynamic
     */
     void installVariable(Variable*, Holon&);
     
-    /*!
-      \brief
-        Set the dependencies of dynamic values in the matrix using the 
-          member dependency manager.
-     
-      \return
-        No return value
-     */
     void setDependencies();
-    
-    /*!
-      \brief
-        Set the dependencies of the matrix using the provided dependency
-        manager.
-     
-      \param DepManager&
-        Reference to the dependency manager that should be notified of
-          critical dependencies.
-     
-      \return
-        No return value
-    */
-    void setDependencies(DepManager&) override;
-    
-    /*!
-      \brief
-        Update the dynamic values of the variables in the matrix
-     
-      \return
-        No return value
-    */
-    void update() override;
     
 };
 

@@ -14,29 +14,43 @@ RateFirstOrder::RateFirstOrder(
   std::string coeffName,
   int phase
 ) :
-  RateDouble(initValue, 0, stateName, phase),
+  RateDouble(initValue, 0, stateName)
+{
+  attachUpdater(new RateFirstOrderUpdater(coeffName, phase));
+}
+
+RateFirstOrderUpdater::RateFirstOrderUpdater(
+  std::string coeffName,
+  int phase
+) :
+  Updater(phase),
   coeffName_(coeffName)
 {}
 
-void RateFirstOrder::setDependencies(DepManager& dm)
+void RateFirstOrderUpdater::setDependencies(DepManager& dm)
 {
+  RateDouble* rate = static_cast<RateDouble*>(val_);
+  
+  v_ = &(rate->v_);  
+
   rateCoeff_ = &(
-    dm.setDependency<ValueDouble>(this, var_->holon_, coeffName_)->v_
+    dm.setDependency<ValueDouble>(rate, rate->var_->holon_, coeffName_)->v_
   );
   
-  Cell* cell = static_cast<Bound*>(var_->holon_)->cellTo_;
+  Cell* cell = static_cast<Bound*>(rate->var_->holon_)->cellTo_;
   if(!cell) {
     std::ostringstream error;
     error << "Cell must be attached on the to side of bound "
-      << var_->holon_->name_ << " containing dynamic value RateFirstOrder.";
+      << rate->var_->holon_->name_ 
+      << " containing dynamic value RateFirstOrder.";
     throw std::runtime_error(error.str());
   }
   conc_ = &(
-    dm.setDependency<ValueDouble>(this, cell, stateName_)->v_
+    dm.setDependency<ValueDouble>(rate, cell, rate->stateName_)->v_
   );
 }
 
-void RateFirstOrder::update()
+void RateFirstOrderUpdater::update()
 {
-  v_ = -*rateCoeff_ * *conc_;
+  *v_ = -*rateCoeff_ * *conc_;
 }

@@ -11,13 +11,35 @@ model <- C_Model$new(depManager = C_DepManInstallOrder$new(numPhases = 3))
 matrix <- model$matrix;
 
 timeCell <- matrix$createCell(name = "CellTime")
-beh <- C_BehCellTime$new()
-beh$createVariables(
-  matrix = matrix, 
-  holon = timeCell,
-  initTime = 0,
-  initIteration = 0,
-  initTimeValid = TRUE
+matrix$createVariable(
+  name = "Time",
+  value = C_Object$new(
+    className = "Time",
+    initValue = 0,
+    phase = 0,
+    regFinalizer = FALSE
+  ),
+  holon = timeCell
+)
+matrix$createVariable(
+  name = "Iteration",
+  value = C_Object$new(
+    className = "Iteration",
+    initValue = 0,
+    phase = 0,
+    regFinalizer = FALSE
+  ),
+  holon = timeCell
+)
+matrix$createVariable(
+  name = "TimeValid",
+  value = C_Object$new(
+    className = "TimeValid",
+    initValue = TRUE,
+    phase = 0,
+    regFinalizer = FALSE
+  ),
+  holon = timeCell
 )
 matrix$createVariable(
   name = "TimeMax",
@@ -52,31 +74,39 @@ timeStepVar <- matrix$createVariable(
   holon = timeBound
 )
 
-matrix$installSolver(
-  solver = C_SolverForwardEuler$new(timeStep = timeStepVar)
-)
+matrix$installSolver(solver = C_SolverForwardEuler$new(timeStep = timeStepVar))
 
 
 cell <- matrix$createCell(name = "Cell01")
-beh <- C_BehCellSolute$new(soluteName = "Nitrate")
-beh$createVariables( 
-  matrix = matrix,
-  holon = cell,
-  timeHolon = timeBound,
-  timeStepName = "TimeStep",
-  initConc = initConc
+matrix$createVariable(
+  name = "NitrateConc",
+  value = C_Object$new(
+    className = "StateDouble",
+    timeHolon = timeBound$.external,
+    timeStepName = "TimeStep",
+    initConc = initConc,
+    phase = 2,
+    mfDouble = NULL,
+    regFinalizer = FALSE
+  ),
+  holon = cell
 )
-
 reporter$trackVariable(
   variable = cell$getVariablePointer(name = "NitrateConc")
 )
 
 bound <- matrix$createBound(name = "Bound01", cellFrom = NULL, cellTo = cell)
-beh <- C_BehBoundFirstOrder$new(soluteName = "Nitrate")
-beh$createVariables(
-  matrix = matrix,
-  holon = bound,
-  initRate = 0
+matrix$createVariable(
+  name = "NitrateRate",
+  value = C_Object$new(
+    className = "RateFirstOrder",
+    initValue = 0,
+    stateName = "NitrateConc",
+    coeffName = "NitrateRateCoeff",
+    phase = 1,
+    regFinalizer = FALSE
+  ),
+  holon = bound
 )
 matrix$createVariable(
   name = "NitrateRateCoeff",
@@ -101,3 +131,4 @@ plot(x = output$CellTime.Time, y = output$Cell01.NitrateConc)
 
 t = seq.default(from = 0, to = maxTime, length.out = 50)
 lines(x = t, y = initConc * exp(-rateCoeff * t))
+

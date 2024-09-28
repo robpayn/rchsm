@@ -13,7 +13,7 @@ class MemoryDoubleFactory : public MemoryFactory
     
     MemoryDoubleFactory(int);
     
-    Memory* createMemory(Value*) override;
+    Memory* createMemory(DynamicMemory*) override;
 };
 
 #endif /* CHSM_MEMORYDOUBLEFACTORY_H_ */

@@ -12,12 +12,6 @@ class StateDoubleDefined : public StateDouble
 {
   public:
     
-    std::vector<double> values_;
-    
-    long length_;
-    
-    long* iter_ = nullptr;
-    
     StateDoubleDefined(
       Holon&, 
       std::string, 
@@ -26,7 +20,28 @@ class StateDoubleDefined : public StateDouble
       int
     );
     
+};
+
+class StateDoubleDefinedUpdater : public StateDoubleUpdater
+{
+  public:
+    
+    std::vector<double> values_;
+    
+    long length_;
+    
+    long* iter_ = nullptr;
+    
+    StateDoubleDefinedUpdater(
+      Holon&, 
+      std::string, 
+      std::string, 
+      std::vector<double>,
+      int
+    );
+    
     void update() override;
+  
 };
 
 #endif /* RESOURCES_SOLUTES_CONC_STATEDOUBLEDEFINED_H_ */

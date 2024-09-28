@@ -30,7 +30,7 @@ C_Solver <- R6Class(
     #'   See super class C_Object for more information.
     #'   
     initialize = function(
-      className, 
+      className,
       timeStep,
       regFinalizer = FALSE
     ) 
@@ -44,7 +44,7 @@ C_Solver <- R6Class(
             timeStep$.external
           else
             stop(
-              "Invalid iteration variable argument for an interval reporter."
+              "Invalid time step variable argument for a solver."
             ),
         regFinalizer = regFinalizer
       )

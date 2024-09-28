@@ -4,6 +4,7 @@
 
 #include "Matrix_R.h"
 #include "../Matrix.h"
+#include "../CHSM/Solver.h"
 #include <exception>
 #include <sstream>
 
@@ -183,7 +184,7 @@ SEXP Matrix_installSolver(SEXP extMatrixPtr, SEXP extSolverPtr)
   Solver* solverPtr =
     static_cast<Solver*>(R_ExternalPtrAddr(extSolverPtr));
   
-  matrixPtr->installSolver(solverPtr);
+  matrixPtr->attachUpdater(solverPtr);
   
   return R_NilValue;
 }

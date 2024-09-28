@@ -12,28 +12,25 @@ class ValueLong;
 
 class MemoryLong : public Memory
 {
-public:
-  ValueLong* val_ = nullptr;
-  
-  long* m_ = nullptr;
-  
-  MemoryLong(int);
-  
-  MemoryLong(ValueLong*, int);
-  
-  virtual ~MemoryLong();
-  
-  Value* getValue() override;
-  
-  void recall(int) override; 
-  
-  void setValue(Value*) override;
-  
-  void store(int) override;
-  
-private:
-  
-  void allocateMemory();
+  public:
+    
+    long* v_ = nullptr;
+    
+    long* m_ = nullptr;
+    
+    MemoryLong(int);
+    
+    virtual ~MemoryLong();
+    
+    virtual void attachDynamicValue(DynamicMemory*) override;
+    
+    void recall(int) override; 
+    
+    void store(int) override;
+    
+  private:
+    
+    void allocateMemory();
   
 };
 

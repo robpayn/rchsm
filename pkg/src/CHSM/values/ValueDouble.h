@@ -10,12 +10,11 @@
 
 /*!
   \brief
-    A CHSM value quantified by a real number
+    A CHSM value quantified by a single real number
 */
 class ValueDouble : public Value
 {
   public:
-    // Attributes
     
     /*!
       \brief
@@ -23,11 +22,9 @@ class ValueDouble : public Value
     */
     double v_ = nan("");
     
-    // Constructors
-    
     /*!
       \brief
-        Create a new instance of a real number Value with the provided value
+        Create a new instance of the class using the provided initial value
      
       \param double
         Initial double precision floating point value
@@ -36,19 +33,15 @@ class ValueDouble : public Value
     
     /*!
       \brief
-        Create a new instance of a real number Value with the provided string
-        representation of the value
+        Create a new instance of the class using the provided string
+        representation of the initial value
      
       \param std::string
-        A string representation of the value
+        A string representation of the initial value
     */
     ValueDouble(std::string);
     
-    // Destructor
-    
-    virtual ~ValueDouble();
-    
-    // Methods
+    virtual ~ValueDouble() {};
     
     /*! 
      \brief
@@ -70,6 +63,7 @@ class ValueDouble : public Value
         A string representing the real number value
     */
     virtual std::string toString() override;
+    
 };
 
 #endif /* CHSM_VALUES_VALUEDOUBLE_H_ */
