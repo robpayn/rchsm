@@ -23,7 +23,7 @@ RateFirstOrderUpdater::RateFirstOrderUpdater(
   std::string coeffName,
   int phase
 ) :
-  Updater(phase),
+  UpdaterDouble(phase),
   coeffName_(coeffName)
 {}
 
@@ -31,8 +31,6 @@ void RateFirstOrderUpdater::setDependencies(DepManager& dm)
 {
   RateDouble* rate = static_cast<RateDouble*>(val_);
   
-  v_ = &(rate->v_);  
-
   rateCoeff_ = &(
     dm.setDependency<ValueDouble>(rate, rate->var_->holon_, coeffName_)->v_
   );

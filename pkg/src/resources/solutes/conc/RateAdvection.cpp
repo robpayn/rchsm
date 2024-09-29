@@ -22,16 +22,13 @@ RateAdvectionUpdater::RateAdvectionUpdater(
   std::string velocityName,
   int phase
 ) :
-  Updater(phase),
+  UpdaterRateDouble(phase),
   velocityName_(velocityName)
 {}
 
 void RateAdvectionUpdater::setDependencies(DepManager& dm)
 {
   RateDouble* rate = static_cast<RateDouble*>(val_);
-  
-  v_ = &(rate->v_);  
-  vf_ = &(rate->vf_);  
   
   velocity_ = &(
     dm.setDependency<ValueDouble>(rate, rate->var_->holon_, velocityName_)->v_

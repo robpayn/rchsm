@@ -17,6 +17,10 @@ class MemoryBoolean : public Memory
 {
   public:
     
+    /*!
+      \brief
+        Pointer to the boolean value for which memory is provided
+    */
     bool* v_ = nullptr;
     
     /*!
@@ -36,30 +40,22 @@ class MemoryBoolean : public Memory
     
     virtual ~MemoryBoolean();
     
+    /*!
+      \brief
+        Attach the dynamic boolean value for which memory is provided
+     
+      \param DynamicMemory*
+        Pointer to the dynamic boolean value to which the memory 
+          should be attached.
+        The dynamic memory object provided must also extend type ValueBoolean.
+     
+      \return
+        No return value
+    */
     virtual void attachDynamicValue(DynamicMemory*) override;
     
-    /*!
-      \brief
-        Recall a given value from the memory.
-     
-      \param int
-        The index of the memory to recall.
-     
-      \return
-        No return value.
-    */
     void recall(int) override; 
     
-    /*!
-      \brief
-        Store a value to a given index of the memory.
-     
-      \param int
-        Index of the memory where the value should be saved.
-     
-      \return
-        No return value.
-    */
     void store(int) override;
     
   private:

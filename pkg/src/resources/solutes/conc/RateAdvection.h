@@ -6,7 +6,7 @@
 #define RESOURCES_SOLUTES_CONC_RATEADVECTION_H_
 
 #include "../../../CHSM/values/RateDouble.h"
-#include "../../../CHSM/Updater.h"
+#include "../../../CHSM/values/UpdaterRateDouble.h"
 
 class RateAdvection : public RateDouble
 {
@@ -16,13 +16,9 @@ class RateAdvection : public RateDouble
     
 };
 
-class RateAdvectionUpdater : public Updater
+class RateAdvectionUpdater : public UpdaterRateDouble
 {
   public:
-    
-    double* v_ = nullptr;
-    
-    double* vf_ = nullptr;
     
     std::string velocityName_ = "";
     

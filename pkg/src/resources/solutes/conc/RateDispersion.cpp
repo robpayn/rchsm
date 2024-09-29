@@ -22,16 +22,13 @@ RateDispersionUpdater::RateDispersionUpdater(
   std::string coeffName,
   int phase
 ) :
-  Updater(phase),
+  UpdaterRateDouble(phase),
   coeffName_(coeffName)
 {}
 
 void RateDispersionUpdater::setDependencies(DepManager& dm)
 {
   RateDouble* rate = static_cast<RateDouble*>(val_);
-  
-  v_ = &(rate->v_);  
-  vf_ = &(rate->vf_);
   
   dispCoeff_ = &(
     dm.setDependency<ValueDouble>(rate, rate->var_->holon_, coeffName_)->v_

@@ -18,6 +18,10 @@ class Memory
 {
   public:
     
+    /*!
+      \brief
+        The value for which memory is provided
+    */
     Value* val_ = nullptr;
     
     /*!
@@ -39,10 +43,10 @@ class Memory
     
     /*!
       \brief
-        Set the value to which the memory is attached
+        Attach the dynamic value for which memory is provided
      
-      \param Value*
-        Pointer to the value to which the memory should be attached
+      \param DynamicMemory*
+        Pointer to the dynamic value to which the memory should be attached
      
       \return
         No return value
@@ -51,10 +55,10 @@ class Memory
 
     /*!
       \brief
-        Recall the provided element of the memory to the value
+        Recall the provided element of the memory to the dynamic value
      
       \param int
-        The element of the memory to be recalled to the value
+        The element of the memory to be recalled to the dynamic value
      
       \return
         No return value
@@ -63,10 +67,11 @@ class Memory
     
     /*!
       \brief
-        Store the current value in the provided element of the memory
+        Store the current dynamic value in the provided element of the memory
      
       \param int
-        The element of memory in which the current value should be stored
+        The element of memory in which the current dynamic value 
+          should be stored
      
       \return
         No return value

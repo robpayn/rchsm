@@ -35,6 +35,12 @@ void MemoryBoolean::attachDynamicValue(DynamicMemory* dm)
 {
   Memory::attachDynamicValue(dm);
   v_ = &(dynamic_cast<ValueBoolean*>(val_)->v_);
+  if(!v_) {
+    std::ostringstream error;
+    error << "A MemoryBoolean object must be attached to a DynamicMemory "
+      << "object that extends ValueBoolean.";
+    throw std::runtime_error(error.str());
+  }
 }
 
 void MemoryBoolean::recall(int index)

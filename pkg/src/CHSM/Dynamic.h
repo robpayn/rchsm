@@ -12,10 +12,10 @@ class Updater;
     CHSM abstraction for defining a value that can be updated
   \details
     The composite hierarchy state machine values may be updated during
-    a state machine simulation execution.
-    Values that need to updated will need to extend the dynamic class,
-    which provides the feature of allowing an updater to be attached
-    to the value.
+      a state machine simulation execution.
+    Values that need to updated will should extend Dynamic,
+      which provides the feature of allowing an updater to be attached
+      to the value.
 */
 class Dynamic
 {
@@ -27,8 +27,6 @@ class Dynamic
     */
     Updater* updater_ = nullptr;
 
-    Dynamic();
-    
     virtual ~Dynamic();
     
     /*!
@@ -37,6 +35,8 @@ class Dynamic
      
       \param Updater*
         Pointer to the updater to be attached.
+        The updater must be compatible with the type of the Value that is
+          extending Dynamic.
     */
     virtual void attachUpdater(Updater* updater);
     

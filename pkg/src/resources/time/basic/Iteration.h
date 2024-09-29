@@ -17,11 +17,9 @@ class Iteration : public ValueLong, public DynamicMemory
   
 };
 
-class IterationUpdater : public Updater
+class IterationUpdater : public UpdaterLong
 {
   public:
-    
-    long* v_ = nullptr;
     
     IterationUpdater(int);
     

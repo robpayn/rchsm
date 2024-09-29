@@ -15,13 +15,11 @@ Time::Time(double initValue, int phase) :
 }
 
 TimeUpdater::TimeUpdater(int phase) :
-  Updater(phase)
+  UpdaterDouble(phase)
 {}
 
 void TimeUpdater::setDependencies(DepManager& dm) 
 {
-  v_ = &(static_cast<ValueDouble*>(val_)->v_);
-  
   std::unordered_map<std::string, Variable*> boundVars = 
     static_cast <Cell*> (val_->var_->holon_)->getBoundVariables("TimeStep");
   if (boundVars.size() > 1) {

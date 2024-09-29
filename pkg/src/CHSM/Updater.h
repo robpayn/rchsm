@@ -79,4 +79,40 @@ class Updater
 
 };
 
+class UpdaterBoolean : public Updater
+{
+  public:
+    
+    bool* v_ = nullptr;
+    
+    UpdaterBoolean(int);
+    
+    virtual void attachDynamicValue(Dynamic*) override;
+  
+};
+
+class UpdaterDouble : public Updater
+{
+  public:
+    
+    double* v_ = nullptr;
+    
+    UpdaterDouble(int);
+    
+    virtual void attachDynamicValue(Dynamic*) override;
+  
+};
+
+class UpdaterLong : public Updater
+{
+  public:
+    
+    long* v_ = nullptr;
+    
+    UpdaterLong(int);
+    
+    virtual void attachDynamicValue(Dynamic*) override;
+  
+};
+
 #endif /* CHSM_UPDATER_H_ */

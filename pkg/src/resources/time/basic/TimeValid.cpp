@@ -14,13 +14,11 @@ TimeValid::TimeValid(bool initValue, int phase) :
 }
 
 TimeValidUpdater::TimeValidUpdater(int phase) :
-  Updater(phase)
+  UpdaterBoolean(phase)
 {}
 
 void TimeValidUpdater::setDependencies(DepManager& dm) 
 {
-  v_ = &(static_cast<ValueBoolean*>(val_)->v_);  
-  
   time_ = &(
     dm.setDependency<ValueDouble>(val_, val_->var_->holon_, "Time")->v_
   );

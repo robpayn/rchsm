@@ -19,11 +19,9 @@ class Time : public ValueDouble, public DynamicMemory
     
 };
 
-class TimeUpdater : public Updater
+class TimeUpdater : public UpdaterDouble
 {
   public:
-    
-    double* v_ = nullptr;
     
     double* timeStep_;
     

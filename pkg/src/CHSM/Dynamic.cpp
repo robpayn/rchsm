@@ -6,9 +6,6 @@
 #include "Updater.h"
 #include "Value.h"
 
-Dynamic::Dynamic()
-{}
-
 Dynamic::~Dynamic()
 {
   delete updater_;

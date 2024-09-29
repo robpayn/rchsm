@@ -34,6 +34,12 @@ void MemoryLong::attachDynamicValue(DynamicMemory* dm)
 {
   Memory::attachDynamicValue(dm);
   v_ = &(dynamic_cast<ValueLong*>(dm)->v_);
+  if(!v_) {
+    std::ostringstream error;
+    error << "A MemoryLong object must be attached to a DynamicMemory "
+      << "object that extends ValueLong.";
+    throw std::runtime_error(error.str());
+  }
 }
 
 void MemoryLong::recall(int index)
@@ -53,4 +59,3 @@ void MemoryLong::store(int index)
     throwIndexError(index, "store");
   }
 }
-

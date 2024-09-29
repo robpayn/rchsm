@@ -18,12 +18,6 @@ MemoryDouble::~MemoryDouble()
   delete []m_;
 }
 
-void MemoryDouble::attachDynamicValue(DynamicMemory* dm)
-{
-  Memory::attachDynamicValue(dm);
-  v_ = &(dynamic_cast<ValueDouble*>(val_)->v_);
-}
-
 void MemoryDouble::allocateMemory()
 {
   if (m_) {
@@ -33,6 +27,18 @@ void MemoryDouble::allocateMemory()
   if (memSize_ > 0)
   {
     m_ = new double[memSize_];
+  }
+}
+
+void MemoryDouble::attachDynamicValue(DynamicMemory* dm)
+{
+  Memory::attachDynamicValue(dm);
+  v_ = &(dynamic_cast<ValueDouble*>(val_)->v_);
+  if(!v_) {
+    std::ostringstream error;
+    error << "A MemoryDouble object must be attached to a DynamicMemory "
+      << "object that extends ValueDouble.";
+    throw std::runtime_error(error.str());
   }
 }
 

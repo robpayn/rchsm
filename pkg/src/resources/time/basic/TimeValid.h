@@ -16,11 +16,9 @@ class TimeValid : public ValueBoolean, public DynamicMemory
     TimeValid(bool, int);
 };
 
-class TimeValidUpdater : public Updater
+class TimeValidUpdater : public UpdaterBoolean
 {
   public:
-    
-    bool* v_ = nullptr;
     
     double* time_ = nullptr;
     

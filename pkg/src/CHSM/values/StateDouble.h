@@ -56,7 +56,7 @@ class StateDouble : public ValueDouble, public DynamicMemory
     
 };
 
-class StateDoubleUpdater : public Updater
+class StateDoubleUpdater : public UpdaterDouble
 {
 public:
   
@@ -71,12 +71,6 @@ public:
       A list of attached rates for calculating the net change in state
   */
   std::list<double*> rates_;
-  
-  /*!
-    \brief
-      Pointer to the value to be updated
-  */
-  double* v_ = nullptr;
   
   /*!
     \brief

@@ -11,13 +11,11 @@ Iteration::Iteration(long initValue, int phase) :
 }
 
 IterationUpdater::IterationUpdater(int phase) :
-  Updater(phase)
+  UpdaterLong(phase)
 {}
 
 void IterationUpdater::setDependencies(DepManager& dm) 
-{
-  v_ = &(static_cast<ValueLong*>(val_)->v_);  
-}
+{}
 
 void IterationUpdater::update() 
 {

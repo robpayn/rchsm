@@ -33,14 +33,12 @@ StateDoubleUpdater::StateDoubleUpdater(
   std::string timeStepName,
   int phase
 ) :
-  Updater(phase),
+  UpdaterDouble(phase),
   dt_(&(timeHolon.getVarValue<ValueDouble>(timeStepName)->v_))
 {}
 
 void StateDoubleUpdater::setDependencies(DepManager& dm)
-{
-  v_ = &(static_cast<ValueDouble*>(val_)->v_);
-}
+{}
 
 void StateDoubleUpdater::attachRate(double* rate)
 {

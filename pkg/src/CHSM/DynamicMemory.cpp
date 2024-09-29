@@ -5,10 +5,6 @@
 #include "DynamicMemory.h"
 #include "Memory.h"
 
-DynamicMemory::DynamicMemory() :
-  Dynamic()
-{}
-
 DynamicMemory::~DynamicMemory()
 {
   delete memory_;

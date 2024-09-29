@@ -5,8 +5,8 @@
 #ifndef RESOURCES_SOLUTES_CONC_RATEDISPERSION_H_
 #define RESOURCES_SOLUTES_CONC_RATEDISPERSION_H_
 
-#include "../../../CHSM/Updater.h"
 #include "../../../CHSM/values/RateDouble.h"
+#include "../../../CHSM/values/UpdaterRateDouble.h"
 
 class RateDispersion : public RateDouble
 {
@@ -16,13 +16,9 @@ class RateDispersion : public RateDouble
 
 };
 
-class RateDispersionUpdater : public Updater
+class RateDispersionUpdater : public UpdaterRateDouble
 {
   public:
-    
-    double* v_ = nullptr;
-    
-    double* vf_ = nullptr;
     
     double* dispCoeff_ = nullptr;
     

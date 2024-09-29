@@ -16,11 +16,9 @@ class RateFirstOrder : public RateDouble
     
 };
 
-class RateFirstOrderUpdater : public Updater
+class RateFirstOrderUpdater : public UpdaterDouble
 {
   public:
-    
-    double* v_ = nullptr;
     
     double* rateCoeff_ = nullptr;
     
